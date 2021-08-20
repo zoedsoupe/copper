@@ -1,0 +1,16 @@
+#+title: Neomat
+
+My custom =neovim= config!
+
+In current time it only can be used/imported as a [[https://github.com/nix-community/home-manager][home-manager]] module, as:
+
+#+begin_src nix
+# home.nix
+{ ... }:
+
+{
+  imports = [ <path/my-neovim> ];
+}
+#+end_src
+
+I personally use with [[https://nixos.wiki/wiki/Flakes][flakes]] and my complete config can be found in github.com/matdsoupe/nixnad!
