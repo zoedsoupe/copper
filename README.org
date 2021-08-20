@@ -13,4 +13,4 @@ In current time it only can be used/imported as a [[https://github.com/nix-commu
 }
 #+end_src
 
-I personally use with [[https://nixos.wiki/wiki/Flakes][flakes]] and my complete config can be found in github.com/matdsoupe/nixnad!
+I personally use with [[https://nixos.wiki/wiki/Flakes][flakes]] and my complete config can be found in https://github.com/matdsoupe/nixnad!
