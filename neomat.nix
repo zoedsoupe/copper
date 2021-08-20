@@ -63,6 +63,7 @@ in
             ueberzug
           ])
       ] ++ map pluginWithConfig [
+        nvim-base16
         vim-polyglot
         gitsigns-nvim
         nvim-treesitter

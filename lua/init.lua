@@ -101,10 +101,6 @@ if g.syntax_on then
 	cmd 'syntax enable'
 end
 
--- theme config
-g.transparency = false
-require('theme')
-
 -- neoformat
 cmd [[
   augroup fmt
@@ -112,6 +108,9 @@ cmd [[
     autocmd BufWritePre * undojoin | Neoformat
   augroup END
 ]]
+
+-- Don't show any numbers inside terminals
+cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
 
 vim.api.nvim_set_keymap('', '<cr>', [[:noh<cr><cr>]], { noremap = true })
 
