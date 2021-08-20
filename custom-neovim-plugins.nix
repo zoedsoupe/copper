@@ -89,7 +89,7 @@ with pkgs; with vimUtils;
       owner = "NvChad";
       repo = "nvim-base16.lua";
       rev = "HEAD";
-      sha256 = "9586b89760781c55f69381cbac6467784faec62bf8385852b88aa8da63fe3b76";
+      sha256 = "7CZlBDEj+OckjzB+2V+/ydrht1CFcP2BrNfTjgDYTg0=";
     };
   };
 }
