@@ -16,49 +16,8 @@ let
     popup-nvim
     plenary-nvim
   ];
-
-  recursiveMerge = attrList:
-  let f = attrPath:
-    zipAttrsWith (n: values:
-      if tail values == []
-        then head values
-      else if all isList values
-        then unique (concatLists values)
-      else if all isAttrs values
-        then f (attrPath ++ [n]) values
-      else last values
-    );
-  in f [] attrList;
-
-  langs = [
-    "bash" "bibtex" "c"
-    "clojure" "commonlisp"
-    "css" "dockerfile" "elixir"
-    "elm" "erlang" "fish"
-    "haskell" "html" "javascript"
-    "json" "latex" "lua"
-    "nix" "ocaml" "python"
-    "rust" "toml" "tsx"
-    "typescript" "vim" "yaml"
-  ];
-
-
-  mk-treesitter-parser = lang: { lname = lang; file = "${lang}.so"; };
-
-  treesitter-parsers = map mk-treesitter-parser langs;
-
-  mk-nvim-parser = parser: {
-    ppath = "nvim/parser/${parser.file}";
-    grammar = "${tree-sitter.builtGrammars."${parser.lname}"}/parser";
-  };
-
-  nvim-parsers = map mk-nvim-parser treesitter-parsers;
-
-  parsers = map (p: { xdg.configFile."${p.ppath}".source = "${p.grammar}"; }) nvim-parsers;
-
-  parsers-config = recursiveMerge parsers;
 in
-parsers // {
+{
   xdg.configFile."nvim/lua".source = ./lua;
 
   programs.neovim = {
