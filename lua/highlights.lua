@@ -10,6 +10,7 @@ local black2 = colors.black2
 local one_bg = colors.one_bg
 local one_bg2 = colors.one_bg2
 local grey = colors.grey
+local light_grey = colors.light_grey
 local grey_fg = colors.grey_fg
 local red = colors.red
 local line = colors.line
