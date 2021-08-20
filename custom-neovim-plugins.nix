@@ -59,7 +59,7 @@ with pkgs; with vimUtils;
       owner = "karb94";
       repo = "neoscroll.nvim";
       rev = "HEAD";
-      sha256 = "f2480201fe36a2733aa08595496f115a30b103ad274858e9b0263bd214b7239e";
+      sha256 = "TIuw6ACyTQDHD2JfnqJA/hmSLVZnxYMjZNMKiMXqrWQ=";
     };
   };
 
