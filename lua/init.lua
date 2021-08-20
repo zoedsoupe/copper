@@ -102,8 +102,8 @@ if g.syntax_on then
 end
 
 -- theme config
-g.transparency = true
-require('highlights')
+g.transparency = false
+require('theme')
 
 -- neoformat
 cmd [[
