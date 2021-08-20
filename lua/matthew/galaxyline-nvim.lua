@@ -61,8 +61,8 @@ table.insert(gls.left, {
     provider = "GitBranch",
     condition = condition.check_git_workspace,
     separator = " ",
-    separator_highlight = { "NONE", colors.one_bg2 },
-    highlight = { colors.grey_fg2, colors.statusline_bg }
+    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
+    highlight = { colors.orange, colors.statusline_bg }
   },
 })
 
@@ -106,6 +106,7 @@ table.insert(gls.right, {
   LineInfo = {
     provider = "LineColumn",
     separator = "  ",
+    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
     highlight = { colors.white, colors.statusline_bg },
   },
 })
@@ -114,6 +115,7 @@ table.insert(gls.right, {
   PerCent = {
     provider = "LinePercent",
     separator = " ",
+    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
     highlight = { colors.white, colors.statusline_bg },
   },
 })
@@ -129,6 +131,7 @@ table.insert(gls.right, {
     end,
     condition = condition.hide_in_width,
     separator = " ",
+    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
     highlight = { colors.white, colors.statusline_bg},
   },
 })
@@ -138,6 +141,7 @@ table.insert(gls.right, {
     provider = "FileTypeName",
     condition = condition.hide_in_width,
     separator = " ",
+    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
     highlight = { colors.white, colors.statusline_bg },
   },
 })
@@ -147,6 +151,7 @@ table.insert(gls.right, {
     provider = "FileEncode",
     condition = condition.hide_in_width,
     separator = " ",
+    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
     highlight = { colors.white, colors.statusline_bg },
   },
 })
@@ -157,6 +162,7 @@ table.insert(gls.right, {
       return " "
     end,
     separator = " ",
+    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
     highlight = { colors.white, colors.statusline_bg },
   },
 })
@@ -165,6 +171,7 @@ table.insert(gls.short_line_left, {
   BufferType = {
     provider = "FileTypeName",
     separator = " ",
+    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
     highlight = { colors.white, colors.statusline_bg },
   },
 })
