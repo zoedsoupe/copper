@@ -48,12 +48,17 @@ let
     (mk-treesitter-parser "yaml")
   ];
 
-  mk-nvim-parser = parser: xgd.configFile."nvim/parser/${parser.path}".source = "${tree-sitter.builtGrammars."${parser.lname}"}/parser"};
+  mk-nvim-parser = parser: { 
+    ppath = "nvim/parser/${parser.path}"; 
+    grammar = "${tree-sitter.builtGrammars."${parser.lname}"}/parser"; 
+  };
+
+  nvim-parsers = map mk-nvim-parser treesitter-parsers;
+
+  parsers = builtins.mkMerge map (p: { xdg.configFile."${p.ppath}".source = "${p.grammar}"; });
 in
 {
   xdg.configFile."nvim/lua".source = ./lua;
-
-  map mk-nvim-parser treesitter-parsers
 
   programs.neovim = {
     enable = true;
@@ -103,4 +108,4 @@ in
         (pluginWithDeps galaxyline-nvim [ nvim-web-devicons ])
       ] ++ extraPlugins;
   };
-}
+} // parsers;
