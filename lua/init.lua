@@ -102,7 +102,6 @@ if g.syntax_on then
 end
 
 -- theme config
-g.theme = 'dracula'
 g.transparency = true
 require('highlights')
 

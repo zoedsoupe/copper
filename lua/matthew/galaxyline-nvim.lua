@@ -5,8 +5,7 @@ local gls = gl.section
 
 gl.short_line_list = {'NvimTree','vista','dbui'}
 
-local global_theme = "themes/" .. "dracula"
-local colors = require(global_theme)
+local colors = require('themes.dracula')
 
 local buffer_not_empty = function()
   if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
