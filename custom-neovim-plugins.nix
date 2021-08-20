@@ -63,8 +63,8 @@ with pkgs; with vimUtils;
     };
   };
 
-  truezen = buildVimPluginFrom2Nix {
-    name = "truezen";
+  true-zen = buildVimPluginFrom2Nix {
+    name = "true-zen";
     src = fetchFromGitHub {
       owner = "Pocco81";
       repo = "TrueZen.nvim";
