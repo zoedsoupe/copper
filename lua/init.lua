@@ -105,8 +105,7 @@ end
 g.theme = 'onedark'
 g.transparency = true
 require('highlights')
--- cmd 'colorscheme spacegray'
--- cmd "au ColorScheme * hi SignColumn ctermbg=none guibg=none"
+ cmd "au ColorScheme * hi SignColumn ctermbg=none guibg=none"
 
 -- neoformat
 cmd [[
