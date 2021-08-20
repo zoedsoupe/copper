@@ -55,7 +55,7 @@ let
 
   nvim-parsers = map mk-nvim-parser treesitter-parsers;
 
-  parsers = mkMerge map (p: { xdg.configFile."${p.ppath}".source = "${p.grammar}"; });
+  parsers = mkMerge map (p: { xdg.configFile."${p.ppath}".source = "${p.grammar}"; }) nvim-parsers;
 in
 parsers // {
   xdg.configFile."nvim/lua".source = ./lua;
