@@ -105,7 +105,7 @@ end
 g.theme = 'norchad'
 g.transparency = true
 require('highlights')
- cmd "au ColorScheme * hi SignColumn ctermbg=none guibg=none"
+cmd "au ColorScheme * hi SignColumn ctermbg=none guibg=none"
 
 -- neoformat
 cmd [[

@@ -38,8 +38,7 @@ table.insert(gls.left, {
       vim.cmd("hi GalaxyViMode guifg=" .. mode(2))
       return "▊"
     end,
-    separator_highlight = { "NONE", colors.one_bg2 },
-    highlight = { "NONE", colors.lightbg }
+    highlight = { "GalaxyViMode", colors.lightbg }
   },
 })
 -- print(vim.fn.getbufvar(0, 'ts'))
@@ -52,8 +51,8 @@ table.insert(gls.left, {
     end,
     condition = condition.check_git_workspace,
     separator = " ",
-    separator_highlight = { "NONE", colors.one_bg2 },
-    highlight = { colors.orange, colors.one_bg2 },
+    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
+    highlight = { colors.grey_fg2, colors.statusline_bg }
   },
 })
 
@@ -63,7 +62,7 @@ table.insert(gls.left, {
     condition = condition.check_git_workspace,
     separator = " ",
     separator_highlight = { "NONE", colors.one_bg2 },
-    highlight = { colors.grey, colors.one_bg2 },
+    highlight = { colors.grey_fg2, colors.statusline_bg }
   },
 })
 
@@ -72,7 +71,7 @@ table.insert(gls.left, {
     provider = "DiffAdd",
     condition = condition.hide_in_width,
     icon = "  ",
-    highlight = { colors.green, colors.one_bg2 },
+    highlight = { colors.green, colors.statusline_bg},
   },
 })
 
@@ -81,7 +80,7 @@ table.insert(gls.left, {
     provider = "DiffModified",
     condition = condition.hide_in_width,
     icon = " 柳",
-    highlight = { colors.blue, colors.one_bg2 },
+    highlight = { colors.blue, colors.statusline_bg },
   },
 })
 
@@ -90,7 +89,7 @@ table.insert(gls.left, {
     provider = "DiffRemove",
     condition = condition.hide_in_width,
     icon = "  ",
-    highlight = { colors.red, colors.one_bg2 },
+    highlight = { colors.red, colors.statusline_bg },
   },
 })
 
@@ -99,7 +98,7 @@ table.insert(gls.left, {
     provider = function()
       return " "
     end,
-    highlight = { colors.grey, colors.one_bg2 },
+    highlight = { colors.white, colors.statusline_bg },
   },
 })
 
@@ -107,8 +106,7 @@ table.insert(gls.right, {
   LineInfo = {
     provider = "LineColumn",
     separator = "  ",
-    separator_highlight = { "NONE", colors.one_bg2 },
-    highlight = { colors.grey, colors.one_bg2 },
+    highlight = { colors.white, colors.statusline_bg },
   },
 })
 
@@ -116,8 +114,7 @@ table.insert(gls.right, {
   PerCent = {
     provider = "LinePercent",
     separator = " ",
-    separator_highlight = { "NONE", colors.one_bg2 },
-    highlight = { colors.grey, colors.one_bg2 },
+    highlight = { colors.white, colors.statusline_bg },
   },
 })
 
@@ -132,8 +129,7 @@ table.insert(gls.right, {
     end,
     condition = condition.hide_in_width,
     separator = " ",
-    separator_highlight = { "NONE", colors.one_bg2 },
-    highlight = { colors.grey, colors.one_bg2 },
+    highlight = { colors.white, colors.statusline_bg},
   },
 })
 
@@ -142,8 +138,7 @@ table.insert(gls.right, {
     provider = "FileTypeName",
     condition = condition.hide_in_width,
     separator = " ",
-    separator_highlight = { "NONE", colors.one_bg2 },
-    highlight = { colors.grey, colors.one_bg2 },
+    highlight = { colors.white, colors.statusline_bg },
   },
 })
 
@@ -152,8 +147,7 @@ table.insert(gls.right, {
     provider = "FileEncode",
     condition = condition.hide_in_width,
     separator = " ",
-    separator_highlight = { "NONE", colors.one_bg2 },
-    highlight = { colors.grey, colors.one_bg2 },
+    highlight = { colors.white, colors.statusline_bg },
   },
 })
 
@@ -163,8 +157,7 @@ table.insert(gls.right, {
       return " "
     end,
     separator = " ",
-    separator_highlight = { "NONE", colors.one_bg2 },
-    highlight = { colors.grey, colors.one_bg2 },
+    highlight = { colors.white, colors.statusline_bg },
   },
 })
 
@@ -172,8 +165,7 @@ table.insert(gls.short_line_left, {
   BufferType = {
     provider = "FileTypeName",
     separator = " ",
-    separator_highlight = { "NONE", colors.one_bg2 },
-    highlight = { colors.one_bg2, colors.one_bg2 },
+    highlight = { colors.white, colors.statusline_bg },
   },
 })
 
@@ -181,6 +173,6 @@ table.insert(gls.short_line_left, {
   SFileName = {
     provider = "SFileName",
     condition = condition.buffer_not_empty,
-    highlight = { colors.one_bg2, colors.one_bg2 },
+    highlight = { colors.white, colors.statusline_bg },
   },
 })
