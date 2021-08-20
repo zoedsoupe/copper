@@ -1,7 +1,6 @@
 local cmd = vim.cmd
 
-local global_theme = "themes/" .. vim.g.theme
-local colors = require(global_theme)
+local colors = require('themes.dracula')
 
 local white = colors.white
 local darker_black = colors.darker_black
