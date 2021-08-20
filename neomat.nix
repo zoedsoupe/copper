@@ -48,14 +48,14 @@ let
     (mk-treesitter-parser "yaml")
   ];
 
-  mk-nvim-parser = parser: { 
-    ppath = "nvim/parser/${parser.file}"; 
-    grammar = "${tree-sitter.builtGrammars."${parser.lname}"}/parser"; 
+  mk-nvim-parser = parser: {
+    ppath = "nvim/parser/${parser.file}";
+    grammar = "${tree-sitter.builtGrammars."${parser.lname}"}/parser";
   };
 
   nvim-parsers = map mk-nvim-parser treesitter-parsers;
 
-  parsers = mkMerge map (p: { xdg.configFile."${p.ppath}".source = "${p.grammar}"; }) nvim-parsers;
+  parsers = mkMerge (map (p: { xdg.configFile."${p.ppath}".source = "${p.grammar}"; }) nvim-parsers);
 in
 parsers // {
   xdg.configFile."nvim/lua".source = ./lua;
