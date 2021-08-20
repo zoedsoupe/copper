@@ -17,7 +17,7 @@ let
     plenary-nvim
   ];
 
-  mk-treesitter-parser = lang: { lname = lang, path = "${lang}.so" };
+  mk-treesitter-parser = lang: { lname = lang; path = "${lang}.so"; };
 
   treesitter-parsers = [
     (mk-treesitter-parser "bash")
