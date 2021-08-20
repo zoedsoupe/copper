@@ -79,7 +79,7 @@ with pkgs; with vimUtils;
       owner = "nvim-telescope";
       repo = "/telescope-media-files.nvim";
       rev = "HEAD";
-      sha256 = "5a00b9c7b1d8c61153cdefd53b711dc9914975df8e2447d93cc82a612b6f8779";
+      sha256 = "h66JIgRi693WAfIk3CRJTsIAX1/V28EJHwo+5dTRuJ8=";
     };
   };
 }
