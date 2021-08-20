@@ -5,7 +5,7 @@ local gls = gl.section
 
 gl.short_line_list = {'NvimTree','vista','dbui'}
 
-local global_theme = "themes/" .. (vim.g.theme or 'onedark')
+local global_theme = "themes/" .. "onedark"
 local colors = require(global_theme)
 
 local buffer_not_empty = function()

@@ -75,7 +75,7 @@ require("indent_blankline").setup({
 })
 
 -- true zen keybindings
-vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], opt)
+vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], { noremap = true })
 
 -- telescope keybindings
 vim.api.nvim_set_keymap('', '<leader>ff', ':Telescope find_files<cr>', { noremap = true })
