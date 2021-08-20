@@ -52,8 +52,8 @@ table.insert(gls.left, {
     end,
     condition = condition.check_git_workspace,
     separator = " ",
-    separator_highlight = { "NONE", colors.alt_bg },
-    highlight = { colors.orange, colors.alt_bg },
+    separator_highlight = { "NONE", colors.one_bg2 },
+    highlight = { colors.orange, colors.one_bg2 },
   },
 })
 
@@ -62,8 +62,8 @@ table.insert(gls.left, {
     provider = "GitBranch",
     condition = condition.check_git_workspace,
     separator = " ",
-    separator_highlight = { "NONE", colors.alt_bg },
-    highlight = { colors.grey, colors.alt_bg },
+    separator_highlight = { "NONE", colors.one_bg2 },
+    highlight = { colors.grey, colors.one_bg2 },
   },
 })
 
@@ -72,7 +72,7 @@ table.insert(gls.left, {
     provider = "DiffAdd",
     condition = condition.hide_in_width,
     icon = "  ",
-    highlight = { colors.green, colors.alt_bg },
+    highlight = { colors.green, colors.one_bg2 },
   },
 })
 
@@ -81,7 +81,7 @@ table.insert(gls.left, {
     provider = "DiffModified",
     condition = condition.hide_in_width,
     icon = " 柳",
-    highlight = { colors.blue, colors.alt_bg },
+    highlight = { colors.blue, colors.one_bg2 },
   },
 })
 
@@ -90,7 +90,7 @@ table.insert(gls.left, {
     provider = "DiffRemove",
     condition = condition.hide_in_width,
     icon = "  ",
-    highlight = { colors.red, colors.alt_bg },
+    highlight = { colors.red, colors.one_bg2 },
   },
 })
 
@@ -99,7 +99,7 @@ table.insert(gls.left, {
     provider = function()
       return " "
     end,
-    highlight = { colors.grey, colors.alt_bg },
+    highlight = { colors.grey, colors.one_bg2 },
   },
 })
 
@@ -107,8 +107,8 @@ table.insert(gls.right, {
   LineInfo = {
     provider = "LineColumn",
     separator = "  ",
-    separator_highlight = { "NONE", colors.alt_bg },
-    highlight = { colors.grey, colors.alt_bg },
+    separator_highlight = { "NONE", colors.one_bg2 },
+    highlight = { colors.grey, colors.one_bg2 },
   },
 })
 
@@ -116,8 +116,8 @@ table.insert(gls.right, {
   PerCent = {
     provider = "LinePercent",
     separator = " ",
-    separator_highlight = { "NONE", colors.alt_bg },
-    highlight = { colors.grey, colors.alt_bg },
+    separator_highlight = { "NONE", colors.one_bg2 },
+    highlight = { colors.grey, colors.one_bg2 },
   },
 })
 
@@ -132,8 +132,8 @@ table.insert(gls.right, {
     end,
     condition = condition.hide_in_width,
     separator = " ",
-    separator_highlight = { "NONE", colors.alt_bg },
-    highlight = { colors.grey, colors.alt_bg },
+    separator_highlight = { "NONE", colors.one_bg2 },
+    highlight = { colors.grey, colors.one_bg2 },
   },
 })
 
@@ -142,8 +142,8 @@ table.insert(gls.right, {
     provider = "FileTypeName",
     condition = condition.hide_in_width,
     separator = " ",
-    separator_highlight = { "NONE", colors.alt_bg },
-    highlight = { colors.grey, colors.alt_bg },
+    separator_highlight = { "NONE", colors.one_bg2 },
+    highlight = { colors.grey, colors.one_bg2 },
   },
 })
 
@@ -152,8 +152,8 @@ table.insert(gls.right, {
     provider = "FileEncode",
     condition = condition.hide_in_width,
     separator = " ",
-    separator_highlight = { "NONE", colors.alt_bg },
-    highlight = { colors.grey, colors.alt_bg },
+    separator_highlight = { "NONE", colors.one_bg2 },
+    highlight = { colors.grey, colors.one_bg2 },
   },
 })
 
@@ -163,8 +163,8 @@ table.insert(gls.right, {
       return " "
     end,
     separator = " ",
-    separator_highlight = { "NONE", colors.alt_bg },
-    highlight = { colors.grey, colors.alt_bg },
+    separator_highlight = { "NONE", colors.one_bg2 },
+    highlight = { colors.grey, colors.one_bg2 },
   },
 })
 
@@ -172,8 +172,8 @@ table.insert(gls.short_line_left, {
   BufferType = {
     provider = "FileTypeName",
     separator = " ",
-    separator_highlight = { "NONE", colors.alt_bg },
-    highlight = { colors.alt_bg, colors.alt_bg },
+    separator_highlight = { "NONE", colors.one_bg2 },
+    highlight = { colors.one_bg2, colors.one_bg2 },
   },
 })
 
@@ -181,6 +181,6 @@ table.insert(gls.short_line_left, {
   SFileName = {
     provider = "SFileName",
     condition = condition.buffer_not_empty,
-    highlight = { colors.alt_bg, colors.alt_bg },
+    highlight = { colors.one_bg2, colors.one_bg2 },
   },
 })
