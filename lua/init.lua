@@ -102,7 +102,7 @@ if g.syntax_on then
 end
 
 -- theme config
-g.theme = 'onedark'
+g.theme = 'norchad'
 g.transparency = true
 require('highlights')
  cmd "au ColorScheme * hi SignColumn ctermbg=none guibg=none"
