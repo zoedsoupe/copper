@@ -56,13 +56,7 @@ in
         nvim-autopairs
         vim-haskell-module-name
         indent-blankline-nvim-lua
-        (pluginWithDeps telescope-media
-          [
-            fd
-            ffmpegthumbnailer
-            fontpreview
-            ueberzug
-          ])
+        telescope-media
       ] ++ map pluginWithConfig [
         nvim-base16
         vim-polyglot
@@ -71,6 +65,14 @@ in
         (pluginWithDeps nvim-tree-lua [ nvim-web-devicons ])
         (pluginWithDeps galaxyline-nvim [ nvim-web-devicons ])
       ] ++ extraPlugins;
-    extraPackages = [ gcc tree-sitter ];
+      extraPackages = [ 
+        # nvim-treesitter packages
+        gcc tree-sitter
+
+        # telescope-media packages
+        fd fontpreview
+        ffmpegthumbnailer
+        ueberzug
+      ];
   };
 }
