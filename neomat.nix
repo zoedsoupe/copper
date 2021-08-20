@@ -10,7 +10,7 @@ let
   pluginWithConfig = plugin: {
     plugin = plugin;
     config = if plugin.pname 
-      then "lua require('matthew.${plugin.pname}')";
+      then "lua require('matthew.${plugin.pname}')"
       else "lua require('matthew.${plugin.name}')";
   };
 
