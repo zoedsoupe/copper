@@ -52,7 +52,7 @@ table.insert(gls.left, {
     condition = condition.check_git_workspace,
     separator = " ",
     separator_highlight = { colors.statusline_bg, colors.statusline_bg },
-    highlight = { colors.grey_fg2, colors.statusline_bg }
+    highlight = { colors.orange, colors.statusline_bg }
   },
 })
 
@@ -62,7 +62,7 @@ table.insert(gls.left, {
     condition = condition.check_git_workspace,
     separator = " ",
     separator_highlight = { colors.statusline_bg, colors.statusline_bg },
-    highlight = { colors.orange, colors.statusline_bg }
+    highlight = { colors.grey_fg2, colors.statusline_bg }
   },
 })
 
