@@ -17,36 +17,35 @@ let
     plenary-nvim
   ];
 
+  recursiveMerge = attrList:
+  let f = attrPath:
+    zipAttrsWith (n: values:
+      if tail values == []
+        then head values
+      else if all isList values
+        then unique (concatLists values)
+      else if all isAttrs values
+        then f (attrPath ++ [n]) values
+      else last values
+    );
+  in f [] attrList;
+
+  langs = [
+    "bash" "bibtex" "c"
+    "clojure" "commonlisp"
+    "css" "dockerfile" "elixir"
+    "elm" "erlang" "fish"
+    "haskell" "html" "javascript"
+    "json" "latex" "lua"
+    "nix" "ocaml" "python"
+    "rust" "toml" "tsx"
+    "typescript" "vim" "yaml"
+  ];
+
+
   mk-treesitter-parser = lang: { lname = lang; file = "${lang}.so"; };
 
-  treesitter-parsers = [
-    (mk-treesitter-parser "bash")
-    (mk-treesitter-parser "bibtex")
-    (mk-treesitter-parser "c")
-    (mk-treesitter-parser "clojure")
-    (mk-treesitter-parser "commonlisp")
-    (mk-treesitter-parser "css")
-    (mk-treesitter-parser "dockerfile")
-    (mk-treesitter-parser "elixir")
-    (mk-treesitter-parser "elm")
-    (mk-treesitter-parser "erlang")
-    (mk-treesitter-parser "fish")
-    (mk-treesitter-parser "haskell")
-    (mk-treesitter-parser "html")
-    (mk-treesitter-parser "javascript")
-    (mk-treesitter-parser "json")
-    (mk-treesitter-parser "latex")
-    (mk-treesitter-parser "lua")
-    (mk-treesitter-parser "nix")
-    (mk-treesitter-parser "ocaml")
-    (mk-treesitter-parser "python")
-    (mk-treesitter-parser "rust")
-    (mk-treesitter-parser "toml")
-    (mk-treesitter-parser "tsx")
-    (mk-treesitter-parser "typescript")
-    (mk-treesitter-parser "vim")
-    (mk-treesitter-parser "yaml")
-  ];
+  treesitter-parsers = map mk-treesitter-parser langs;
 
   mk-nvim-parser = parser: {
     ppath = "nvim/parser/${parser.file}";
@@ -55,7 +54,9 @@ let
 
   nvim-parsers = map mk-nvim-parser treesitter-parsers;
 
-  parsers = mkMerge (map (p: { xdg.configFile."${p.ppath}".source = "${p.grammar}"; }) nvim-parsers);
+  parsers = map (p: { xdg.configFile."${p.ppath}".source = "${p.grammar}"; }) nvim-parsers;
+
+  parsers-config = recursiveMerge parsers;
 in
 parsers // {
   xdg.configFile."nvim/lua".source = ./lua;
