@@ -44,7 +44,6 @@ in
         ultisnips
         vim-matchup
         vim-snippets
-        neoclip
         nvim-comment
         neoformat
         orgmode

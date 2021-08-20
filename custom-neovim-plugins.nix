@@ -33,16 +33,6 @@ with pkgs; with vimUtils;
     };
   };
 
-  neoclip = buildVimPluginFrom2Nix {
-    name = "neoclip";
-    src = fetchFromGitHub {
-      owner = "AckslD";
-      repo = "nvim-neoclip.lua";
-      rev = "HEAD";
-      sha256 = "0vlmsss6jisg2xaf4gk4md1a5lsds4jgk1cpxhx74snll274bnyd";
-    };
-  };
-
   nvim-comment = buildVimPluginFrom2Nix {
     name = "nvim-comment";
     src = fetchFromGitHub {

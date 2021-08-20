@@ -60,7 +60,6 @@ require('gitsigns').setup()
 require('colorizer').setup()
 require('nvim_comment').setup()
 require('nvim-web-devicons').setup({ default = true })
-require('neoclip').setup({ history = 25 })
 require('true-zen').setup()
 require('nvim-autopairs').setup({
   disable_filetype = { "TelescopePrompt" , "vim" },
@@ -79,7 +78,7 @@ vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], { noremap = true 
 
 -- telescope keybindings
 vim.api.nvim_set_keymap('', '<leader>ff', ':Telescope find_files<cr>', { noremap = true })
-vim.api.nvim_set_keymap('', '<leader>fy', [[:lua require('telescope').extensions.neoclip.default()<cr>]], { noremap = true })
+vim.api.nvim_set_keymap('', '<leader>fm', [[:lua require('telescope').extensions.media_files.media_files()]], { noremap = true })
 vim.api.nvim_set_keymap('', '<leader>fg', ':Telescope live_grep<cr>', { noremap = true })
 vim.api.nvim_set_keymap('', '<leader>fb', ':Telescope buffers<cr>', { noremap = true })
 vim.api.nvim_set_keymap('', '<leader>fh', ':Telescope help_tags<cr>', { noremap = true })
