@@ -49,7 +49,7 @@ with pkgs; with vimUtils;
       owner = "terrortylor";
       repo = "nvim-comment";
       rev = "HEAD";
-      sha256 = "f08b26ed6d9b6a78b24ab33da709e31262a6386946178f145f0acb1208339fd5";
+      sha256 = "wv4scKfo4EyHLnP7zOHOhQ4Z7ok8lOvB/NS4RpX9Lg0=";
     };
   };
 
