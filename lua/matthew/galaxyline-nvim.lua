@@ -3,7 +3,6 @@ local gl = require('galaxyline')
 local condition = require('galaxyline.condition')
 local gls = gl.section
 
-vim.g.theme = 'dracula'
 gl.short_line_list = {'NvimTree','vista','dbui'}
 
 local global_theme = 'themes/' .. vim.g.theme

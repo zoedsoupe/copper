@@ -82,4 +82,14 @@ with pkgs; with vimUtils;
       sha256 = "h66JIgRi693WAfIk3CRJTsIAX1/V28EJHwo+5dTRuJ8=";
     };
   };
+
+  nvim-base16 = buildVimPluginFrom2Nix {
+    name = "nix-base16";
+    src = fetchFromGitHub {
+      owner = "NvChad";
+      repo = "nvim-base16.lua";
+      rev = "HEAD";
+      sha256 = "9586b89760781c55f69381cbac6467784faec62bf8385852b88aa8da63fe3b76";
+    };
+  };
 }
