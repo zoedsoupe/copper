@@ -9,7 +9,7 @@ let
 
   pluginWithConfig = plugin: {
     plugin = plugin;
-    config = if plugin.pname 
+    config = if builtins.hasAttr "pname" plugin
       then "lua require('matthew.${plugin.pname}')"
       else "lua require('matthew.${plugin.name}')";
   };
