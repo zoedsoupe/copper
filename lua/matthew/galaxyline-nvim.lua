@@ -15,37 +15,31 @@ local buffer_not_empty = function()
   return false
 end
 
+local mode_colors = {
+   [110] = { "NORMAL", colors.red },
+   [105] = { "INSERT", colors.dark_purple },
+   [99] = { "COMMAND", colors.pink },
+   [116] = { "TERMINAL", colors.green },
+   [118] = { "VISUAL", colors.cyan },
+   [22] = { "V-BLOCK", colors.cyan },
+   [86] = { "V_LINE", colors.cyan },
+   [82] = { "REPLACE", colors.orange },
+   [115] = { "SELECT", colors.nord_blue },
+   [83] = { "S-LINE", colors.nord_blue },
+}
+
+local mode = function(n)
+   return mode_colors[vim.fn.mode():byte()][n]
+end
+
 table.insert(gls.left, {
   ViMode = {
     provider = function()
-      -- auto change color according the vim mode
-      local mode_color = {
-        n = colors.blue,
-        i = colors.green,
-        v = colors.purple,
-        [""] = colors.purple,
-        V = colors.purple,
-        c = colors.magenta,
-        no = colors.blue,
-        s = colors.orange,
-        S = colors.orange,
-        [""] = colors.orange,
-        ic = colors.yellow,
-        R = colors.red,
-        Rv = colors.red,
-        cv = colors.blue,
-        ce = colors.blue,
-        r = colors.cyan,
-        rm = colors.cyan,
-        ["r?"] = colors.cyan,
-        ["!"] = colors.blue,
-        t = colors.blue,
-      }
-      vim.api.nvim_command("hi GalaxyViMode guifg=" .. mode_color[vim.fn.mode()])
+      vim.cmd("hi GalaxyViMode guifg=" .. mode(2))
       return "▊"
     end,
-    separator_highlight = { "NONE", colors.alt_bg },
-    highlight = { "NONE", colors.alt_bg },
+    separator_highlight = { "NONE", colors.one_bg2 },
+    highlight = { "NONE", colors.lightbg }
   },
 })
 -- print(vim.fn.getbufvar(0, 'ts'))
