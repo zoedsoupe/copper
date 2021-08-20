@@ -17,7 +17,7 @@ let
     plenary-nvim
   ];
 
-  mk-treesitter-parser = lang: { lname = lang; path = "${lang}.so"; };
+  mk-treesitter-parser = lang: { lname = lang; file = "${lang}.so"; };
 
   treesitter-parsers = [
     (mk-treesitter-parser "bash")
@@ -49,7 +49,7 @@ let
   ];
 
   mk-nvim-parser = parser: { 
-    ppath = "nvim/parser/${parser.path}"; 
+    ppath = "nvim/parser/${parser.file}"; 
     grammar = "${tree-sitter.builtGrammars."${parser.lname}"}/parser"; 
   };
 
@@ -57,7 +57,7 @@ let
 
   parsers = mkMerge map (p: { xdg.configFile."${p.ppath}".source = "${p.grammar}"; });
 in
-{
+parsers // {
   xdg.configFile."nvim/lua".source = ./lua;
 
   programs.neovim = {
@@ -108,4 +108,4 @@ in
         (pluginWithDeps galaxyline-nvim [ nvim-web-devicons ])
       ] ++ extraPlugins;
   };
-} // parsers
+}
