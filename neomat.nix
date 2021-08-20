@@ -30,6 +30,7 @@ in
       [
         vim-rescript
         editorconfig-vim
+        true-zen
         agda-vim
         emmet-vim
         rainbow
