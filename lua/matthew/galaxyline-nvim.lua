@@ -3,9 +3,11 @@ local gl = require('galaxyline')
 local condition = require('galaxyline.condition')
 local gls = gl.section
 
+vim.g.theme = 'dracula'
 gl.short_line_list = {'NvimTree','vista','dbui'}
 
-local colors = require('themes.dracula')
+local global_theme = 'themes/' .. vim.g.theme
+local colors = require(global_theme)
 
 local buffer_not_empty = function()
   if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
