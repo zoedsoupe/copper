@@ -29,7 +29,6 @@ ts_config.setup {
     "toml",
     "tsx",
     "typescript",
-    "vim",
     "yaml"
    },
    highlight = {
