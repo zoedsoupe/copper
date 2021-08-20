@@ -108,4 +108,4 @@ in
         (pluginWithDeps galaxyline-nvim [ nvim-web-devicons ])
       ] ++ extraPlugins;
   };
-} // parsers;
+} // parsers
