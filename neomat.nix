@@ -1,7 +1,9 @@
 { pkgs, ... }:
 
+with pkgs;
+
 let
-  plugins = pkgs.vimPlugins // pkgs.callPackage ./custom-neovim-plugins.nix { };
+  plugins = vimPlugins // callPackage ./custom-neovim-plugins.nix { };
 
   pluginWithDeps = plugin: deps: plugin.overrideAttrs (_: { dependencies = deps; });
 
@@ -50,7 +52,7 @@ in
         nvim-autopairs
         vim-haskell-module-name
         indent-blankline-nvim-lua
-        (pluginsWithDeps telescope-media with pkgs; 
+        (pluginsWithDeps telescope-media
           [
             fd
             ffmpegthumbnailer
