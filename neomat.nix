@@ -63,9 +63,10 @@ in
       ] ++ map pluginWithConfig [
         vim-polyglot
         gitsigns-nvim
-        (pluginWithDeps nvim-treesitter [ gcc tree-sitter ])
+        nvim-treesitter
         (pluginWithDeps nvim-tree-lua [ nvim-web-devicons ])
         (pluginWithDeps galaxyline-nvim [ nvim-web-devicons ])
       ] ++ extraPlugins;
+    extraPackages = [ gcc tree-sitter ];
   };
 }
