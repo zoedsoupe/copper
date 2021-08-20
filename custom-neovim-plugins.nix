@@ -69,7 +69,7 @@ with pkgs; with vimUtils;
       owner = "Pocco81";
       repo = "TrueZen.nvim";
       rev = "HEAD";
-      sha256 = "3335faeaca18c5c3d2875f4b1a6df1c770a0948856ec6683408a30f98c2ab1e5";
+      sha256 = "y40nIQKbQpSSfGjav73WKw/fRxPFTSVpMXYgEVs+8wA=";
     };
   };
 
