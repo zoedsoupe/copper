@@ -52,7 +52,7 @@ in
         nvim-autopairs
         vim-haskell-module-name
         indent-blankline-nvim-lua
-        (pluginsWithDeps telescope-media
+        (pluginWithDeps telescope-media
           [
             fd
             ffmpegthumbnailer
