@@ -84,7 +84,8 @@ with pkgs; with vimUtils;
   };
 
   nvim-base16 = buildVimPluginFrom2Nix {
-    name = "nix-base16";
+    name = "nvim-base16";
+    namePrefix = "";
     src = fetchFromGitHub {
       owner = "NvChad";
       repo = "nvim-base16.lua";
