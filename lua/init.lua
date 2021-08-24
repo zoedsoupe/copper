@@ -3,7 +3,7 @@ local g = vim.g
 local cmd = vim.cmd
 
 g.mapleader = ' '
-g.maplocalleader = '\\'
+g.maplocalleader = ','
 
  -- my custom options
 set.visualbell = true
