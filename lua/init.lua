@@ -1,3 +1,6 @@
+-- module caching
+require('impatient')
+
 local set = vim.opt
 local g = vim.g
 local cmd = vim.cmd

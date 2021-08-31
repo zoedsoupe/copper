@@ -3,6 +3,16 @@
 with pkgs; with vimUtils;
 
 {
+  impatient = buildVimPluginFrom2Nix {
+    name = "impatient";
+    src = fetchFromGitHub {
+      owner = "lewis6991";
+      repo = "impatient.nvim";
+      rev = "HEAD";
+      sha256 = "1qzf1g00abj658nvp45nkzjwwdwhbhswpdndrwzsf7y3h2knjlx0";
+    };
+  };
+
   vim-rescript = buildVimPluginFrom2Nix {
     name = "vim-rescript";
     src = fetchFromGitHub {
