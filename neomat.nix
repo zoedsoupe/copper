@@ -74,6 +74,9 @@ in
         fd fontpreview
         ffmpegthumbnailer
         ueberzug
+
+        # impatient
+        mpack
       ];
   };
 }
