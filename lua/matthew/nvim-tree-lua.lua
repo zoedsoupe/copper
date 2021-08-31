@@ -6,7 +6,7 @@ local config = {
    side = "left",
     show_icons = {
       git = 1,
-      folders = 1,
+      folders = 0,
       files = 1,
       folder_arrows = 1,
       tree_width = 30,
@@ -35,13 +35,13 @@ local config = {
         untracked = "U",
         ignored = "◌",
       },
-      folder = {
-        default = "",
-        open = "",
-        empty = "",
-        empty_open = "",
-        symlink = "",
-      },
+      -- folder = {
+      --   default = "",
+      --   open = "",
+      --   empty = "",
+      --   empty_open = "",
+      --   symlink = "",
+      -- },
     }
 }
 
