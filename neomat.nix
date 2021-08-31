@@ -76,7 +76,7 @@ in
         ueberzug
 
         # impatient
-        mpack
+        luajitPackages.mpack
       ];
   };
 }
