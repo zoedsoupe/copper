@@ -32,7 +32,6 @@ in
     extraConfig = "lua require('init')\n";
     plugins = with plugins;
       [
-        impatient
         vim-rescript
         editorconfig-vim
         true-zen
@@ -74,9 +73,6 @@ in
         fd fontpreview
         ffmpegthumbnailer
         ueberzug
-
-        # impatient
-        luajitPackages.mpack
       ];
   };
 }
