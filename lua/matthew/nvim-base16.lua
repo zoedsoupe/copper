@@ -1,5 +1,5 @@
 -- theme config
-vim.g.theme = 'dracula'
+vim.g.theme = 'norchad'
 vim.g.transparency = false
 
 require('theme')
