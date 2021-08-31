@@ -47,6 +47,7 @@ in
         nvim-comment
         neoformat
         orgmode
+        vim-racket
         neoscroll
         bullets-vim
         telescope-nvim
