@@ -32,6 +32,7 @@ in
     extraConfig = "lua require('init')\n";
     plugins = with plugins;
       [
+        impatient
         vim-rescript
         editorconfig-vim
         true-zen
