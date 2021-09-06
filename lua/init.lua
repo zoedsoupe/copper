@@ -72,6 +72,13 @@ require("indent_blankline").setup({
   show_first_indent_level = false,
   filetype_exclude = { "help", "terminal", "dashboard" }
 })
+require('nvim-treesitter.configs').setup({
+  rainbow = {
+    enable = true,
+    extended_mode = true,
+    max_file_lines = nil
+  }
+})
 
 -- true zen keybindings
 vim.api.nvim_set_keymap("n", "<F12>", [[<Cmd>TZAtaraxis<CR>]], { noremap = true })
@@ -85,7 +92,6 @@ vim.api.nvim_set_keymap('', '<leader>fh', ':Telescope help_tags<cr>', { noremap 
 
 -- small plugins config and extra config
 g.highlightedyank_highlight_duration = 145
-g.rainbow_active = 1
 g.direnv_silent_load = 1
 g.dashboard_default_executive = 'telescope'
 g.bullets_enabled_file_types = { 'markdown', 'text', 'gitcommit', 'orgmode', 'scratch' }

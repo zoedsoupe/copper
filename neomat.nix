@@ -37,7 +37,7 @@ in
         true-zen
         agda-vim
         emmet-vim
-        rainbow
+        nvim-ts-rainbow
         vim-surround
         vimtex
         direnv-vim
