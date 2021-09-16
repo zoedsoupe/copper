@@ -38,6 +38,7 @@ in
         agda-vim
         emmet-vim
         nvim-ts-rainbow
+        codi-vim
         vim-surround
         vimtex
         direnv-vim
