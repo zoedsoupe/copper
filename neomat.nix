@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 with pkgs;
 
@@ -9,9 +9,12 @@ let
 
   pluginWithConfig = plugin: {
     plugin = plugin;
-    config = if builtins.hasAttr "pname" plugin
-      then "lua require('matthew.${plugin.pname}')"
-      else "lua require('matthew.${plugin.name}')";
+    config =
+      let replace = (f: t: s: lib.stringAsChars (c: if c == f then t else c) s);
+      in
+      if builtins.hasAttr "pname" plugin
+      then "lua require('matthew.${replace "." "-" plugin.pname}')"
+      else "lua require('matthew.${replace "." "-" plugin.name}')";
   };
 
   extraPlugins = with plugins; [
@@ -66,14 +69,16 @@ in
         (pluginWithDeps nvim-tree-lua [ nvim-web-devicons ])
         (pluginWithDeps galaxyline-nvim [ nvim-web-devicons ])
       ] ++ extraPlugins;
-      extraPackages = [ 
-        # nvim-treesitter packages
-        gcc tree-sitter
+    extraPackages = [
+      # nvim-treesitter packages
+      gcc
+      tree-sitter
 
-        # telescope-media packages
-        fd fontpreview
-        ffmpegthumbnailer
-        ueberzug
-      ];
+      # telescope-media packages
+      fd
+      fontpreview
+      ffmpegthumbnailer
+      ueberzug
+    ];
   };
 }
