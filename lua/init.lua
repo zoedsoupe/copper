@@ -106,14 +106,6 @@ if g.syntax_on then
 	cmd 'syntax enable'
 end
 
--- neoformat
-cmd [[
-  augroup fmt
-    autocmd!
-    autocmd BufWritePre * undojoin | Neoformat
-  augroup END
-]]
-
 -- Don't show any numbers inside terminals
 cmd [[ au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal ]]
 

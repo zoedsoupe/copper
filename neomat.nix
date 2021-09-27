@@ -49,7 +49,6 @@ in
         vim-matchup
         vim-snippets
         nvim-comment
-        neoformat
         orgmode
         neoscroll
         bullets-vim
