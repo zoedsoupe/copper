@@ -26,6 +26,7 @@ in
   xdg.configFile."nvim/lua".source = ./lua;
 
   programs.neovim = {
+    package = pkgs.neovim;
     enable = true;
     viAlias = true;
     vimAlias = true;
