@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, neovim, ... }:
 
 with pkgs;
 
@@ -26,7 +26,7 @@ in
   xdg.configFile."nvim/lua".source = ./lua;
 
   programs.neovim = {
-    package = pkgs.neovim;
+    package = neovim;
     enable = true;
     viAlias = true;
     vimAlias = true;
