@@ -3,6 +3,6 @@
 {
   inherit (pkgs.lib);
 
-  neovimWrapper = import ./neovimBuilder.nix { inherit pkgs; };
+  neovimWrapper = import ./neovimWrapper.nix { inherit pkgs; };
   buildPluginOverlay = import ./buildPlugin.nix { inherit inputs plugins;}; 
 }
