@@ -10,6 +10,7 @@ in {
       true-zen
       emmet-vim
       codi-vim
+      dashboard-nvim
       vim-surround
       vimtex
       direnv-vim
