@@ -1,16 +1,41 @@
 #+title: Neomat
 
-My custom =neovim= config!
+*  What is this?
+This is my personal neovim config. Feel free to take bits of it to build your own or run it yourself.
 
-In current time it only can be used/imported as a [[https://github.com/nix-community/home-manager][home-manager]] module, as:
+As this is my personal config I am bound to change it a lot so I recommend forking rather then pointing to
+this config.
 
+* How to use
+Clone the repo and run the following from the directory:
+#+begin_example
+nix run .#
+#+end_example
+or
+#+begin_example
+nix run github:matdsoupe/neomat#.
+#+end_example
+or add to your inputs in a =flakes= config:
 #+begin_src nix
-# home.nix
-{ ... }:
-
 {
-  imports = [ <path/my-neovim> ];
+  inputs = {
+    neomat.url = "github:matdsoupe/neomat";
+  };
 }
 #+end_src
 
-I personally use with [[https://nixos.wiki/wiki/Flakes][flakes]] and my complete config can be found in https://github.com/matdsoupe/nixnad!
+* How to update plugins
+#+begin_example
+nix flake update
+#+end_example
+
+* Folder structure
+#+begin_example
+|-[lib] -- Contains my utility functions
+|-[modules] -- Contains modules which are used to configure neovim
+|-flake.nix -- Flake file
+|-README.org -- This file
+#+end_example
+
+* License
+The files and scripts in this repository are licensed under the [[./LICENSE][GPLv3 License]]

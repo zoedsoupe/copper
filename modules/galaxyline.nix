@@ -1,3 +1,16 @@
+{ pkgs, lib, config, ... }:
+
+let
+  inherit (pkgs) neovimPlugins;
+in
+{
+  config = {
+    vim.startPlugins = with neovimPlugins; [
+      galaxyline-nvim
+      nvim-web-devicons
+    ];
+
+    vim.luaConfigRC = ''
 local gl = require('galaxyline')
 
 local condition = require('galaxyline.condition')
@@ -5,8 +18,7 @@ local gls = gl.section
 
 gl.short_line_list = {'NvimTree','vista','dbui'}
 
-local global_theme = 'themes/' .. vim.g.theme
-local colors = require(global_theme)
+local colors = require('galaxyline.theme').default
 
 local buffer_not_empty = function()
   if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
@@ -16,20 +28,30 @@ local buffer_not_empty = function()
 end
 
 local mode_colors = {
-   [110] = { "NORMAL", colors.red },
-   [105] = { "INSERT", colors.dark_purple },
-   [99] = { "COMMAND", colors.pink },
-   [116] = { "TERMINAL", colors.green },
-   [118] = { "VISUAL", colors.cyan },
-   [22] = { "V-BLOCK", colors.cyan },
-   [86] = { "V_LINE", colors.cyan },
-   [82] = { "REPLACE", colors.orange },
-   [115] = { "SELECT", colors.nord_blue },
-   [83] = { "S-LINE", colors.nord_blue },
+   ["n"] = { "NORMAL", colors.red },
+   ["no"] = { "N-PENDING", colors.red },
+   ["i"] = { "INSERT", colors.violet },
+   ["ic"] = { "INSERT", colors.violet },
+   ["t"] = { "TERMINAL", colors.green },
+   ["v"] = { "VISUAL", colors.cyan },
+   ["V"] = { "V-LINE", colors.cyan },
+   [""] = { "V-BLOCK", colors.cyan },
+   ["R"] = { "REPLACE", colors.orange },
+   ["Rv"] = { "V-REPLACE", colors.orange },
+   ["s"] = { "SELECT", colors.darkblue },
+   ["S"] = { "S-LINE", colors.darkblue },
+   [""] = { "S-BLOCK", colors.darkblue },
+   ["c"] = { "COMMAND", colors.red },
+   ["cv"] = { "COMMAND", colors.red },
+   ["ce"] = { "COMMAND", colors.red },
+   ["r"] = { "PROMPT", colors.cyan },
+   ["rm"] = { "MORE", colors.cyan },
+   ["r?"] = { "CONFIRM", colors.cyan },
+   ["!"] = { "SHELL", colors.green },
 }
 
 local mode = function(n)
-   return mode_colors[vim.fn.mode():byte()][n]
+   return mode_colors[vim.fn.mode()][n]
 end
 
 table.insert(gls.left, {
@@ -51,8 +73,8 @@ table.insert(gls.left, {
     end,
     condition = condition.check_git_workspace,
     separator = " ",
-    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
-    highlight = { colors.orange, colors.statusline_bg }
+    separator_highlight = { colors.bg, colors.bg },
+    highlight = { colors.orange, colors.bg }
   },
 })
 
@@ -61,8 +83,8 @@ table.insert(gls.left, {
     provider = "GitBranch",
     condition = condition.check_git_workspace,
     separator = " ",
-    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
-    highlight = { colors.grey_fg2, colors.statusline_bg }
+    separator_highlight = { colors.bg, colors.bg },
+    highlight = { colors.fg, colors.bg }
   },
 })
 
@@ -71,7 +93,7 @@ table.insert(gls.left, {
     provider = "DiffAdd",
     condition = condition.hide_in_width,
     icon = "  ",
-    highlight = { colors.green, colors.statusline_bg},
+    highlight = { colors.green, colors.bg},
   },
 })
 
@@ -80,7 +102,7 @@ table.insert(gls.left, {
     provider = "DiffModified",
     condition = condition.hide_in_width,
     icon = " 柳",
-    highlight = { colors.blue, colors.statusline_bg },
+    highlight = { colors.blue, colors.bg },
   },
 })
 
@@ -89,7 +111,7 @@ table.insert(gls.left, {
     provider = "DiffRemove",
     condition = condition.hide_in_width,
     icon = "  ",
-    highlight = { colors.red, colors.statusline_bg },
+    highlight = { colors.red, colors.bg },
   },
 })
 
@@ -98,7 +120,7 @@ table.insert(gls.left, {
     provider = function()
       return " "
     end,
-    highlight = { colors.white, colors.statusline_bg },
+    highlight = { colors.white, colors.bg },
   },
 })
 
@@ -106,8 +128,8 @@ table.insert(gls.right, {
   LineInfo = {
     provider = "LineColumn",
     separator = "  ",
-    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
-    highlight = { colors.white, colors.statusline_bg },
+    separator_highlight = { colors.bg, colors.bg },
+    highlight = { colors.white, colors.bg },
   },
 })
 
@@ -115,8 +137,8 @@ table.insert(gls.right, {
   PerCent = {
     provider = "LinePercent",
     separator = " ",
-    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
-    highlight = { colors.white, colors.statusline_bg },
+    separator_highlight = { colors.bg, colors.bg },
+    highlight = { colors.white, colors.bg },
   },
 })
 
@@ -131,8 +153,8 @@ table.insert(gls.right, {
     end,
     condition = condition.hide_in_width,
     separator = " ",
-    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
-    highlight = { colors.white, colors.statusline_bg},
+    separator_highlight = { colors.bg, colors.bg },
+    highlight = { colors.white, colors.bg},
   },
 })
 
@@ -141,8 +163,8 @@ table.insert(gls.right, {
     provider = "FileTypeName",
     condition = condition.hide_in_width,
     separator = " ",
-    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
-    highlight = { colors.white, colors.statusline_bg },
+    separator_highlight = { colors.bg, colors.bg },
+    highlight = { colors.white, colors.bg },
   },
 })
 
@@ -151,8 +173,8 @@ table.insert(gls.right, {
     provider = "FileEncode",
     condition = condition.hide_in_width,
     separator = " ",
-    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
-    highlight = { colors.white, colors.statusline_bg },
+    separator_highlight = { colors.bg, colors.bg },
+    highlight = { colors.white, colors.bg },
   },
 })
 
@@ -162,8 +184,8 @@ table.insert(gls.right, {
       return " "
     end,
     separator = " ",
-    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
-    highlight = { colors.white, colors.statusline_bg },
+    separator_highlight = { colors.bg, colors.bg },
+    highlight = { colors.white, colors.bg },
   },
 })
 
@@ -171,8 +193,8 @@ table.insert(gls.short_line_left, {
   BufferType = {
     provider = "FileTypeName",
     separator = " ",
-    separator_highlight = { colors.statusline_bg, colors.statusline_bg },
-    highlight = { colors.white, colors.statusline_bg },
+    separator_highlight = { colors.bg, colors.bg },
+    highlight = { colors.white, colors.bg },
   },
 })
 
@@ -180,6 +202,9 @@ table.insert(gls.short_line_left, {
   SFileName = {
     provider = "SFileName",
     condition = condition.buffer_not_empty,
-    highlight = { colors.white, colors.statusline_bg },
+    highlight = { colors.white, colors.bg },
   },
 })
+    '';
+  };
+}
