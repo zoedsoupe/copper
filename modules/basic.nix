@@ -32,12 +32,6 @@ in {
       type = str;
     };
 
-    showMode = mkOption {
-      default = true;
-      description = "Show current mode name";
-      type = bool;
-    };
-
     completeOpt = mkOption {
       default = [ ];
       description = "Completions options";
@@ -209,6 +203,7 @@ in {
       set cursorline
       set autoread
       set so=999
+      set noshowmode
       set timeoutlen=1000
       set incsearch
       set wildmenu
@@ -243,7 +238,6 @@ in {
       ${writeIf cfg.autoIndent ''
         set ai
       ''}
-            
       ${writeIf cfg.preventJunkFiles ''
         set noswapfile
         set nobackup

@@ -19,10 +19,10 @@ in
     };
   };
 
-  config = { 
+  config = mkIf cfg.neon.enable { 
     vim.startPlugins = with neovimPlugins; [ neon ];
 
-    vim.globals = mkIf (cfg.neon.enable) ({ "neon_style" = cfg.neon.style; });
+    vim.globals = { "neon_style" = cfg.neon.style; };
 
     vim.luaConfigRC = ''
       vim.cmd[[colorscheme neon]]
