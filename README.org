@@ -13,7 +13,7 @@ nix run .#
 #+end_example
 or
 #+begin_example
-nix run github:matdsoupe/neomat#.
+nix run github:matdsoupe/neomat#nvim.
 #+end_example
 or add to your inputs in a =flakes= config:
 #+begin_src nix
