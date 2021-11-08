@@ -2,7 +2,7 @@
 
 let
   inherit (pkgs) neovimPlugins;
-  inherit (lib) mkEnableOption;
+  inherit (lib) mkEnableOption mkIf;
 
   cfg = config.vim.theme;
 in
@@ -11,7 +11,7 @@ in
     monochrome.enable = mkEnableOption "Enable monochrome theme";
   };
 
-  config = {
+  config = mkIf cfg.monochrome.enable {
     vim.startPlugins = with neovimPlugins; [ monochrome ];
 
     vim.luaConfigRC = ''

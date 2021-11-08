@@ -22,21 +22,6 @@ in
       type = int;
     };
 
-    hideFiles = mkOption {
-      default = [
-        ".git"
-        "node_modules"
-        ".cache"
-        "deps"
-        "_build"
-        ".nix-hex"
-        ".nix-mix"
-        ".postgres"
-      ];
-      description = "Files to hide in the file view by default";
-      type = listOf str;
-    };
-
     hideIgnoredGitFiles = mkOption {
       default = true;
       description = "Hide files ignored by git";
@@ -76,12 +61,6 @@ in
     indentMarkers = mkOption {
       default = true;
       description = "Show indent markers";
-      type = bool;
-    };
-
-    hideDotFiles = mkOption {
-      default = false;
-      description = "Hide dotfiles";
       type = bool;
     };
 
@@ -130,12 +109,69 @@ in
       "<leader>n" = ":NvimTreeFindFile<cr>";
     };
 
+    vim.luaConfigRC = ''
+      local wk = require("which-key")
+
+      wk.register({
+        ['C-n'] = { "Toggle Tree" },
+        ['<leader>n'] = { "Find File" },
+      })
+
+      require'nvim-tree'.setup {
+          disable_netrw       = ${toString cfg.disableNetRW},
+          hijack_netrw        = true,
+          open_on_setup       = false,
+          ignore_ft_on_setup  = {},
+          update_to_buf_dir   = {
+            enable = true,
+            auto_open = ${toString cfg.openOnDirectoryStart},
+          },
+          auto_close          = ${toString cfg.closeOnLastWindow},
+          open_on_tab         = false,
+          hijack_cursor       = false,
+          update_cwd          = false,
+          update_focused_file = {
+            enable      = false,
+            update_cwd  = false,
+            ignore_list = {}
+          },
+          system_open = {
+            cmd  = nil,
+            args = {}
+          },
+          view = {
+            width = ${toString cfg.treeWidth},
+            side = '${cfg.treeSide}',
+            auto_resize = false,
+            mappings = {
+              custom_only = false,
+              list = {}
+            }
+          },
+          filters = {
+            dotfiles = true
+          },
+          update_focused_file = {
+            enable = true,
+            update_cwd = true,
+            ignore_list = {
+              ".git",
+              "node_modules",
+              ".cache",
+              "deps",
+              "_build",
+              ".nix-hex",
+              ".nix-mix",
+              ".postgres",
+            },
+          },
+      }
+    '';
+
     vim.globals = {
-      "nvim_tree_ignore" = cfg.hideFiles;
       "nvim_tree_gitignore" = mkVimBool cfg.hideIgnoredGitFiles;
       "nvim_tree_quit_on_open" = mkVimBool cfg.closeOnFileOpen;
       "nvim_tree_indent_markers" = mkVimBool cfg.indentMarkers;
-      "nvim_tree_hide_dotfiles" = mkVimBool cfg.hideDotFiles;
       "nvim_tree_add_trailing" = mkVimBool cfg.trailingSlash;
       "nvim_tree_group_empty" = mkVimBool cfg.groupEmptyFolders;
 
@@ -149,19 +185,10 @@ in
       "nvim_tree_icons_git_unstaged" = "";
       "nvim_tree_icons_git_staged" = "S";
       "nvim_tree_icons_git_unmerged" = "";
-      "nvim_tree_icons_git_renamed" =  "➜";
-      "nvim_tree_icons_git_deleted" =  "";
-      "nvim_tree_icons_git_untracked" =  "U";
-      "nvim_tree_icons_git_ignored" =  "◌";
+      "nvim_tree_icons_git_renamed" = "➜";
+      "nvim_tree_icons_git_deleted" = "";
+      "nvim_tree_icons_git_untracked" = "U";
+      "nvim_tree_icons_git_ignored" = "◌";
     };
-
-    vim.luaConfigRC = ''
-      local wk = require("which-key")
-
-      wk.register({
-        ['C-n'] = { "Toggle Tree" },
-        ['<leader>n'] = { "Find File" },
-      })
-    '';
   });
 }
