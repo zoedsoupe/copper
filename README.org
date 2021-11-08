@@ -27,15 +27,15 @@ or add to your inputs in a =flakes= config:
 * How to update plugins
 #+begin_example
 nix flake update
-#+end_src
+#+end_example
 
 * Folder structure
-```
+#+begin_example
 |-[lib] -- Contains my utility functions
 |-[modules] -- Contains modules which are used to configure neovim
 |-flake.nix -- Flake file
 |-README.org -- This file
-```
+#+end_example
 
 * License
 The files and scripts in this repository are licensed under the [[./LICENSE][GPLv3 License]]
