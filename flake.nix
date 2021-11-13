@@ -45,6 +45,8 @@
     nvim-web-devicons = { url = "github:kyazdani42/nvim-web-devicons"; flake = false; };
     vimagit = { url = "github:jreybert/vimagit"; flake = false; };
     nvim-which-key = { url = "github:folke/which-key.nvim"; flake = false; };
+    syntastic = { url = "github:vim-syntastic/syntastic"; flake = false; };
+    trouble = { url = "github:folke/trouble.nvim"; flake = false; };
   };
 
   outputs = { nixpkgs, flake-utils, neovim, ... }@inputs:
@@ -89,6 +91,8 @@
           "nvim-web-devicons"
           "vimagit"
           "nvim-which-key"
+          "syntastic"
+          "trouble"
         ];
 
         pkgs = import nixpkgs {
@@ -126,10 +130,11 @@
             vimAlias = true;
             theme.neon = {
               enable = true;
-              style = "doom";
+              style = "default";
             };
             disableArrows = true;
             editor.indentGuide = true;
+            trouble.enable = false;
           };
         };
       });

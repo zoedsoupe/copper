@@ -12,6 +12,8 @@
     ./telescope.nix
     ./vim-polyglot.nix
     ./editor.nix
+    ./trouble.nix
+    ./syntastic.nix
     ./extra-plugins.nix
   ];
 }
