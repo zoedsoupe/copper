@@ -19,7 +19,7 @@ in {
       vim-snippets
       nvim-comment
       neoscroll
-      bullets-vim
+      # bullets-vim
       vim-highlightedyank
       nvim-autopairs
       vim-haskell-module-name
