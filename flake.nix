@@ -122,8 +122,9 @@
         defaultPackage = packages.neovimMT;
 
         overlay = (self: super: {
-          inherit neovimWrapper neovimPlugins;
+          inherit neovimWrapper;
           neovimMT = packages.neovimMT;
+	  neovimPlugins = pkgs.neovimPlugins;
         });
 
         packages.neovimMT = neovimWrapper {
