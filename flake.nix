@@ -123,7 +123,7 @@
 
         overlay = (self: super: {
           inherit neovimWrapper;
-          neovimMT = packages.neovimMT;
+          neovim = packages.neovimMT;
 	  neovimPlugins = pkgs.neovimPlugins;
         });
 
