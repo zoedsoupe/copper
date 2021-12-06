@@ -133,7 +133,7 @@
             vimAlias = true;
             theme.neon = {
               enable = true;
-              style = "default";
+              style = "doom";
             };
             disableArrows = true;
             editor.indentGuide = true;
