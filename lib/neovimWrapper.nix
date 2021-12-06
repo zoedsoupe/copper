@@ -16,23 +16,7 @@ let
   };
 
   vim = vimOptions.config.vim;
-
-  custom-neovim = pkgs.neovim-unwrapped.overrideAttrs (old: rec {
-    version = "0.5.1";
-    src = fetchFromGitHub {
-      owner = "neovim";
-      repo = "neovim";
-      rev = "v${version}";
-      sha256 = "07PrR7KElLJhzS/4Z8lLiWuOehx4npyh4puSAJNqTyw=";
-    };
-    cmakeFlags = old.cmakeFlags ++ ([ "-DUSE)BUNDLED=OFF" ]);
-    buildInputs = old.buildInputs ++ (with pkgs; [
-      # nvim-treesitter packages
-      gcc
-      tree-sitter
-    ]);
-  });
-in wrapNeovim custom-neovim {
+in wrapNeovim pkgs.neovim-unwrapped {
   viAlias = true;
   vimAlias = true;
   withNodeJs = true;

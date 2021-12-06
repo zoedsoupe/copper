@@ -23,6 +23,7 @@ in {
       vim-highlightedyank
       nvim-autopairs
       vim-haskell-module-name
+      vim-elixir
     ];
 
     vim.luaConfigRC = ''

@@ -440,6 +440,7 @@
         "trouble": "trouble",
         "true-zen": "true-zen",
         "ultisnips": "ultisnips",
+        "vim-elixir": "vim-elixir",
         "vim-haskell-module-name": "vim-haskell-module-name",
         "vim-highlightedyank": "vim-highlightedyank",
         "vim-matchup": "vim-matchup",
@@ -528,6 +529,22 @@
       "original": {
         "owner": "SirVer",
         "repo": "ultisnips",
+        "type": "github"
+      }
+    },
+    "vim-elixir": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1633529875,
+        "narHash": "sha256-95kZSJgGyOFASkMoO+MkDegEcZZoek3g7HUNWr6ZdCw=",
+        "owner": "elixir-editors",
+        "repo": "vim-elixir",
+        "rev": "8ace05a9a4e225d103a9c06f6d5148d0e07408df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "elixir-editors",
+        "repo": "vim-elixir",
         "type": "github"
       }
     },

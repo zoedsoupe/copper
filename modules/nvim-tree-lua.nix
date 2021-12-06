@@ -118,6 +118,9 @@ in
       })
 
       require'nvim-tree'.setup {
+          git = {
+            ignore = ${toString cfg.hideIgnoredGitFiles}
+          },
           disable_netrw       = ${toString cfg.disableNetRW},
           hijack_netrw        = true,
           open_on_setup       = false,
@@ -169,7 +172,6 @@ in
     '';
 
     vim.globals = {
-      "nvim_tree_gitignore" = mkVimBool cfg.hideIgnoredGitFiles;
       "nvim_tree_quit_on_open" = mkVimBool cfg.closeOnFileOpen;
       "nvim_tree_indent_markers" = mkVimBool cfg.indentMarkers;
       "nvim_tree_add_trailing" = mkVimBool cfg.trailingSlash;

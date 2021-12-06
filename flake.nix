@@ -47,6 +47,7 @@
     nvim-which-key = { url = "github:folke/which-key.nvim"; flake = false; };
     syntastic = { url = "github:vim-syntastic/syntastic"; flake = false; };
     trouble = { url = "github:folke/trouble.nvim"; flake = false; };
+    vim-elixir = { url = "github:elixir-editors/vim-elixir"; flake = false; };
   };
 
   outputs = { nixpkgs, flake-utils, neovim, ... }@inputs:
@@ -93,6 +94,7 @@
           "nvim-which-key"
           "syntastic"
           "trouble"
+          "vim-elixir"
         ];
 
         pkgs = import nixpkgs {
