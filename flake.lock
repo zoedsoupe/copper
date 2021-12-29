@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "calvera-dark": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1628826150,
+        "narHash": "sha256-DMyElTyzSqqcKnfVm/Rjkg9Ax5WvRw5lDW1A/0+Tmfg=",
+        "owner": "yashguptaz",
+        "repo": "calvera-dark.nvim",
+        "rev": "84802d0bde047ce79ebfddc1800800f0bd67f37a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yashguptaz",
+        "repo": "calvera-dark.nvim",
+        "type": "github"
+      }
+    },
     "codi-vim": {
       "flake": false,
       "locked": {
@@ -411,6 +427,7 @@
     "root": {
       "inputs": {
         "bullets-vim": "bullets-vim",
+        "calvera-dark": "calvera-dark",
         "codi-vim": "codi-vim",
         "dashboard-nvim": "dashboard-nvim",
         "direnv-vim": "direnv-vim",

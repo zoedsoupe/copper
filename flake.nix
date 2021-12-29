@@ -48,6 +48,7 @@
     syntastic = { url = "github:vim-syntastic/syntastic"; flake = false; };
     trouble = { url = "github:folke/trouble.nvim"; flake = false; };
     vim-elixir = { url = "github:elixir-editors/vim-elixir"; flake = false; };
+    calvera-dark = { url = "github:yashguptaz/calvera-dark.nvim"; flake = false; };
   };
 
   outputs = { nixpkgs, flake-utils, neovim, ... }@inputs:
@@ -95,6 +96,7 @@
           "syntastic"
           "trouble"
           "vim-elixir"
+          "calvera-dark"
         ];
 
         pkgs = import nixpkgs {
@@ -131,10 +133,7 @@
           config.vim = {
             viAlias = true;
             vimAlias = true;
-            theme.neon = {
-              enable = true;
-              style = "doom";
-            };
+            theme.calvera.enable = true;
             disableArrows = true;
             editor.indentGuide = true;
             trouble.enable = false;
