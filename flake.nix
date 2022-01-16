@@ -49,6 +49,7 @@
     trouble = { url = "github:folke/trouble.nvim"; flake = false; };
     vim-elixir = { url = "github:elixir-editors/vim-elixir"; flake = false; };
     calvera-dark = { url = "github:yashguptaz/calvera-dark.nvim"; flake = false; };
+    sonokai = { url = "github:sainnhe/sonokai"; flake = false; };
   };
 
   outputs = { nixpkgs, flake-utils, neovim, ... }@inputs:
@@ -97,6 +98,7 @@
           "trouble"
           "vim-elixir"
           "calvera-dark"
+          "sonokai"
         ];
 
         pkgs = import nixpkgs {
@@ -133,7 +135,7 @@
           config.vim = {
             viAlias = true;
             vimAlias = true;
-            theme.calvera.enable = true;
+            theme.sonokai.enable = true;
             disableArrows = true;
             editor.indentGuide = true;
             trouble.enable = false;
