@@ -1,4 +1,4 @@
-#+title: Neomat
+#+title: Copper
 
 *  What is this?
 This is my personal neovim config. Feel free to take bits of it to build your own or run it yourself.
@@ -13,13 +13,13 @@ nix run .#
 #+end_example
 or
 #+begin_example
-nix run github:matdsoupe/neomat#nvim.
+nix run github:zoedsoupe/copper#nvim.
 #+end_example
 or add to your inputs in a =flakes= config:
 #+begin_src nix
 {
   inputs = {
-    neomat.url = "github:matdsoupe/neomat";
+    copper.url = "github:zoedsoupe/copper";
   };
 }
 #+end_src
