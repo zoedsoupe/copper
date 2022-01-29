@@ -1,8 +1,7 @@
-{ pkgs, lib ? pkgs.lib, ... }:
+{ pkgs, lib ? pkgs.lib, config, ... }:
 
-{ config }:
 let
-  inherit (pkgs) neovimPlugins wrapNeovim fetchFromGitHub;
+  inherit (pkgs) neovimPlugins wrapNeovim;
 
   vimOptions = lib.evalModules {
     modules = [
