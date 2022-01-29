@@ -39,7 +39,7 @@ require("trouble").setup{
     height = ${toString cfg.dimensions.height},
     width = ${toString cfg.dimensions.width},
     icons = ${toString cfg.icons},
-    mode = "lsp_workspace_diagnostics",
+    mode = "workspace_diagnostics",
     fold_open = "",
     fold_closed = "",
     group = true,
