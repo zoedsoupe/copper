@@ -52,94 +52,103 @@
     sonokai = { url = "github:sainnhe/sonokai"; flake = false; };
   };
 
-  outputs = { nixpkgs, flake-utils, neovim, ... }@inputs:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        inherit (lib) buildPluginOverlay neovimWrapper;
+  outputs = { self, nixpkgs, neovim, ... }@inputs:
+  let
+    plugins = [
+      "vim-rescript"
+      "editorconfig-vim"
+      "true-zen"
+      "emmet-vim"
+      "nvim-ts-rainbow"
+      "codi-vim"
+      "vim-surround"
+      "vimtex"
+      "direnv-vim"
+      "ultisnips"
+      "vim-matchup"
+      "vim-snippets"
+      "nvim-comment"
+      "popup-nvim"
+      "plenary-nvim"
+      "neoscroll"
+      "bullets-vim"
+      "telescope-nvim"
+      "vim-highlightedyank"
+      "nvim-colorizer-lua"
+      "dashboard-nvim"
+      "nvim-autopairs"
+      "vim-haskell-module-name"
+      "indent-blankline-nvim-lua"
+      "monochrome"
+      "neon"
+      "vim-polyglot"
+      "gitsigns-nvim"
+      "nvim-treesitter"
+      "nvim-tree-lua"
+      "galaxyline-nvim"
+      "nvim-web-devicons"
+      "vimagit"
+      "nvim-which-key"
+      "syntastic"
+      "trouble"
+      "vim-elixir"
+      "calvera-dark"
+      "sonokai"
+    ];
 
-        lib = import ./lib { inherit pkgs inputs plugins; };
+    externalOverlay = prev: super: {
+      neovim-nightly = neovim.defaultPackage.${prev.system};
+    };
 
-        plugins = [
-          "vim-rescript"
-          "editorconfig-vim"
-          "true-zen"
-          "emmet-vim"
-          "nvim-ts-rainbow"
-          "codi-vim"
-          "vim-surround"
-          "vimtex"
-          "direnv-vim"
-          "ultisnips"
-          "vim-matchup"
-          "vim-snippets"
-          "nvim-comment"
-          "popup-nvim"
-          "plenary-nvim"
-          "neoscroll"
-          "bullets-vim"
-          "telescope-nvim"
-          "vim-highlightedyank"
-          "nvim-colorizer-lua"
-          "dashboard-nvim"
-          "nvim-autopairs"
-          "vim-haskell-module-name"
-          "indent-blankline-nvim-lua"
-          "monochrome"
-          "neon"
-          "vim-polyglot"
-          "gitsigns-nvim"
-          "nvim-treesitter"
-          "nvim-tree-lua"
-          "galaxyline-nvim"
-          "nvim-web-devicons"
-          "vimagit"
-          "nvim-which-key"
-          "syntastic"
-          "trouble"
-          "vim-elixir"
-          "calvera-dark"
-          "sonokai"
-        ];
+    pluginOverlay = prev: super: let
+      buildPlug = name: prev.vimUtils.buildVimPluginFrom2Nix {
+        pname = name;
+        version = "HEAD";
+        src = builtins.getAttr name inputs;
+      };
+    in {
+      neovimPlugins = builtins.listToAttrs (map (name: { inherit name; value = buildPlug name; }) plugins);
+    };
 
-        pkgs = import nixpkgs {
-          inherit system;
-          config = { allowUnfree = true; };
-          overlays = [
-            buildPluginOverlay
-            (final: prev: {
-              neovim-nightly = neovim.defaultPackage.${system};
-            })
-          ];
-        };
-      in rec {
-        inherit neovimWrapper pkgs;
-        inherit (pkgs) neovimPlugins;
+    allPkgs = lib.mkPkgs {
+      inherit nixpkgs;
+      cfg = { };
+      overlays = [
+        pluginOverlay
+        externalOverlay
+      ];
+    };
 
-        apps = {
-          nvim = {
-            type = "app";
-            program = "${defaultPackage}/bin/nvim";
-          };
-        };
+    lib = import ./lib;
 
-        defaultApp = apps.nvim;
-        defaultPackage = packages.neovimMT;
+    mkNeovimPkg = pkgs: lib.neovimWrapper {
+      inherit pkgs;
+      config.vim = {
+        viAlias = true;
+        vimAlias = true;
+        theme.sonokai.enable = true;
+        disableArrows = true;
+        editor.indentGuide = true;
+        trouble.enable = false;
+      };
+    };
+  in {
+    apps = lib.withDefaultSystems (sys: {
+      nvim = {
+        type = "app";
+        program = "${self.defaultPackage."${sys}"}/bin/nvim";
+      };
+    });
 
-        overlay = (self: super: {
-          inherit neovimWrapper;
-          neovim = packages.neovimMT;
-	  neovimPlugins = pkgs.neovimPlugins;
-        });
+    defaultApp = lib.withDefaultSystems (sys: {
+      type = "app";
+      program = "${self.defaultPackage."${sys}"}/bin/nvim";
+    });
 
-        packages.neovimMT = neovimWrapper {
-          config.vim = {
-            viAlias = true;
-            vimAlias = true;
-            theme.sonokai.enable = true;
-            disableArrows = true;
-            editor.indentGuide = true;
-            trouble.enable = false;
-          };
-        };
-      });
+    defaultPackage = lib.withDefaultSystems (sys: self.packages."${sys}".copper);
+
+    packages = lib.withDefaultSystems (sys: {
+      copper = mkNeovimPkg allPkgs."${sys}";
+    });
+  };
 }
