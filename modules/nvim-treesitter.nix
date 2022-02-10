@@ -5,7 +5,11 @@ let
 in
 {
   config = {
-    vim.startPlugins = with neovimPlugins; [ nvim-treesitter nvim-ts-rainbow ];
+    vim.startPlugins = with neovimPlugins; [ 
+      nvim-treesitter 
+      nvim-ts-rainbow
+      nvim-treesitter-rescript
+    ];
 
     vim.luaConfigRC = ''
       local present, ts_config = pcall(require, "nvim-treesitter.configs")

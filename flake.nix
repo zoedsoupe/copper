@@ -12,6 +12,7 @@
     };
 
     vim-rescript = { url = "github:rescript-lang/vim-rescript"; flake = false; };
+    nvim-treesitter-rescript = { url = "github:nkrkv/nvim-treesitter-rescript"; flake = false; };
     editorconfig-vim = { url = "github:editorconfig/editorconfig-vim"; flake = false; };
     true-zen = { url = "github:Pocco81/TrueZen.nvim"; flake = false; };
     emmet-vim = { url = "github:mattn/emmet-vim"; flake = false; };
@@ -56,6 +57,7 @@
   let
     plugins = [
       "vim-rescript"
+      "nvim-treesitter-rescript"
       "editorconfig-vim"
       "true-zen"
       "emmet-vim"
