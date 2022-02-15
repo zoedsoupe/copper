@@ -24,6 +24,7 @@ in {
       nvim-autopairs
       vim-haskell-module-name
       vim-elixir
+      earthly-vim
     ];
 
     vim.luaConfigRC = ''
