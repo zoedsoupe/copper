@@ -51,6 +51,7 @@
     vim-elixir = { url = "github:elixir-editors/vim-elixir"; flake = false; };
     calvera-dark = { url = "github:yashguptaz/calvera-dark.nvim"; flake = false; };
     sonokai = { url = "github:sainnhe/sonokai"; flake = false; };
+    earthly-vim = { url = "github:earthly/earthly.vim"; flake = false; };
   };
 
   outputs = { self, nixpkgs, neovim, ... }@inputs:
@@ -96,6 +97,7 @@
       "vim-elixir"
       "calvera-dark"
       "sonokai"
+      "earthly-vim"
     ];
 
     externalOverlay = prev: super: {
