@@ -52,6 +52,7 @@
     calvera-dark = { url = "github:yashguptaz/calvera-dark.nvim"; flake = false; };
     sonokai = { url = "github:sainnhe/sonokai"; flake = false; };
     earthly-vim = { url = "github:earthly/earthly.vim"; flake = false; };
+    material-nvim = { url = "github:marko-cerovac/material.nvim"; flake = false; };
   };
 
   outputs = { self, nixpkgs, neovim, ... }@inputs:
@@ -98,6 +99,7 @@
       "calvera-dark"
       "sonokai"
       "earthly-vim"
+      "material-nvim"
     ];
 
     externalOverlay = prev: super: {
@@ -130,7 +132,7 @@
       config.vim = {
         viAlias = true;
         vimAlias = true;
-        theme.sonokai.enable = true;
+        theme.material.enable = true;
         disableArrows = true;
         editor.indentGuide = true;
         trouble.enable = false;

@@ -191,6 +191,22 @@
         "type": "github"
       }
     },
+    "material-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1653569750,
+        "narHash": "sha256-IxTeEhEcZ2BY8EFzO8xaGKn8XsXrm2q3WD0LbfSN9+k=",
+        "owner": "marko-cerovac",
+        "repo": "material.nvim",
+        "rev": "f24cc6cf1dcd34350769b9cb28254b3f28973cf7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "marko-cerovac",
+        "repo": "material.nvim",
+        "type": "github"
+      }
+    },
     "monochrome": {
       "flake": false,
       "locked": {
@@ -470,6 +486,7 @@
         "galaxyline-nvim": "galaxyline-nvim",
         "gitsigns-nvim": "gitsigns-nvim",
         "indent-blankline-nvim-lua": "indent-blankline-nvim-lua",
+        "material-nvim": "material-nvim",
         "monochrome": "monochrome",
         "neon": "neon",
         "neoscroll": "neoscroll",
