@@ -6,5 +6,6 @@
     ./monochrome.nix
     ./calvera.nix
     ./sonokai.nix
+    ./material.nix
   ];
 }
