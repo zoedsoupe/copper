@@ -14,6 +14,7 @@
     ./editor.nix
     ./trouble.nix
     ./syntastic.nix
+    ./lsp.nix
     ./extra-plugins.nix
   ];
 }

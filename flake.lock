@@ -143,6 +143,21 @@
         "type": "github"
       }
     },
+    "flake-utils_2": {
+      "locked": {
+        "lastModified": 1637014545,
+        "narHash": "sha256-26IZAc5yzlD9FlDT54io1oqG/bBoyka+FJk5guaX4x4=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "bba5dcc8e0b20ab664967ad83d24d64cb64ec4f4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "galaxyline-nvim": {
       "flake": false,
       "locked": {
@@ -296,6 +311,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1637453606,
+        "narHash": "sha256-Gy6cwUswft9xqsjWxFYEnx/63/qzaFUwatcbV5GF/GQ=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "8afc4e543663ca0a6a4f496262cd05233737e732",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nvim-autopairs": {
       "flake": false,
       "locked": {
@@ -341,6 +372,22 @@
       "original": {
         "owner": "terrortylor",
         "repo": "nvim-comment",
+        "type": "github"
+      }
+    },
+    "nvim-lspconfig": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1656250047,
+        "narHash": "sha256-8ahBEOIw8NJA9UdTHTMuCyFXCCqfbIiWhbP9tyM28UE=",
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
+        "rev": "8c2b8d490f91eb72a43a3d47c356d9bc96ccc983",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neovim",
+        "repo": "nvim-lspconfig",
         "type": "github"
       }
     },
@@ -495,6 +542,7 @@
         "nvim-autopairs": "nvim-autopairs",
         "nvim-colorizer-lua": "nvim-colorizer-lua",
         "nvim-comment": "nvim-comment",
+        "nvim-lspconfig": "nvim-lspconfig",
         "nvim-tree-lua": "nvim-tree-lua",
         "nvim-treesitter": "nvim-treesitter",
         "nvim-treesitter-rescript": "nvim-treesitter-rescript",
@@ -503,6 +551,7 @@
         "nvim-which-key": "nvim-which-key",
         "plenary-nvim": "plenary-nvim",
         "popup-nvim": "popup-nvim",
+        "rust-overlay": "rust-overlay",
         "sonokai": "sonokai",
         "syntastic": "syntastic",
         "telescope-nvim": "telescope-nvim",
@@ -519,6 +568,25 @@
         "vim-surround": "vim-surround",
         "vimagit": "vimagit",
         "vimtex": "vimtex"
+      }
+    },
+    "rust-overlay": {
+      "inputs": {
+        "flake-utils": "flake-utils_2",
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1656308123,
+        "narHash": "sha256-RTjxLCBEIxWvo4TLqEho+QxtY7ImRAMWJisIdWZ8tWY=",
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "rev": "c5d343b92c5c72c436e402484497c4f4e763b9ae",
+        "type": "github"
+      },
+      "original": {
+        "owner": "oxalica",
+        "repo": "rust-overlay",
+        "type": "github"
       }
     },
     "sonokai": {
