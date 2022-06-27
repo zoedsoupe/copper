@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    rust-overlay.url = "github:oxalica/rust-overlay";
 
     neovim = {
       url = "github:neovim/neovim?dir=contrib";
@@ -53,9 +54,10 @@
     sonokai = { url = "github:sainnhe/sonokai"; flake = false; };
     earthly-vim = { url = "github:earthly/earthly.vim"; flake = false; };
     material-nvim = { url = "github:marko-cerovac/material.nvim"; flake = false; };
+    nvim-lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
   };
 
-  outputs = { self, nixpkgs, neovim, ... }@inputs:
+  outputs = { self, nixpkgs, neovim, rust-overlay, ... }@inputs:
   let
     plugins = [
       "vim-rescript"
@@ -100,6 +102,7 @@
       "sonokai"
       "earthly-vim"
       "material-nvim"
+      "nvim-lspconfig"
     ];
 
     externalOverlay = prev: super: {
@@ -132,11 +135,19 @@
       config.vim = {
         viAlias = true;
         vimAlias = true;
+        lsp.enable = true;
         theme.material.enable = true;
         disableArrows = true;
         editor.indentGuide = true;
         trouble.enable = false;
       };
+    };
+
+    overlays = [ (import rust-overlay) ];
+
+    pkgs = import nixpkgs {
+      inherit overlays;
+      system = "x86_64-linux";
     };
   in {
     apps = lib.withDefaultSystems (sys: {
@@ -156,5 +167,12 @@
     packages = lib.withDefaultSystems (sys: {
       copper = mkNeovimPkg allPkgs."${sys}";
     });
+
+    devShell = pkgs.mkShell {
+      name = "copper";
+      buildInputs = with pkgs; [
+        rnix-lsp elixir_ls rust-bin.stable.latest.rust_analyzer
+      ];
+    };
   };
 }
