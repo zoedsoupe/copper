@@ -14,9 +14,7 @@ in {
       vim-surround
       vimtex
       direnv-vim
-      ultisnips
       vim-matchup
-      vim-snippets
       nvim-comment
       neoscroll
       # bullets-vim
