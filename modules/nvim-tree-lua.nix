@@ -2,7 +2,7 @@
 
 let
   inherit (pkgs) neovimPlugins;
-  inherit (lib) mkOption mkEnableOption;
+  inherit (lib) mkOption mkEnableOption boolToString;
   inherit (lib.types) listOf str int bool enum attrs;
   cfg = config.vim.nvimTreeLua;
 in
@@ -107,9 +107,9 @@ in
 
       require'nvim-tree'.setup {
           git = {
-            ignore = ${toString cfg.hideIgnoredGitFiles}
+            ignore = ${boolToString cfg.hideIgnoredGitFiles}
           },
-          disable_netrw       = ${toString cfg.disableNetRW},
+          disable_netrw       = ${boolToString cfg.disableNetRW},
           hijack_netrw        = true,
           open_on_setup       = false,
           ignore_ft_on_setup  = {},

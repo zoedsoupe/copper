@@ -22,9 +22,7 @@
     vim-surround = { url = "github:tpope/vim-surround"; flake = false; };
     vimtex = { url = "github:lervag/vimtex"; flake = false; };
     direnv-vim = { url = "github:direnv/direnv.vim"; flake = false; };
-    ultisnips = { url = "github:SirVer/ultisnips"; flake = false; };
     vim-matchup = { url = "github:andymass/vim-matchup"; flake = false; };
-    vim-snippets = { url = "github:honza/vim-snippets"; flake = false; };
     nvim-comment = { url = "github:terrortylor/nvim-comment"; flake = false; };
     neoscroll = { url = "github:karb94/neoscroll.nvim"; flake = false; };
     bullets-vim = { url = "github:dkarter/bullets.vim"; flake = false; };
@@ -55,6 +53,7 @@
     earthly-vim = { url = "github:earthly/earthly.vim"; flake = false; };
     material-nvim = { url = "github:marko-cerovac/material.nvim"; flake = false; };
     nvim-lspconfig = { url = "github:neovim/nvim-lspconfig"; flake = false; };
+    "coq.artifacts" = { url = "github:ms-jpq/coq.artifacts"; flake = false; };
   };
 
   outputs = { self, nixpkgs, neovim, rust-overlay, ... }@inputs:
@@ -103,6 +102,7 @@
       "earthly-vim"
       "material-nvim"
       "nvim-lspconfig"
+      "coq.artifacts"
     ];
 
     externalOverlay = prev: super: {
@@ -171,7 +171,7 @@
     devShell = pkgs.mkShell {
       name = "copper";
       buildInputs = with pkgs; [
-        rnix-lsp elixir_ls rust-bin.stable.latest.rust_analyzer
+        rnix-lsp elixir_ls rust-bin.stable.latest.rls
       ];
     };
   };

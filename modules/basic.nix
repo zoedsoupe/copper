@@ -151,9 +151,6 @@ in {
       "direnv_silent_load" = 1;
       "dashboard_default_executive" = "telescope";
       "bullets_enabled_file_types" = "markdown,text,gitcommit,orgmode,scratch";
-      "UltiSnipsExpandTrigger" = "<tab>";
-      "UltiSnipsJumpForwardTrigger" = "<c-k>";
-      "UltiSnipsJumpBackwardTrigger" = "<c-j>";
     };
 
     vim.nmap = if (cfg.disableArrows) then {
