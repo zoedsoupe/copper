@@ -56,15 +56,15 @@ in
 
       local coq = require('coq')
 
-      require('lspconfig')['elixir-ls'].setup(coq.lsp_ensure_capabilities{
+      require('lspconfig')['elixirls'].setup(coq.lsp_ensure_capabilities{
           on_attach = on_attach,
           flags = lsp_flags,
       })
-      require('lspconfig')['tsserver'].setup(coq.lsp_ensure_capabilities{
+      require('lspconfig')['rnix'].setup(coq.lsp_ensure_capabilities{
         on_attach = on_attach,
         flags = lsp_flags,
       })
-      require('lspconfig')['rust_analyzer'].setup(coq.lsp_ensure_capabilities{
+      require('lspconfig')['rls'].setup(coq.lsp_ensure_capabilities{
           on_attach = on_attach,
           flags = lsp_flags,
       })
