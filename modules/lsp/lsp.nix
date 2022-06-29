@@ -10,6 +10,7 @@ in
 {
   options.vim.lsp = {
     enable = mkEnableOption "Neovim lsp support";
+    autocomplete.enable = mkEnableOption "Enable autocomplete";
     formatOnSave = mkEnableOption "Format on save";
     nix = mkEnableOption "Nix LSP";
     rust = mkEnableOption "Rust LSP";
@@ -30,7 +31,7 @@ in
           null-ls
         ]
         ++ (
-          if cfg.vim.autocomplete.enable
+          if cfg.autocomplete.enable
           then [
             coq-nvim
             coq-artifacts
@@ -62,12 +63,10 @@ in
         local null_methods = require("null-ls.methods")
 
         local coq = require("coq")
-        vim.g.coq_settings = { auto_start = 'shut-up', xdg = true }
+        vim.g.coq_settings = { auto_start = true, xdg = true }
 
         local ls_sources = {
-          ${writeIf config.vim.git.enable ''
           null_ls.builtins.code_actions.gitsigns,
-          ''}
 
           ${writeIf cfg.nix
           ''
@@ -114,7 +113,7 @@ in
         -- Enable lspconfig
         local lspconfig = require('lspconfig')
 
-        ${writeIf cfg.rust.enable ''
+        ${writeIf cfg.rust ''
           -- Rust config
           lspconfig.rls.setup(coq.lsp_ensure_capabilities{
             on_attach = function(client, bufnr)
@@ -130,7 +129,7 @@ in
             on_attach = function(client, bufnr)
               attach_keymaps(client, bufnr)
             end,
-            cmd = {"${pkgs.elixir-ls}/bin/elixir-ls"}
+            cmd = {"${pkgs.elixir_ls}/bin/elixir-ls"}
           })
         ''}
 

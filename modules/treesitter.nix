@@ -2,7 +2,7 @@
 
 let
   inherit (pkgs) neovimPlugins;
-  inherit (lib) mkEnableOption mkIf mkOption;
+  inherit (lib) mkEnableOption mkIf mkOption types;
 in
 {
   options.vim.treesitter = {

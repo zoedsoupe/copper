@@ -9,6 +9,7 @@ in
       telescope-nvim
       popup-nvim
       plenary-nvim
+      telescope-ui-select
     ];
 
     vim.nnoremap = {
@@ -27,7 +28,7 @@ in
     vim.luaConfigRC = ''
       require("telescope").setup{
         extensions = {
-          ["ui-select"] {
+          ["ui-select"] = {
             require("telescope.themes").get_dropdown{}
           },
         },
@@ -36,6 +37,18 @@ in
             "${pkgs.fd}/bin/fd",
           },
         },
+        defaults = {
+          vimgrep_arguments = {
+            "${pkgs.ripgrep}/bin/rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--trim" -- add this value
+          }
+        }
       }
 
       require("telescope").load_extension("ui-select")

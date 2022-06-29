@@ -27,6 +27,7 @@ in
     in
     {
       vim.startPlugins = with pkgs.neovimPlugins; [
+        nvim-bufferline-lua
         bufdelete-nvim
       ];
 

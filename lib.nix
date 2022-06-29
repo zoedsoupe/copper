@@ -1,15 +1,17 @@
 { pkgs, inputs, ... }:
 
+let
+  inherit (pkgs.lib) evalModules;
+in
 {
-  inherit (pkgs.lib);
 
   mkNeovim = { config }:
     let
       plugins = pkgs.neovimPlugins;
 
-      vimOpts = lib.evalModule {
+      vimOpts = evalModules {
         modules = [
-          { imports = [ ../modules ]; }
+          { imports = [ ./modules ]; }
           config
         ];
 
@@ -20,12 +22,13 @@
 
       vim = vimOpts.config.vim;
     in
-    pkgs.wrapNeovim pkgs.neovim {
-      inherit (vim) viALias vimAlias;
+    pkgs.wrapNeovim pkgs.neovim-unwrapped {
+      inherit (vim) viAlias vimAlias;
 
+      withNodeJs = true;
+      withPython3 = true;
       configure = {
         customRC = vim.configRC;
-
         packages.myVimPackage = with plugins; {
           start = builtins.filter (f: f != null) vim.startPlugins;
           opt = vim.optPlugins;
@@ -36,7 +39,7 @@
   buildPluginOverlay = super: self:
     let
       inherit (builtins) attrNames filter listToAttrs;
-      inherit (self.vimUtils) buildPluginFrom2Nix;
+      inherit (self.vimUtils) buildVimPluginFrom2Nix;
 
       treesitterGrammars = self.tree-sitter.withPlugins (p: with p; [
         tree-sitter-bash
@@ -63,7 +66,7 @@
         tree-sitter-yaml
       ]);
 
-      buildPlug = name: buildPluginFrom2Nix {
+      buildPlug = name: buildVimPluginFrom2Nix {
         pname = name;
         version = "HEAD";
         src = builtins.getAttr name inputs;
@@ -85,7 +88,6 @@
         (map (name: {
           inherit name;
           value = buildPlug name;
-        }))
-        plugins;
+        }) plugins);
     };
 }

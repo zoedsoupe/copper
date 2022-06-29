@@ -38,13 +38,6 @@ in
           "<silent><leader>ca" = "<cmd>lua require('lspsaga.codeaction').code_action()<CR>";
         }
         else { }
-      )
-      // (
-        if (!cfg.lspSignature.enable)
-        then {
-          "<silent><leader>ls" = "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>";
-        }
-        else { }
       );
 
     vim.luaConfigRC = ''

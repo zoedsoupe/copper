@@ -4,9 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    rust-overlay.url = "github:oxalica/rust-overlay";
-
-    neovim-overlay = {
+    neovim = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
@@ -89,6 +87,16 @@
 
     nvim-ts-rainbow = {
       url = "github:p00f/nvim-ts-rainbow";
+      flake = false;
+    };
+
+    nvim-ts-autotag = {
+      url = "github:windwp/nvim-ts-autotag";
+      flake = false;
+    };
+
+    nvim-treesitter-context = {
+      url = "github:lewis6991/nvim-treesitter-context";
       flake = false;
     };
 
@@ -258,7 +266,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, neovim, rust-overlay, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -287,7 +295,7 @@
       };
 
       devShells."${system}".default = pkgs.mkShell {
-        buildInputs = [ packages "${system}".copper ];
+        buildInputs = [ packages."${system}".copper ];
       };
 
       overlays.default = super: self: {
@@ -300,7 +308,29 @@
       packages."${system}" = rec {
         default = copper;
         copper = mkNeovim {
-          config = { };
+          config = {
+            vim.viAlias = true;
+            vim.vimAlias = true;
+            vim.tabline.nvimBufferline.enable = true;
+            vim.treesitter.enable = true;
+            vim.theme = {
+              enable = true;
+              name = "material";
+            };
+            vim.disableArrows = true;
+            vim.editor.indentGuide = true;
+            vim.lsp = {
+              autocomplete.enable = true;
+              enable = true;
+              nvimCodeActionMenu.enable = true;
+              formatOnSave = true;
+              trouble.enable = true;
+              lspsaga.enable = true;
+              nix = true;
+              rust = true;
+              elixir = true;
+            };
+          };
         };
       };
     };
