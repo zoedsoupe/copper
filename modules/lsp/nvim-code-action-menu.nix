@@ -4,7 +4,8 @@ let
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.vim.lsp;
-in {
+in
+{
   options.vim.lsp = {
     nvimCodeActionMenu = {
       enable = mkEnableOption "nvim code action menu";

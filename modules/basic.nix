@@ -6,7 +6,8 @@ let
   inherit (types) bool int str listOf enum;
 
   cfg = config.vim;
-in {
+in
+{
   options.vim = {
     colourTerm = mkOption {
       default = true;
@@ -142,143 +143,147 @@ in {
   };
 
   config = (
-    let 
+    let
       writeIf = cond: msg: if cond then msg else "";
-    in {
+    in
+    {
 
-    vim.globals = {
-      "highlightedyank_highlight_duration" = 145;
-      "direnv_silent_load" = 1;
-      "dashboard_default_executive" = "telescope";
-      "bullets_enabled_file_types" = "markdown,text,gitcommit,orgmode,scratch";
-    };
+      vim.globals = {
+        "highlightedyank_highlight_duration" = 145;
+        "direnv_silent_load" = 1;
+        "dashboard_default_executive" = "telescope";
+        "bullets_enabled_file_types" = "markdown,text,gitcommit,orgmode,scratch";
+      };
 
-    vim.nmap = if (cfg.disableArrows) then {
-      "<up>" = "<nop>";
-      "<down>" = "<nop>";
-      "<left>" = "<nop>";
-      "<right>" = "<nop>";
-    } else {};
+      vim.nmap =
+        if (cfg.disableArrows) then {
+          "<up>" = "<nop>";
+          "<down>" = "<nop>";
+          "<left>" = "<nop>";
+          "<right>" = "<nop>";
+        } else { };
 
-    vim.imap = if (cfg.disableArrows) then {
-      "<up>" = "<nop>";
-      "<down>" = "<nop>";
-      "<left>" = "<nop>";
-      "<right>" = "<nop>";
-    } else {};
+      vim.imap =
+        if (cfg.disableArrows) then {
+          "<up>" = "<nop>";
+          "<down>" = "<nop>";
+          "<left>" = "<nop>";
+          "<right>" = "<nop>";
+        } else { };
 
-    vim.nnoremap = {
-      "Y" = "y$";
-      "n" = "nzzzv";
-      "N" = "Nzzzv";
-      "<cr>" = ":noh<cr><cr>";
-      "<leader>k" = ":m .-2<cr>==";
-      "<leader>j" = ":m .+1<cr>==";
-      "<f12>" = "<cmd>TZAtaraxis<cr>";
-    } // (if (cfg.mapLeaderSpace) then {
-      "<space>" = "<nop>";
-    } else {});
+      vim.nnoremap = {
+        "Y" = "y$";
+        "n" = "nzzzv";
+        "N" = "Nzzzv";
+        "<cr>" = ":noh<cr><cr>";
+        "<leader>k" = ":m .-2<cr>==";
+        "<leader>j" = ":m .+1<cr>==";
+        "<f12>" = "<cmd>TZAtaraxis<cr>";
+      } // (if (cfg.mapLeaderSpace) then {
+        "<space>" = "<nop>";
+      } else { });
 
-    vim.cnoremap = {
-      "w!!" = "!sudo tee %";
-    };
+      vim.cnoremap = {
+        "w!!" = "!sudo tee %";
+      };
 
-    vim.vnoremap = {
-      "J" = ":m '>+1<cr>gv=gv";
-      "K" = ":m '<-2<CR>gv=gv";
-    };
+      vim.vnoremap = {
+        "J" = ":m '>+1<cr>gv=gv";
+        "K" = ":m '<-2<CR>gv=gv";
+      };
 
-    vim.inoremap = {
-      "<c-j>" = "<esc>:m .+1<cr>==";
-      "<c-k>" = "<esc>:m .-2<cr>==";
-    };
+      vim.inoremap = {
+        "<c-j>" = "<esc>:m .+1<cr>==";
+        "<c-k>" = "<esc>:m .-2<cr>==";
+      };
 
-    vim.configRC = ''
-      "Settings that are set for everything
-      set encoding=utf-8
-      set fileencoding=utf-8
-      set cursorline
-      set autoread
-      set so=999
-      set noshowmode
-      set timeoutlen=1000
-      set incsearch
-      set wildmenu
-      set wildignore+=**/node_modules/**,**/deps/**,**/_build/**
-      set smartindent
-      set laststatus=2
-      set showtabline=0
-      set ruler
-      set pumheight=10
-      set ignorecase
-      set smartcase
-      set mouse=${cfg.mouseSupport}
-      set conceallevel=${toString cfg.concealLevel}
-      set tabstop=${toString cfg.tabWidth}
-      set shiftwidth=${toString cfg.tabWidth}
-      set softtabstop=${toString cfg.tabWidth}
-      set expandtab
-      set cmdheight=${toString cfg.cmdHeight}
-      set updatetime=${toString cfg.updateTime}
-      set shortmess+=c
-      set tm=${toString cfg.mapTimeout}
-      set hidden
-      ${writeIf cfg.splitBelow ''
-        set splitbelow
-      ''}
-      ${writeIf cfg.splitRight ''
-        set splitright
-      ''}
-      ${writeIf cfg.showSignColumn ''
-        set signcolumn=yes
-      ''}
-      ${writeIf cfg.autoIndent ''
-        set ai
-      ''}
-      ${writeIf cfg.preventJunkFiles ''
-        set noswapfile
-        set nobackup
-        set nowritebackup
-      ''}
-      ${writeIf (cfg.bell == "none") ''
-        set noerrorbells
-        set novisualbell
-      ''}
-      ${writeIf (cfg.bell == "on") ''
-        set novisualbell
-      ''}
-      ${writeIf (cfg.bell == "visual") ''
-        set noerrorbells
-      ''}
-      ${writeIf (cfg.lineNumberMode == "relative") ''
-        set relativenumber
-      ''}
-      ${writeIf (cfg.lineNumberMode == "number") ''
-        set number
-      ''}
-      ${writeIf (cfg.lineNumberMode == "relNumber") ''
-        set number relativenumber
-      ''}
-      ${writeIf cfg.mapLeaderSpace ''
-        let mapleader=" "
-        let maplocalleader=","
-      ''}
-      ${writeIf cfg.syntaxHighlighting ''
-        syntax enable
-      ''}
-      ${writeIf cfg.hlSearch ''
-        set hlsearch
-      ''}
-      ${writeIf cfg.colourTerm ''
-        set termguicolors
-        set t_Co=256
-      ''}
+      vim.configRC = ''
+        "Settings that are set for everything
+        set encoding=utf-8
+        set fileencoding=utf-8
+        set cursorline
+        set autoread
+        set so=999
+        set noshowmode
+        set timeoutlen=1000
+        set incsearch
+        set wildmenu
+        set wildignore+=**/node_modules/**,**/deps/**,**/_build/**
+        set smartindent
+        set laststatus=2
+        set showtabline=0
+        set ruler
+        set pumheight=10
+        set ignorecase
+        set smartcase
+        set mouse=${cfg.mouseSupport}
+        set conceallevel=${toString cfg.concealLevel}
+        set tabstop=${toString cfg.tabWidth}
+        set shiftwidth=${toString cfg.tabWidth}
+        set softtabstop=${toString cfg.tabWidth}
+        set expandtab
+        set cmdheight=${toString cfg.cmdHeight}
+        set updatetime=${toString cfg.updateTime}
+        set shortmess+=c
+        set tm=${toString cfg.mapTimeout}
+        set hidden
+        ${writeIf cfg.splitBelow ''
+          set splitbelow
+        ''}
+        ${writeIf cfg.splitRight ''
+          set splitright
+        ''}
+        ${writeIf cfg.showSignColumn ''
+          set signcolumn=yes
+        ''}
+        ${writeIf cfg.autoIndent ''
+          set ai
+        ''}
+        ${writeIf cfg.preventJunkFiles ''
+          set noswapfile
+          set nobackup
+          set nowritebackup
+        ''}
+        ${writeIf (cfg.bell == "none") ''
+          set noerrorbells
+          set novisualbell
+        ''}
+        ${writeIf (cfg.bell == "on") ''
+          set novisualbell
+        ''}
+        ${writeIf (cfg.bell == "visual") ''
+          set noerrorbells
+        ''}
+        ${writeIf (cfg.lineNumberMode == "relative") ''
+          set relativenumber
+        ''}
+        ${writeIf (cfg.lineNumberMode == "number") ''
+          set number
+        ''}
+        ${writeIf (cfg.lineNumberMode == "relNumber") ''
+          set number relativenumber
+        ''}
+        ${writeIf cfg.mapLeaderSpace ''
+          let mapleader=" "
+          let maplocalleader=","
+        ''}
+        ${writeIf cfg.syntaxHighlighting ''
+          syntax enable
+        ''}
+        ${writeIf cfg.hlSearch ''
+          set hlsearch
+        ''}
+        ${writeIf cfg.colourTerm ''
+          set termguicolors
+          set t_Co=256
+        ''}
 
-      filetype plugin on
-      filetype plugin indent on
-      highlight NvimTreeFolderIcon guibg=blue
+        filetype plugin on
+        filetype plugin indent on
+        highlight NvimTreeFolderIcon guibg=blue
 
-      au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal
-    '';
-  });
+        au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal
+      '';
+    }
+  );
 }

@@ -1,12 +1,13 @@
 { pkgs, config, lib, ... }:
 
-with builtins; 
+with builtins;
 
 let
   inherit (lib) boolToString mkEnableOption mkIf mkOption;
 
   cfg = config.vim.lsp;
-in {
+in
+{
   options.vim.lsp = {
     enable = mkEnableOption "Neovim lsp support";
     formatOnSave = mkEnableOption "Format on save";
@@ -21,7 +22,8 @@ in {
         if cond
         then msg
         else "";
-    in {
+    in
+    {
       vim.startPlugins = with pkgs.neovimPlugins;
         [
           nvim-lspconfig
@@ -33,7 +35,7 @@ in {
             coq-nvim
             coq-artifacts
           ]
-          else []
+          else [ ]
         );
 
       vim.luaConfigRC = ''

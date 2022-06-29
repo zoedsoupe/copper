@@ -11,7 +11,8 @@ in
 
   config = {
     vim.startPlugins = with neovimPlugins; [
-      nvim-lspconfig neovimPlugins."coq.artifacts"
+      nvim-lspconfig
+      neovimPlugins."coq.artifacts"
     ] ++ (with pkgs.vimPlugins; [ coq_nvim ]);
 
     vim.nnoremap = {

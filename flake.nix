@@ -57,11 +57,6 @@
       flake = false;
     };
 
-    rust-tools = {
-      url = "github:simrat39/rust-tools.nvim";
-      flake = false;
-    };
-
     rnix-lsp.url = "github:nix-community/rnix-lsp";
 
     # Telescope
@@ -89,6 +84,11 @@
 
     nvim-treesitter-rescript = {
       url = "github:nkrkv/nvim-treesitter-rescript";
+      flake = false;
+    };
+
+    nvim-ts-rainbow = {
+      url = "github:p00f/nvim-ts-rainbow";
       flake = false;
     };
 
@@ -144,6 +144,11 @@
       flake = false;
     };
 
+    nvim-bufferline-lua = {
+      url = "github:akinsho/nvim-bufferline.lua?ref=v1.2.0";
+      flake = false;
+    };
+
     # Visual
     nvim-web-devicons = {
       url = "github:kyazdani42/nvim-web-devicons";
@@ -162,11 +167,6 @@
 
     true-zen = {
       url = "github:Pocco81/TrueZen.nvim";
-      flake = false;
-    };
-
-    nvim-ts-rainbow = {
-      url = "github:p00f/nvim-ts-rainbow";
       flake = false;
     };
 
