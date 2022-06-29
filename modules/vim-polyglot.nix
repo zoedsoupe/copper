@@ -8,7 +8,7 @@ in
     vim.startPlugins = with neovimPlugins; [ vim-polyglot ];
 
     vim.globals = {
-      "haskell_indent_if"= 3;
+      "haskell_indent_if" = 3;
       "haskell_indent_case" = 2;
       "haskell_indent_let" = 4;
       "haskell_indent_where" = 6;
