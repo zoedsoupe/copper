@@ -59,6 +59,9 @@ in
       require('lspconfig')['elixirls'].setup(coq.lsp_ensure_capabilities{
           on_attach = on_attach,
           flags = lsp_flags,
+          cmd = {
+            "elixir-ls"
+          },
       })
       require('lspconfig')['rnix'].setup(coq.lsp_ensure_capabilities{
         on_attach = on_attach,
