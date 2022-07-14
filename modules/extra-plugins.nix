@@ -25,6 +25,7 @@ in
       vim-elixir
       earthly-vim
       nvim-neoclip
+      pkgs.vimPlugins.presenting-vim
     ];
 
     vim.luaConfigRC = ''
