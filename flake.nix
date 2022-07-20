@@ -152,8 +152,8 @@
       flake = false;
     };
 
-    nvim-bufferline-lua = {
-      url = "github:akinsho/nvim-bufferline.lua?ref=v1.2.0";
+    bufferline-nvim = {
+      url = "github:akinsho/bufferline.nvim";
       flake = false;
     };
 
