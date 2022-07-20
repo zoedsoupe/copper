@@ -209,6 +209,11 @@
       flake = false;
     };
 
+    omni = {
+      url = "github:getomni/neovim";
+      flake = false;
+    };
+
     # Extra
     plenary-nvim = {
       url = "github:nvim-lua/plenary.nvim";
@@ -315,7 +320,7 @@
             vim.treesitter.enable = true;
             vim.theme = {
               enable = true;
-              name = "material";
+              name = "omni";
             };
             vim.disableArrows = true;
             vim.editor.indentGuide = true;

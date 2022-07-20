@@ -14,7 +14,7 @@ in
     name = mkOption {
       default = "material";
       description = "Sets the current theme";
-      type = enum [ "material" ];
+      type = enum [ "material" "omni" ];
     };
 
     style = mkOption {
@@ -25,16 +25,19 @@ in
   };
 
   config = mkIf cfg.enable {
-    vim.startPlugins = with neovimPlugins; [ material-nvim ];
+    vim.startPlugins = with neovimPlugins; if cfg.name == "material" then [ material-nvim ] else if cfg.name == "omni" then [ omni ] else [ ];
 
-    vim.luaConfigRC = ''
-      vim.g.material_style = "${cfg.style}"
-      require('material').setup({
-        italics = {
-          comments = true,
-        },
-      })
-      vim.cmd[[colorscheme material]]
-    '';
+    vim.luaConfigRC =
+      if cfg.name == "material" then ''
+        vim.g.material_style = "${cfg.style}"
+        require('material').setup({
+          italics = {
+            comments = true,
+          },
+        })
+        vim.cmd[[colorscheme material]]
+      '' else if cfg.name == "omni" then ''
+        vim.cmd[[colorscheme omni]]
+      '' else "";
   };
 }

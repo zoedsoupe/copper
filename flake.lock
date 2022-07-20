@@ -674,6 +674,22 @@
         "type": "github"
       }
     },
+    "omni": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1642673424,
+        "narHash": "sha256-H4RaKkgjvyEhEDs+x/0zgqxL9Zp8lhZ1k1k6yfrhXM8=",
+        "owner": "getomni",
+        "repo": "neovim",
+        "rev": "e4ca72676dc28c8ef9dbada308d138806e62ded1",
+        "type": "github"
+      },
+      "original": {
+        "owner": "getomni",
+        "repo": "neovim",
+        "type": "github"
+      }
+    },
     "plenary-nvim": {
       "flake": false,
       "locked": {
@@ -764,6 +780,7 @@
         "nvim-ts-rainbow": "nvim-ts-rainbow",
         "nvim-web-devicons": "nvim-web-devicons",
         "nvim-which-key": "nvim-which-key",
+        "omni": "omni",
         "plenary-nvim": "plenary-nvim",
         "popup-nvim": "popup-nvim",
         "rnix-lsp": "rnix-lsp",
