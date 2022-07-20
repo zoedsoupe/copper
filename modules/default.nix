@@ -14,6 +14,6 @@
     ./editor.nix
     ./extra-plugins.nix
     ./lsp
-    ./nvim-bufferline.nix
+    ./bufferline-nvim.nix
   ];
 }

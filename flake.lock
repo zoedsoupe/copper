@@ -16,6 +16,22 @@
         "type": "github"
       }
     },
+    "bufferline-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1657698767,
+        "narHash": "sha256-fr9Q2391wchffmokBxfnO1xp9qYR96kx4vs06BECJWs=",
+        "owner": "akinsho",
+        "repo": "bufferline.nvim",
+        "rev": "d7b775a35be9c80ed591d3335b35ec84e5c5d81e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "akinsho",
+        "repo": "bufferline.nvim",
+        "type": "github"
+      }
+    },
     "bullets-vim": {
       "flake": false,
       "locked": {
@@ -450,23 +466,6 @@
         "type": "github"
       }
     },
-    "nvim-bufferline-lua": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1650105928,
-        "narHash": "sha256-RhAaRFGDoHZAr8SLgbtLtuQ2J9z5hbvMH14FDhHOLXU=",
-        "owner": "akinsho",
-        "repo": "nvim-bufferline.lua",
-        "rev": "0a83c615a8ab49718d9b4cdc60127003307829b2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "akinsho",
-        "ref": "v1.2.0",
-        "repo": "nvim-bufferline.lua",
-        "type": "github"
-      }
-    },
     "nvim-code-action-menu": {
       "flake": false,
       "locked": {
@@ -730,6 +729,7 @@
     "root": {
       "inputs": {
         "bufdelete-nvim": "bufdelete-nvim",
+        "bufferline-nvim": "bufferline-nvim",
         "bullets-vim": "bullets-vim",
         "codi-vim": "codi-vim",
         "coq-artifacts": "coq-artifacts",
@@ -751,7 +751,6 @@
         "nixpkgs": "nixpkgs",
         "null-ls": "null-ls",
         "nvim-autopairs": "nvim-autopairs",
-        "nvim-bufferline-lua": "nvim-bufferline-lua",
         "nvim-code-action-menu": "nvim-code-action-menu",
         "nvim-colorizer-lua": "nvim-colorizer-lua",
         "nvim-comment": "nvim-comment",
