@@ -514,6 +514,38 @@
         "type": "github"
       }
     },
+    "nvim-dap": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1658773594,
+        "narHash": "sha256-NgGLnWX7Mm+hLTM0ekVZhEJL848ZIBAF0cSswB+4xEA=",
+        "owner": "mfussenegger",
+        "repo": "nvim-dap",
+        "rev": "2a52cf60799274d2881a91019bc69a3ccc69177f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mfussenegger",
+        "repo": "nvim-dap",
+        "type": "github"
+      }
+    },
+    "nvim-dap-ui": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1658566121,
+        "narHash": "sha256-Wy9aCqVDvGaGL11Vx1st/2vek3YZOjVosugO/Ey/Euw=",
+        "owner": "rcarriga",
+        "repo": "nvim-dap-ui",
+        "rev": "b7b71444128f5aa90e4aee8dbfa36b14afddfb7a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "rcarriga",
+        "repo": "nvim-dap-ui",
+        "type": "github"
+      }
+    },
     "nvim-lspconfig": {
       "flake": false,
       "locked": {
@@ -770,6 +802,8 @@
         "nvim-code-action-menu": "nvim-code-action-menu",
         "nvim-colorizer-lua": "nvim-colorizer-lua",
         "nvim-comment": "nvim-comment",
+        "nvim-dap": "nvim-dap",
+        "nvim-dap-ui": "nvim-dap-ui",
         "nvim-lspconfig": "nvim-lspconfig",
         "nvim-neoclip": "nvim-neoclip",
         "nvim-tree-lua": "nvim-tree-lua",

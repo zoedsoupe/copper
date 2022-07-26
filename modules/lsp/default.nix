@@ -6,5 +6,6 @@
     ./lsp-saga.nix
     ./nvim-code-action-menu.nix
     ./trouble.nix
+    ./nvim-dap.nix
   ];
 }

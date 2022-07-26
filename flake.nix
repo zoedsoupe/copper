@@ -55,6 +55,16 @@
       flake = false;
     };
 
+    nvim-dap = {
+      url = "github:mfussenegger/nvim-dap";
+      flake = false;
+    };
+
+    nvim-dap-ui = {
+      url = "github:rcarriga/nvim-dap-ui";
+      flake = false;
+    };
+
     rnix-lsp.url = "github:nix-community/rnix-lsp";
 
     # Telescope
@@ -334,6 +344,10 @@
               nix = true;
               rust = true;
               elixir = true;
+              debugger = {
+                enable = true;
+                elixir = true;
+              };
             };
           };
         };
