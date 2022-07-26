@@ -40,6 +40,39 @@ in
         );
 
       vim.luaConfigRC = ''
+        require("which-key").register({
+          l = {
+            name = "LSP",
+            d = {
+              name = "debugger",
+              b = { "Toggle breakppoint" },
+              c = { "Continue flow" },
+              s = { "Step into flow" },
+              r = { "Start REPL" }
+            },
+            g = {
+              D = { "Goto declaration" },
+              d = { "Goto definition" },
+              t = { "Goto type definition" },
+              n = { "Goto next diagnostic" },
+              p = { "Goto previous diagnostic" },
+            },
+            w = {
+              name = "Workspace",
+              a = { "Add" },
+              r = { "Remove" },
+              l = { "List" },
+            },
+            h = { "Show Hover" },
+            s = { "Signature" },
+            r = { "Rename" },
+            c = { "Show cursor diagnostic" },
+            l = { "Show line diagnostic" },
+            x = { "Preview definition" },
+            f = { "Finder" },
+          }
+        }, { prefix = "<leader>" })
+
         local attach_keymaps = function(client, bufnr)
           local opts = { noremap=true, silent=true }
 
@@ -55,7 +88,6 @@ in
 
           vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
           vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
         end
 
         local null_ls = require("null-ls")

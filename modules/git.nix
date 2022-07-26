@@ -18,6 +18,7 @@ in
       local wk = require("which-key")
 
       wk.register({
+        M = { "Magit" },
         g = {
           name = "Git",
           s = { "Status" },
