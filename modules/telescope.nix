@@ -18,8 +18,8 @@ in
       "<leader>fb" = ":Telescope buffers<cr>";
       "<leader>fs" = "<cmd> Telescope treesitter<CR>";
 
-      "<leader>fvcw" = "<cmd> Telescope git_commits<CR>";
-      "<leader>fvcb" = "<cmd> Telescope git_bcommits<CR>";
+      "<leader>fvc" = "<cmd> Telescope git_commits<CR>";
+      "<leader>fvw" = "<cmd> Telescope git_bcommits<CR>";
       "<leader>fvb" = "<cmd> Telescope git_branches<CR>";
       "<leader>fvs" = "<cmd> Telescope git_status<CR>";
       "<leader>fvx" = "<cmd> Telescope git_stash<CR>";
@@ -61,6 +61,14 @@ in
           f = { "Find File" },
           g = { "Grep" },
           b = { "List Buffers"  },
+          v = {
+            name = "Git",
+            b = { "Branches" },
+            s = { "Status" },
+            x = { "Stash" },
+            c = { "Commits" },
+            w = { "File commits" }
+          }
         },
       }, { prefix = "<leader>" })
     '';

@@ -26,11 +26,9 @@ in
         "<silent><C-f>" = "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>";
         "<silent><C-b>" = "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>";
         "<silent><leader>lr" = "<cmd>lua require'lspsaga.rename'.rename()<CR>";
-        "<silent><leader>ld" = "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>";
+        "<silent><leader>lx" = "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>";
         "<silent><leader>ll" = "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>";
         "<silent><leader>lc" = "<cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>";
-        "<silent><leader>lp" = "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>";
-        "<silent><leader>ln" = "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>";
       }
       // (
         if (!cfg.nvimCodeActionMenu.enable)
