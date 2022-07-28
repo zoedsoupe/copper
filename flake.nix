@@ -224,6 +224,26 @@
       flake = false;
     };
 
+    melange = {
+      url = "github:savq/melange";
+      flake = false;
+    };
+
+    boo = {
+      url = "github:rockerBOO/boo-colorscheme-nvim";
+      flake = false;
+    };
+
+    doom-one = {
+      url = "github:NTBBloodbath/doom-one.nvim";
+      flake = false;
+    };
+
+    rose-pine= {
+      url = "github:rose-pine/neovim";
+      flake = false;
+    };
+
     # Extra
     plenary-nvim = {
       url = "github:nvim-lua/plenary.nvim";
@@ -330,7 +350,8 @@
             vim.treesitter.enable = true;
             vim.theme = {
               enable = true;
-              name = "omni";
+              name = "rose-pine";
+              # style = "radioactive_waste";
             };
             vim.disableArrows = true;
             vim.editor.indentGuide = true;
