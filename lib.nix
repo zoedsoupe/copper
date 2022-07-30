@@ -49,6 +49,7 @@ in
         tree-sitter-dockerfile
         tree-sitter-elisp
         tree-sitter-elixir
+        tree-sitter-elm
         tree-sitter-erlang
         tree-sitter-fish
         tree-sitter-haskell
