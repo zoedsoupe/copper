@@ -64,6 +64,23 @@
         "type": "github"
       }
     },
+    "coc-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1660316363,
+        "narHash": "sha256-hhVm0lUNXYnNEDA83amcDSH73WxzCe21omC9OFG2haA=",
+        "owner": "neoclide",
+        "repo": "coc.nvim",
+        "rev": "8b64d47d4501d58cd7d268a8af20074fcbb6ae50",
+        "type": "github"
+      },
+      "original": {
+        "owner": "neoclide",
+        "ref": "release",
+        "repo": "coc.nvim",
+        "type": "github"
+      }
+    },
     "codi-vim": {
       "flake": false,
       "locked": {
@@ -77,38 +94,6 @@
       "original": {
         "owner": "metakirby5",
         "repo": "codi.vim",
-        "type": "github"
-      }
-    },
-    "coq-artifacts": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1660611987,
-        "narHash": "sha256-egIWA8es/6Sut3J/w2knyoYzRB3nybtxbm7pkWezwmo=",
-        "owner": "ms-jpq",
-        "repo": "coq.artifacts",
-        "rev": "f8e9051a46741cd014c7c58bd9ce28c752d1cb2d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ms-jpq",
-        "repo": "coq.artifacts",
-        "type": "github"
-      }
-    },
-    "coq-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1660611986,
-        "narHash": "sha256-x7L4DghGqWODi4U3LgUGpCx0s+jcxZNVX1485Q7spBw=",
-        "owner": "ms-jpq",
-        "repo": "coq_nvim",
-        "rev": "164209045fb0b2e355d05c837bb86f012a98b26d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ms-jpq",
-        "repo": "coq_nvim",
         "type": "github"
       }
     },
@@ -828,9 +813,8 @@
         "bufdelete-nvim": "bufdelete-nvim",
         "bufferline-nvim": "bufferline-nvim",
         "bullets-vim": "bullets-vim",
+        "coc-nvim": "coc-nvim",
         "codi-vim": "codi-vim",
-        "coq-artifacts": "coq-artifacts",
-        "coq-nvim": "coq-nvim",
         "dashboard-nvim": "dashboard-nvim",
         "direnv-vim": "direnv-vim",
         "doom-one": "doom-one",

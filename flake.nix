@@ -10,13 +10,8 @@
     };
 
     # LSP plugins
-    coq-nvim = {
-      url = "github:ms-jpq/coq_nvim";
-      flake = false;
-    };
-
-    coq-artifacts = {
-      url = "github:ms-jpq/coq.artifacts";
+    coc-nvim = {
+      url = "github:neoclide/coc.nvim/release";
       flake = false;
     };
 
