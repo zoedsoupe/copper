@@ -47,7 +47,7 @@ in
         require("boo-colorscheme").use({
           theme = ${cfg.style},
         })
-        '' else if cfg.name == "doom-one" then ''
+      '' else if cfg.name == "doom-one" then ''
         require("doom-one").setup({
           italic_comments = true,
           enable_treesitter = true,
@@ -62,9 +62,9 @@ in
             lspsaga = true
           },
         })
-        '' else if cfg.name == "rose-pine" then ''
+      '' else if cfg.name == "rose-pine" then ''
         require("rose-pine").setup()
         vim.cmd[[colorscheme rose-pine]]
-        '' else "vim.cmd[[colorscheme ${cfg.name}]]";
+      '' else "vim.cmd[[colorscheme ${cfg.name}]]";
   };
 }
