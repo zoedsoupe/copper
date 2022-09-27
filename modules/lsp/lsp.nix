@@ -32,7 +32,7 @@ in
         ]
         ++ (
           if cfg.autocomplete.enable
-          then [ coc-nvim ] ++ (with pkgs.nodePackages; [ 
+          then [ coc-nvim ] ++ (with pkgs.nodePackages; [
             coc-css
             coc-diagnostic
             coc-explorer
@@ -72,20 +72,20 @@ in
       };
 
       vim.configRC = ''
-      function! CheckBackspace() abort
-        let col = col('.') - 1
-        return !col || getline('.')[col - 1]  =~# '\s'
-      endfunction
+        function! CheckBackspace() abort
+          let col = col('.') - 1
+          return !col || getline('.')[col - 1]  =~# '\s'
+        endfunction
 
-      function! ShowDocumentation()
-        if CocAction('hasProvider', 'hover')
-          call CocActionAsync('doHover')
-        else
-          call feedkeys('K', 'in')
-        endif
-      endfunction
+        function! ShowDocumentation()
+          if CocAction('hasProvider', 'hover')
+            call CocActionAsync('doHover')
+          else
+            call feedkeys('K', 'in')
+          endif
+        endfunction
 
-      autocmd CursorHold * silent call CocActionAsync('highlight')
+        autocmd CursorHold * silent call CocActionAsync('highlight')
       '';
 
       vim.luaConfigRC = ''

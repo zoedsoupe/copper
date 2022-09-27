@@ -234,7 +234,7 @@
       flake = false;
     };
 
-    rose-pine= {
+    rose-pine = {
       url = "github:rose-pine/neovim";
       flake = false;
     };
