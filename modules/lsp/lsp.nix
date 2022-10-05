@@ -41,7 +41,7 @@ in
             coc-html
             coc-json
             coc-tsserver
-            coc-rls
+            coc-rust-analyzer
             coc-snippets
             coc-solargraph
             coc-vetur

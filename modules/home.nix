@@ -1,18 +1,21 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, nvimConfig, lib, hmArgs, ... }:
 
 with lib;
 
-mkIf (config.autocomplete.enable) {
-  home.packages = [ pkgs.solargraph ];
+let
+  inherit (hmArgs) username stateVersion homeDirectory;
+  cfg = nvimConfig.vim.lsp;
+in
+mkIf (cfg.autocomplete.enable) {
+  home = {
+    inherit username stateVersion homeDirectory;
+    packages = [ pkgs.solargraph ];
+  };
 
   xdg.configFile."nvim/coc-settings.json".source = pkgs.writeTextFile {
     name = "coc-settings.json";
     text = builtins.toJSON {
       "codeLens.enable" = true;
-      "rust-client" = {
-        "disableRustup" = true;
-        "rlsPath" = "${pkgs.rls}/bin/rls";
-      };
       "suggest" = {
         "noselect" = true;
         "removeDuplicateItems" = true;
@@ -23,7 +26,7 @@ mkIf (config.autocomplete.enable) {
           "filetypes" = [ "elixir" "eexlixir" "heexlixir" ];
         };
         "rust" = {
-          "command" = "${pkgs.rls}/bin/rls";
+          "command" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
           "rootPatterns" = [ "Cargo.toml" ];
           "filetypes" = [ "rs" ];
         };
