@@ -379,9 +379,16 @@
       };
 
       homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs system;
+        inherit pkgs;
         modules = [ ./modules/home.nix ];
-        extraSpecialArgs = { inherit config; };
+        extraSpecialArgs = { 
+          hmArgs = {
+            inherit system username;
+            homeDirectory = "/home/${username}";
+            stateVersion = "21.05";
+          };
+          nvimConfig = config; 
+        };
       };
     };
 }
