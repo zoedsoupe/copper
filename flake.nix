@@ -4,6 +4,11 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     neovim = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -296,7 +301,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -310,6 +315,39 @@
         inherit system overlays;
 
         config.allowUnfree = true;
+      };
+
+      username = "zoedsoupe";
+
+      config = {
+        vim.viAlias = true;
+        vim.vimAlias = true;
+        vim.tabline.nvimBufferline.enable = true;
+        vim.treesitter.enable = true;
+        vim.theme = {
+          enable = true;
+          name = "rose-pine";
+          # style = "radioactive_waste";
+        };
+        vim.disableArrows = true;
+        vim.editor.indentGuide = true;
+        vim.lsp = {
+          autocomplete.enable = true;
+          enable = true;
+          nvimCodeActionMenu.enable = true;
+          formatOnSave = true;
+          trouble.enable = true;
+          lspsaga.enable = true;
+          nix = true;
+          rust = true;
+          ruby = true;
+          typescript = true;
+          elixir = true;
+          debugger = {
+            enable = true;
+            elixir = true;
+          };
+        };
       };
     in
     rec {
@@ -337,38 +375,13 @@
 
       packages."${system}" = rec {
         default = copper;
-        copper = mkNeovim {
-          config = {
-            vim.viAlias = true;
-            vim.vimAlias = true;
-            vim.tabline.nvimBufferline.enable = true;
-            vim.treesitter.enable = true;
-            vim.theme = {
-              enable = true;
-              name = "rose-pine";
-              # style = "radioactive_waste";
-            };
-            vim.disableArrows = true;
-            vim.editor.indentGuide = true;
-            vim.lsp = {
-              autocomplete.enable = true;
-              enable = true;
-              nvimCodeActionMenu.enable = true;
-              formatOnSave = true;
-              trouble.enable = true;
-              lspsaga.enable = true;
-              nix = true;
-              rust = true;
-              ruby = true;
-              typescript = true;
-              elixir = true;
-              debugger = {
-                enable = true;
-                elixir = true;
-              };
-            };
-          };
-        };
+        copper = mkNeovim { inherit config; };
+      };
+
+      homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
+        inherit pkgs system;
+        modules = [ ./modules/home.nix ];
+        extraSpecialArgs = { inherit config; };
       };
     };
 }
