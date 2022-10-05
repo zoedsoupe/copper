@@ -4,6 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
+    nixago.url = "github:jmgilman/nixago";
+    nixago.inputs.nixpkgs.follows = "nixpkgs";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -301,7 +304,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixago, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -317,7 +320,7 @@
         config.allowUnfree = true;
       };
 
-      username = "zoedsoupe";
+      home = builtins.getEnv "HOME";
 
       config = {
         vim.viAlias = true;
@@ -378,16 +381,44 @@
         copper = mkNeovim { inherit config; };
       };
 
-      homeConfigurations."${username}" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [ ./modules/home.nix ];
-        extraSpecialArgs = { 
-          hmArgs = {
-            inherit system username;
-            homeDirectory = "/home/${username}";
-            stateVersion = "21.05";
+      cocConfig = nixago.lib.make {
+        output = "${home}/nvim/coc-settings.json";
+        format = "json";
+        configData = {
+          "codeLens.enable" = true;
+          "suggest" = {
+            "noselect" = true;
+            "removeDuplicateItems" = true;
           };
-          nvimConfig = config; 
+          "languageserver" = {
+            "elixirLS" = {
+              "command" = "${pkgs.elixir_ls}/bin/elixir-ls";
+              "filetypes" = [ "elixir" "eexlixir" "heexlixir" ];
+            };
+            "rust" = {
+              "command" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
+              "rootPatterns" = [ "Cargo.toml" ];
+              "filetypes" = [ "rs" ];
+            };
+            "rescript" = {
+              "enable" = true;
+              "module" = "${pkgs.neovimPlugins.vim-rescript}/server/out/server.js";
+              "args" = [ "--node-ipc" ];
+              "filetypes" = [ "rescript" ];
+              "rootPatterns" = [ "bsconfig.json" ];
+            };
+            "nix" = { "command" = "${pkgs.rnix-lsp}/bin/rnix-lsp"; "filetypes" = [ "nix" ]; };
+          };
+          "coc.preferences" = {
+            "useQuickfixForLocations" = true;
+            "snippets.enable" = true;
+            "extensionsUpdateCheck" = "never";
+            "formatOnSaveFiletypes" = [
+              "elixir"
+              "rust"
+              "nix"
+            ];
+          };
         };
       };
     };
