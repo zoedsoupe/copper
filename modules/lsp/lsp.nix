@@ -15,6 +15,8 @@ in
     nix = mkEnableOption "Nix LSP";
     rust = mkEnableOption "Rust LSP";
     elixir = mkEnableOption "Elixir LSP";
+    ruby = mkEnableOption "Ruby LSP";
+    typescript = mkEnableOption "Typescript LSP";
   };
 
   config = mkIf cfg.enable (
@@ -38,8 +40,11 @@ in
             coc-explorer
             coc-html
             coc-json
+            coc-tsserver
             coc-rls
             coc-snippets
+            coc-solargraph
+            coc-vetur
             coc-yaml
           ])
           else [ ]

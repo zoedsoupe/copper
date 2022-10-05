@@ -359,6 +359,8 @@
               lspsaga.enable = true;
               nix = true;
               rust = true;
+              ruby = true;
+              typescript = true;
               elixir = true;
               debugger = {
                 enable = true;
