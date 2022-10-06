@@ -320,8 +320,6 @@
         config.allowUnfree = true;
       };
 
-      home = builtins.getEnv "HOME";
-
       config = {
         vim.viAlias = true;
         vim.vimAlias = true;
@@ -352,37 +350,9 @@
           };
         };
       };
-    in
-    rec {
-      inherit (lib) mkNeovim;
 
-      apps."${system}" = rec {
-        default = nvim;
-
-        nvim = {
-          type = "app";
-          programs = "${packages."${system}".default}/bin/nvim";
-        };
-      };
-
-      devShells."${system}".default = pkgs.mkShell {
-        buildInputs = [ packages."${system}".copper ];
-      };
-
-      overlays.default = super: self: {
-        inherit mkNeovim;
-        inherit (pkgs) neovimPlugins;
-
-        copper = packages."${system}".copper;
-      };
-
-      packages."${system}" = rec {
-        default = copper;
-        copper = mkNeovim { inherit config; };
-      };
-
-      cocConfig = nixago.lib.make {
-        output = "${home}/nvim/coc-settings.json";
+      cocConfig = {
+        output = "/home/zoedsoupe/.config/nvim/coc-settings.json";
         format = "json";
         configData = {
           "codeLens.enable" = true;
@@ -420,6 +390,35 @@
             ];
           };
         };
+      };
+    in
+    rec {
+      inherit (lib) mkNeovim;
+
+      apps."${system}" = rec {
+        default = nvim;
+
+        nvim = {
+          type = "app";
+          programs = "${packages."${system}".default}/bin/nvim";
+        };
+      };
+
+      devShells."${system}".default = pkgs.mkShell {
+        buildInputs = [ packages."${system}".copper ];
+        shellHook = (nixago.lib."${system}".make cocConfig).shellHook;
+      };
+
+      overlays.default = super: self: {
+        inherit mkNeovim;
+        inherit (pkgs) neovimPlugins;
+
+        copper = packages."${system}".copper;
+      };
+
+      packages."${system}" = rec {
+        default = copper;
+        copper = mkNeovim { inherit config; };
       };
     };
 }

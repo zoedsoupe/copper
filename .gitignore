@@ -1,1 +1,6 @@
 result
+
+# nixago: ignore-linked-files
+/home/zoedsoupe/.config/nvim/coc-settings.json
+/.config/nvim/coc-settings.json
+/nvim/coc-settings.json
