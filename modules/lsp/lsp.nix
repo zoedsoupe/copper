@@ -15,6 +15,7 @@ in
     nix = mkEnableOption "Nix LSP";
     rust = mkEnableOption "Rust LSP";
     elixir = mkEnableOption "Elixir LSP";
+    rescript = mkEnableOption "Rescript LSP";
     ruby = mkEnableOption "Ruby LSP";
     typescript = mkEnableOption "Typescript LSP";
   };
@@ -28,38 +29,16 @@ in
     in
     {
       vim.startPlugins = with pkgs.neovimPlugins;
-        [
-          nvim-lspconfig
-          null-ls
-        ]
+        [ nvim-lspconfig ]
         ++ (
           if cfg.autocomplete.enable
-          then [ coc-nvim ] ++ (with pkgs.nodePackages; [
-            coc-css
-            coc-diagnostic
-            coc-explorer
-            coc-html
-            coc-json
-            coc-tsserver
-            coc-rust-analyzer
-            coc-snippets
-            coc-solargraph
-            coc-vetur
-            coc-yaml
-          ])
-          else [ ]
+          then [
+            coq-nvim
+            coq-artifacts
+          ] else [ ]
         );
 
-      vim.inoremap = {
-        "<silent><expr> <TAB>" = ''
-          coc#pum#visible() ? coc#pum#next(1) : CheckBackspace() ? "\<Tab>" : coc#refresh()
-        '';
-        "<expr><S-TAB>" = "coc#pum#visible() ? coc#pum#prev(1) : \"\\\<C-h>\"";
-        "<silent><expr> <CR>" = ''
-          coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-        '';
-        "<silent><expr> <c-space>" = "coc#refresh()";
-      };
+      vim.inoremap = { };
 
       vim.nmap = {
         "<silent> <leader>lgn" = "<Plug>(coc-diagnostic-next)";
@@ -75,23 +54,6 @@ in
       vim.nnoremap = {
         "<silent> <leader>lh" = ":call ShowDocumentation()<CR>";
       };
-
-      vim.configRC = ''
-        function! CheckBackspace() abort
-          let col = col('.') - 1
-          return !col || getline('.')[col - 1]  =~# '\s'
-        endfunction
-
-        function! ShowDocumentation()
-          if CocAction('hasProvider', 'hover')
-            call CocActionAsync('doHover')
-          else
-            call feedkeys('K', 'in')
-          endif
-        endfunction
-
-        autocmd CursorHold * silent call CocActionAsync('highlight')
-      '';
 
       vim.luaConfigRC = ''
         require("which-key").register({
@@ -115,6 +77,96 @@ in
             r = { "Rename" },
           }
         }, { prefix = "<leader>" })
+
+        local on_attach = function(client, bufnr)
+          local opts = { noremap=true, silent=true }
+
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgn', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lgp', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lwa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lwr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lwl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+              if vim.g.formatsave then
+                  local params = require'vim.lsp.util'.make_formatting_params({})
+                  client.request('textDocument/formatting', params, nil, bufnr)
+              end
+            end
+          })
+        end
+
+        local coq = require("coq")
+        vim.g.coq_settings = { auto_start = "shut-up", xdg = true }
+
+        -- Enable lspconfig
+        local lspconfig = require('lspconfig')
+
+        ${writeIf cfg.rust ''
+          -- Rust config
+          lspconfig.rust_analyzer.setup(coq.lsp_ensure_capabilities{
+            on_attach = on_attach,
+            cmd = {"${pkgs.rust-analyzer}/bin/rust-analyzer"}
+          })
+        ''}
+
+        ${writeIf cfg.elixir ''
+          -- Elixir config
+          lspconfig.elixirls.setup(coq.lsp_ensure_capabilities{
+            on_attach = on_attach,
+            cmd = {"${pkgs.elixir_ls}/bin/elixir-ls"}
+          })
+        ''}
+
+        ${writeIf cfg.nix ''
+          -- Nix config
+          lspconfig.rnix.setup(coq.lsp_ensure_capabilities{
+            on_attach = on_attach,
+            cmd = {"${pkgs.rnix-lsp}/bin/rnix-lsp"}
+          })
+        ''}
+
+        ${writeIf cfg.ruby ''
+          -- Ruby config
+          lspconfig.solargraph.setup(coq.lsp_ensure_capabilities{
+            on_attach = on_attach,
+            cmd = {"${pkgs.solargraph}/bin/solargraph"}
+          })
+        ''}
+
+        ${writeIf cfg.typescript ''
+          -- Typescript config
+          lspconfig.tsserver.setup(coq.lsp_ensure_capabilities{
+            on_attach = on_attach,
+            cmd = {"${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server"}
+          })
+
+          -- Vue config
+          lspconfig.vuels.setup(coq.lsp_ensure_capabilities{
+            on_attach = on_attach,
+            cmd = {"${pkgs.nodePackages.vls}/bin/vls"}
+          })
+        ''}
+
+        ${writeIf cfg.rescript ''
+          -- Rescript config
+          lspconfig.tsserver.setup(coq.lsp_ensure_capabilities{
+            on_attach = on_attach,
+            cmd = {
+              "${pkgs.nodejs}/bin/node",
+              "${pkgs.neovimPlugins.vim-rescript}/server/out/server.js",
+              "--stdio"
+            }
+          })
+        ''}
       '';
     }
   );
