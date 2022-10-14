@@ -4,22 +4,19 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    nixago.url = "github:jmgilman/nixago";
-    nixago.inputs.nixpkgs.follows = "nixpkgs";
-
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     neovim = {
       url = "github:nix-community/neovim-nightly-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # LSP plugins
-    coc-nvim = {
-      url = "github:neoclide/coc.nvim/release";
+    coq-nvim = {
+      url = "github:ms-jpq/coq_nvim";
+      flake = false;
+    };
+
+    coq-artifacts = {
+      url = "github:ms-jpq/coq.artifacts";
       flake = false;
     };
 
@@ -50,11 +47,6 @@
 
     lsp-signature = {
       url = "github:ray-x/lsp_signature.nvim";
-      flake = false;
-    };
-
-    null-ls = {
-      url = "github:jose-elias-alvarez/null-ls.nvim";
       flake = false;
     };
 
@@ -304,7 +296,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nixago, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       system = "x86_64-linux";
 
@@ -344,50 +336,10 @@
           ruby = true;
           typescript = true;
           elixir = true;
+          rescript = true;
           debugger = {
             enable = true;
             elixir = true;
-          };
-        };
-      };
-
-      cocConfig = {
-        output = "/home/zoedsoupe/.config/nvim/coc-settings.json";
-        format = "json";
-        configData = {
-          "codeLens.enable" = true;
-          "suggest" = {
-            "noselect" = true;
-            "removeDuplicateItems" = true;
-          };
-          "languageserver" = {
-            "elixirLS" = {
-              "command" = "${pkgs.elixir_ls}/bin/elixir-ls";
-              "filetypes" = [ "elixir" "eexlixir" "heexlixir" ];
-            };
-            "rust" = {
-              "command" = "${pkgs.rust-analyzer}/bin/rust-analyzer";
-              "rootPatterns" = [ "Cargo.toml" ];
-              "filetypes" = [ "rs" ];
-            };
-            "rescript" = {
-              "enable" = true;
-              "module" = "${pkgs.neovimPlugins.vim-rescript}/server/out/server.js";
-              "args" = [ "--node-ipc" ];
-              "filetypes" = [ "rescript" ];
-              "rootPatterns" = [ "bsconfig.json" ];
-            };
-            "nix" = { "command" = "${pkgs.rnix-lsp}/bin/rnix-lsp"; "filetypes" = [ "nix" ]; };
-          };
-          "coc.preferences" = {
-            "useQuickfixForLocations" = true;
-            "snippets.enable" = true;
-            "extensionsUpdateCheck" = "never";
-            "formatOnSaveFiletypes" = [
-              "elixir"
-              "rust"
-              "nix"
-            ];
           };
         };
       };
@@ -406,7 +358,6 @@
 
       devShells."${system}".default = pkgs.mkShell {
         buildInputs = [ packages."${system}".copper ];
-        shellHook = (nixago.lib."${system}".make cocConfig).shellHook;
       };
 
       overlays.default = super: self: {
