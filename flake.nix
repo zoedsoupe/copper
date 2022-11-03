@@ -33,10 +33,7 @@
     lspkind = {
       url = "github:onsails/lspkind-nvim";
       flake = false;
-    };
-
-    trouble = {
-      url = "github:folke/trouble.nvim";
+    }; trouble = { url = "github:folke/trouble.nvim";
       flake = false;
     };
 
@@ -360,7 +357,7 @@
         buildInputs = [ packages."${system}".copper ];
       };
 
-      overlays.default = super: self: {
+      overlays."${system}".default = super: self: {
         inherit mkNeovim;
         inherit (pkgs) neovimPlugins;
 
