@@ -301,6 +301,10 @@
       system = "x86_64-linux";
 
       lib = import ./lib.nix { inherit pkgs inputs; };
+      darwinLib = import ./lib.nix {
+        inherit inputs;
+        pkgs = darwinPkgs;
+      };
 
       inherit (import ./overlays.nix {
         inherit system inputs lib;
@@ -311,6 +315,20 @@
 
         config.allowUnfree = true;
       };
+
+      darwinPkgs =
+        let
+          darwinOverlay =
+            import ./overlays.nix {
+              inherit inputs; lib = darwinLib;
+              system = "aarch64-darwin";
+            };
+        in
+        import nixpkgs {
+          system = "aarch64-darwin";
+          config.allowUnfree = true;
+          overlays = darwinOverlay.overlays;
+        };
 
       config = {
         vim.viAlias = true;
@@ -347,6 +365,14 @@
     rec {
       inherit (lib) mkNeovim;
 
+      apps.aarch64-darwin = rec {
+        default = neovim;
+        neovim = {
+          type = "app";
+          programs = "${packages.aarch64-darwin.default}/bin/nvim";
+        };
+      };
+
       apps."${system}" = rec {
         default = nvim;
 
@@ -360,16 +386,28 @@
         buildInputs = [ packages."${system}".copper ];
       };
 
-      overlays.default = super: self: {
+      overlays."${system}".default = super: self: {
         inherit mkNeovim;
         inherit (pkgs) neovimPlugins;
 
         copper = packages."${system}".copper;
       };
 
+      overlays.aarch64-darwin.default = super: self: {
+        inherit (darwinLib) mkNeovim;
+        inherit (darwinPkgs) neovimPlugins;
+
+        copper = packages.aarch64-darwin.copper;
+      };
+
       packages."${system}" = rec {
         default = copper;
         copper = mkNeovim { inherit config; };
+      };
+
+      packages.aarch64-darwin = rec {
+        default = copper;
+        copper = darwinLib.mkNeovim { inherit config; };
       };
     };
 }
