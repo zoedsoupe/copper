@@ -144,6 +144,22 @@
         "type": "github"
       }
     },
+    "conjure": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1673111254,
+        "narHash": "sha256-zBY3C7udP5sJ/HLp/bEt6gBBXLMINw/WQNXOXnoDLiw=",
+        "owner": "Olical",
+        "repo": "conjure",
+        "rev": "d2e69a13b32e8574decfe81ea275292234eba6ea",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Olical",
+        "repo": "conjure",
+        "type": "github"
+      }
+    },
     "dashboard-nvim": {
       "flake": false,
       "locked": {
@@ -960,6 +976,7 @@
         "cmp-treesitter": "cmp-treesitter",
         "cmp-vsnip": "cmp-vsnip",
         "codi-vim": "codi-vim",
+        "conjure": "conjure",
         "dashboard-nvim": "dashboard-nvim",
         "direnv-vim": "direnv-vim",
         "doom-one": "doom-one",
@@ -1015,6 +1032,8 @@
         "vim-highlightedyank": "vim-highlightedyank",
         "vim-matchup": "vim-matchup",
         "vim-polyglot": "vim-polyglot",
+        "vim-sexp": "vim-sexp",
+        "vim-sexp-mappings": "vim-sexp-mappings",
         "vim-vsnip": "vim-vsnip",
         "vimagit": "vimagit",
         "vimtex": "vimtex",
@@ -1209,6 +1228,38 @@
       "original": {
         "owner": "sheerun",
         "repo": "vim-polyglot",
+        "type": "github"
+      }
+    },
+    "vim-sexp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1615186630,
+        "narHash": "sha256-HRNzyh3M6KrPyoRmPNug3Qldc5hRim3out4vKG/PM40=",
+        "owner": "guns",
+        "repo": "vim-sexp",
+        "rev": "14464d4580af43424ed8f2614d94e62bfa40bb4d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "guns",
+        "repo": "vim-sexp",
+        "type": "github"
+      }
+    },
+    "vim-sexp-mappings": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1669483180,
+        "narHash": "sha256-VsIP7eZtL0loYd7WDMrmRuQPacA5PqiueOBqv7BvJUs=",
+        "owner": "tpope",
+        "repo": "vim-sexp-mappings-for-regular-people",
+        "rev": "cc5923e357373ea6ef0c13eae82f44e6b9b1d374",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tpope",
+        "repo": "vim-sexp-mappings-for-regular-people",
         "type": "github"
       }
     },

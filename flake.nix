@@ -196,6 +196,21 @@
       flake = false;
     };
 
+    conjure = {
+      url = github:Olical/conjure;
+      flake = false;
+    };
+
+    vim-sexp = {
+      url = github:guns/vim-sexp;
+      flake = false;
+    };
+
+    vim-sexp-mappings = {
+      url = github:tpope/vim-sexp-mappings-for-regular-people;
+      flake = false;
+    };
+
     # Buffer tools
     bufdelete-nvim = {
       url = github:famiu/bufdelete.nvim;
@@ -452,6 +467,7 @@
               ts = true;
               elm = false;
               elixir = true;
+              clojure = true;
             };
           };
         };
