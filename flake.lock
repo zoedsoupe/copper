@@ -144,22 +144,6 @@
         "type": "github"
       }
     },
-    "crates-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1676072696,
-        "narHash": "sha256-e30Ir+Kd0EuvGoqORLtIA3aloL9djuebZYkBssWA0L8=",
-        "owner": "Saecki",
-        "repo": "crates.nvim",
-        "rev": "3fc7ddac13ddf65914a733ef074317c4c72ef05b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Saecki",
-        "repo": "crates.nvim",
-        "type": "github"
-      }
-    },
     "dashboard-nvim": {
       "flake": false,
       "locked": {
@@ -976,7 +960,6 @@
         "cmp-treesitter": "cmp-treesitter",
         "cmp-vsnip": "cmp-vsnip",
         "codi-vim": "codi-vim",
-        "crates-nvim": "crates-nvim",
         "dashboard-nvim": "dashboard-nvim",
         "direnv-vim": "direnv-vim",
         "doom-one": "doom-one",
@@ -1029,7 +1012,6 @@
         "trouble": "trouble",
         "true-zen": "true-zen",
         "vim-elixir": "vim-elixir",
-        "vim-haskell-module-name": "vim-haskell-module-name",
         "vim-highlightedyank": "vim-highlightedyank",
         "vim-matchup": "vim-matchup",
         "vim-polyglot": "vim-polyglot",
@@ -1179,22 +1161,6 @@
       "original": {
         "owner": "elixir-editors",
         "repo": "vim-elixir",
-        "type": "github"
-      }
-    },
-    "vim-haskell-module-name": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1352282085,
-        "narHash": "sha256-pjjoPkP2UX/qjUUAbs2KMngot19AyGa0yn2k4A3vdGo=",
-        "owner": "UnkindPartition",
-        "repo": "vim-hs-module-name",
-        "rev": "7fd95540e668a6d95accd5d0b89fa3148aafcd14",
-        "type": "github"
-      },
-      "original": {
-        "owner": "UnkindPartition",
-        "repo": "vim-hs-module-name",
         "type": "github"
       }
     },

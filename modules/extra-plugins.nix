@@ -19,6 +19,7 @@ in
       vim-highlightedyank
       vim-elixir
       earthly-vim
+      nvim-colorizer-lua
       pkgs.vimPlugins.presenting-vim
     ];
 
