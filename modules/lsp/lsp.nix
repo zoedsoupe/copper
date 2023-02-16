@@ -25,6 +25,7 @@ in
     sql = mkEnableOption "SQL Language LSP";
     ts = mkEnableOption "TS language LSP";
     elixir = mkEnableOption "Elixir language LSP";
+    clojure = mkEnableOption "Clojure language LSP";
 
     rust = {
       enable = mkEnableOption "Rust LSP";
@@ -48,7 +49,8 @@ in
       (withPlugins (config.vim.autocomplete.enable && (config.vim.autocomplete.type == "nvim-cmp")) [ cmp-nvim-lsp ]) ++
       (withPlugins cfg.sql [ sqls-nvim ]) ++
       (withPlugins cfg.folds [ promise-async nvim-ufo ]) ++
-      (withPlugins cfg.rust.enable [ rust-tools ]);
+      (withPlugins cfg.rust.enable [ rust-tools ]) ++
+      (withPlugins cfg.clojure [ conjure vim-sexp vim-sexp-mappings ]);
 
     vim.configRC = ''
       ${writeIf cfg.rust.enable ''
@@ -345,6 +347,17 @@ in
             attach_keymaps(client, bufnr)
           end,
           cmd = {"${pkgs.elixir_ls}/bin/elixir-ls"}
+        }
+        ''}
+
+        ${writeIf cfg.clojure ''
+        -- Clojure config
+        lspconfig.clojure_lsp.setup {
+          capabilities = capabilities;
+          on_attach = function(client, bufnr)
+            attach_keymaps(client, bufnr)
+          end,
+          cmd = {"${pkgs.clojure-lsp}/bin/clojure-lsp"}
         }
         ''}
 
