@@ -16,7 +16,6 @@ in
     vim.startPlugins = with neovimPlugins; [
       nvim-treesitter
       nvim-ts-rainbow
-      nvim-treesitter-rescript
       nvim-ts-autotag
       nvim-treesitter-context
     ];

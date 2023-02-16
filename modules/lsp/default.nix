@@ -1,11 +1,12 @@
-{ pkgs, config, lib, ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
     ./lsp.nix
-    ./lsp-saga.nix
+    ./lspsaga.nix
     ./nvim-code-action-menu.nix
     ./trouble.nix
-    ./nvim-dap.nix
+    ./lsp-signature.nix
+    ./lightbulb.nix
   ];
 }

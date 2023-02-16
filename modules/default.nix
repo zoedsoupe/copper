@@ -1,18 +1,27 @@
-{ ... }:
+{ config, lib, pkgs, ... }:
 
 {
   imports = [
-    ./theme.nix
-    ./core.nix
+    ./autopairs
     ./basic.nix
-    ./galaxyline.nix
-    ./git.nix
-    ./treesitter.nix
-    ./telescope.nix
-    ./vim-polyglot.nix
-    ./editor.nix
+    ./comments
+    ./completion
+    ./core.nix
     ./extra-plugins.nix
+    ./filetree
+    ./git
+    ./keys
     ./lsp
-    ./bufferline-nvim.nix
+    ./neoclip
+    ./neovim
+    ./snippets
+    ./statusline
+    ./surround
+    ./tabline
+    ./telescope
+    ./theme
+    ./treesitter.nix
+    ./vim-polyglot.nix
+    ./visuals
   ];
-}
+} 

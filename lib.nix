@@ -4,6 +4,10 @@ let
   inherit (pkgs.lib) evalModules;
 in
 {
+  withPlugins = cond: plugins: if cond then plugins else [ ];
+  writeIf = cond: msg: if cond then msg else "";
+  withAttrSet = cond: attrSet: if cond then attrSet else { };
+  mkVimBool = val: if val then 1 else 0;
 
   mkNeovim = { config }:
     let

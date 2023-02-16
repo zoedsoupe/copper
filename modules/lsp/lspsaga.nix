@@ -1,16 +1,13 @@
 { pkgs, config, lib, ... }:
 
-let
-  inherit (lib) mkEnableOption mkIf;
+with lib;
+with builtins;
 
+let
   cfg = config.vim.lsp;
 in
 {
-  options.vim.lsp = {
-    lspsaga = {
-      enable = mkEnableOption "LSP Saga";
-    };
-  };
+  options.vim.lsp.lspsaga.enable = mkEnableOption "LSP Saga";
 
   config = mkIf (cfg.enable && cfg.lspsaga.enable) {
     vim.startPlugins = with pkgs.neovimPlugins; [ lspsaga ];
@@ -26,16 +23,19 @@ in
         "<silent><C-f>" = "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>";
         "<silent><C-b>" = "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>";
         "<silent><leader>lr" = "<cmd>lua require'lspsaga.rename'.rename()<CR>";
-        "<silent><leader>lx" = "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>";
+        "<silent><leader>ld" = "<cmd>lua require'lspsaga.provider'.preview_definition()<CR>";
         "<silent><leader>ll" = "<cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>";
         "<silent><leader>lc" = "<cmd>lua require'lspsaga.diagnostic'.show_cursor_diagnostics()<CR>";
-      }
-      // (
-        if (!cfg.nvimCodeActionMenu.enable)
-        then {
+        "<silent><leader>lp" = "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_prev()<CR>";
+        "<silent><leader>ln" = "<cmd>lua require'lspsaga.diagnostic'.lsp_jump_diagnostic_next()<CR>";
+      } // (
+        withAttrSet (!cfg.nvimCodeActionMenu.enable) {
           "<silent><leader>ca" = "<cmd>lua require('lspsaga.codeaction').code_action()<CR>";
         }
-        else { }
+      ) // (
+        withAttrSet (!cfg.lspSignature.enable) {
+          "<silent><leader>ls" = "<cmd>lua require('lspsaga.signaturehelp').signature_help()<CR>";
+        }
       );
 
     vim.luaConfigRC = ''

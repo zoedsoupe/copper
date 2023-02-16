@@ -1,17 +1,14 @@
-{ pkgs
-, config
-, lib
-, ...
-}:
+{ pkgs, config, lib, ... }:
+
+with lib;
+with builtins;
 
 let
-  inherit (lib) mkEnableOption mkIf;
-
   cfg = config.vim.tabline.nvimBufferline;
 in
 {
   options.vim.tabline.nvimBufferline = {
-    enable = mkEnableOption "nvim-bufferline-lua";
+    enable = mkEnableOption "bufferline.nvim";
   };
 
   config = mkIf cfg.enable (
@@ -27,30 +24,40 @@ in
     in
     {
       vim.startPlugins = with pkgs.neovimPlugins; [
-        bufferline-nvim
+        (assert config.vim.visuals.nvimWebDevicons.enable; nvim-bufferline)
         bufdelete-nvim
       ];
 
       vim.nnoremap = {
         "<silent><leader>bn" = ":BufferLineCycleNext<CR>";
         "<silent><leader>bp" = ":BufferLineCyclePrev<CR>";
+        "<silent><leader>bc" = ":BufferLinePick<CR>";
+        "<silent><leader>bse" = ":BufferLineSortByExtension<CR>";
+        "<silent><leader>bsd" = ":BufferLineSortByDirectory<CR>";
+        "<silent><leader>bsi" = ":lua require'bufferline'.sort_buffers_by(function (buf_a, buf_b) return buf_a.id < buf_b.id end)<CR>";
+        "<silent><leader>bmn" = ":BufferLineMoveNext<CR>";
+        "<silent><leader>bmp" = ":BufferLineMovePrev<CR>";
+        "<silent><leader>b1" = "<Cmd>BufferLineGoToBuffer 1<CR>";
+        "<silent><leader>b2" = "<Cmd>BufferLineGoToBuffer 2<CR>";
+        "<silent><leader>b3" = "<Cmd>BufferLineGoToBuffer 3<CR>";
+        "<silent><leader>b4" = "<Cmd>BufferLineGoToBuffer 4<CR>";
+        "<silent><leader>b5" = "<Cmd>BufferLineGoToBuffer 5<CR>";
+        "<silent><leader>b6" = "<Cmd>BufferLineGoToBuffer 6<CR>";
+        "<silent><leader>b7" = "<Cmd>BufferLineGoToBuffer 7<CR>";
+        "<silent><leader>b8" = "<Cmd>BufferLineGoToBuffer 8<CR>";
+        "<silent><leader>b9" = "<Cmd>BufferLineGoToBuffer 9<CR>";
       };
 
       vim.luaConfigRC = ''
-        require("which-key").register({
-          b = {
-            name = "Buffers",
-            n = { "Next" },
-            p = { "Previous" }
-          }
-        }, { prefix = "<leader>" })
-
         require("bufferline").setup{
            options = {
               numbers = "both",
               close_command = ${mouse.close},
               right_mouse_command = ${mouse.right},
-              indicator_icon = '▎',
+              indicator = {
+                icon = '▎',
+                style = 'icon'
+              },
               buffer_close_icon = '',
               modified_icon = '●',
               close_icon = '',
