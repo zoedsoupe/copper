@@ -17,7 +17,6 @@ in
       neoscroll
       # bullets-vim
       vim-highlightedyank
-      vim-haskell-module-name
       vim-elixir
       earthly-vim
       pkgs.vimPlugins.presenting-vim

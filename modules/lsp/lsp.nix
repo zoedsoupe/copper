@@ -22,7 +22,6 @@ in
     };
 
     elm = mkEnableOption "Elm LSP";
-    haskell = mkEnableOption "Haskell LSP (hls)";
     sql = mkEnableOption "SQL Language LSP";
     ts = mkEnableOption "TS language LSP";
     elixir = mkEnableOption "Elixir language LSP";
@@ -333,16 +332,6 @@ in
             };
             cmd = { "${pkgs.elmPackages.elm-language-server}/bin/elm-language-server" };
             root_dir = lspconfig.util.root_pattern("elm.json");
-          }
-        ''}
-
-        ${writeIf cfg.haskell ''
-          -- Haskell config
-          lspconfig.hls.setup {
-            capabilities = capabilities;
-            on_attach = default_on_attach;
-            cmd = { "${pkgs.haskell-language-server}/bin/haskell-language-server-wrapper", "--lsp" };
-            root_dir = lspconfig.util.root_pattern("hie.yaml", "stack.yaml", ".cabal", "cabal.project", "package.yaml");
           }
         ''}
 
