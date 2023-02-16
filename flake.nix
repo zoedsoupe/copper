@@ -171,11 +171,6 @@
       flake = false;
     };
 
-    vim-haskell-module-name = {
-      url = github:UnkindPartition/vim-hs-module-name;
-      flake = false;
-    };
-
     vim-polyglot = {
       url = github:sheerun/vim-polyglot;
       flake = false;
@@ -462,7 +457,6 @@
               rust.enable = true;
               ts = true;
               elm = false;
-              haskell = true;
               elixir = true;
             };
           };
