@@ -52,7 +52,7 @@ in
     };
 
     background = mkOption {
-      default = "";
+      default = "light";
       description = "Sets background color";
       type = str;
     };
@@ -196,6 +196,8 @@ in
         "<c-j>" = "<esc>:m .+1<cr>==";
         "<c-k>" = "<esc>:m .-2<cr>==";
       };
+
+      vim.luaConfigRC = ''local wk = require("which-key")'';
 
       vim.configRC = ''
         "Settings that are set for everything
