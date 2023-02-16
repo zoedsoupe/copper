@@ -197,6 +197,8 @@ in
         "<c-k>" = "<esc>:m .-2<cr>==";
       };
 
+      vim.startPlugins = [ pkgs.neovimPlugins.plenary-nvim ];
+
       vim.luaConfigRC = ''local wk = require("which-key")'';
 
       vim.configRC = ''

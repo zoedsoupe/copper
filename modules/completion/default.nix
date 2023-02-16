@@ -151,7 +151,6 @@ in
           },
           sources = {
             ${writeIf config.vim.lsp.enable "{ name = 'nvim_lsp' },"}
-            ${writeIf config.vim.lsp.rust.enable "{ name = 'crates' },"}
             { name = 'vsnip' },
             { name = 'treesitter' },
             { name = 'path' },
@@ -205,7 +204,6 @@ in
                 buffer = "[Buffer]",
                 nvim_lsp = "[LSP]",
                 vsnip = "[VSnip]",
-                crates = "[Crates]",
                 path = "[Path]",
               })[entry.source.name]
               return vim_item

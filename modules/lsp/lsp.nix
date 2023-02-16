@@ -48,7 +48,7 @@ in
       (withPlugins (config.vim.autocomplete.enable && (config.vim.autocomplete.type == "nvim-cmp")) [ cmp-nvim-lsp ]) ++
       (withPlugins cfg.sql [ sqls-nvim ]) ++
       (withPlugins cfg.folds [ promise-async nvim-ufo ]) ++
-      (withPlugins cfg.rust.enable [ crates-nvim rust-tools ]);
+      (withPlugins cfg.rust.enable [ rust-tools ]);
 
     vim.configRC = ''
       ${writeIf cfg.rust.enable ''
@@ -265,12 +265,6 @@ in
             }
           }
 
-          require('crates').setup {
-            null_ls = {
-              enabled = true,
-              name = "crates.nvim",
-            }
-          }
           require('rust-tools').setup(rustopts)
         ''}
 

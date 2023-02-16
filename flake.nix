@@ -345,12 +345,6 @@
       url = github:folke/which-key.nvim;
       flake = false;
     };
-
-    # Rust crates
-    crates-nvim = {
-      url = github:Saecki/crates.nvim;
-      flake = false;
-    };
   };
 
   outputs = { self, nixpkgs, flake-utils, ... }@inputs:
