@@ -399,7 +399,7 @@
             };
             statusline.lualine = {
               enable = true;
-              theme = "rose-pine";
+              theme = "catppuccin";
             };
             theme = {
               enable = true;

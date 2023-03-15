@@ -21,7 +21,7 @@ in
     };
 
     treeWidth = mkOption {
-      default = 25;
+      default = 30;
       description = "Width of the tree in charecters";
       type = types.int;
     };
@@ -33,7 +33,7 @@ in
     };
 
     hideIgnoredGitFiles = mkOption {
-      default = false;
+      default = true;
       description = "Hide files ignored by git";
       type = types.bool;
     };
@@ -63,7 +63,7 @@ in
     };
 
     resizeOnFileOpen = mkOption {
-      default = false;
+      default = true;
       description = "Resize the tree window when a file is opened";
       type = types.bool;
     };
@@ -93,7 +93,7 @@ in
     };
 
     disableNetRW = mkOption {
-      default = false;
+      default = true;
       description = "Disables netrw and replaces it with tree";
       type = types.bool;
     };
@@ -152,6 +152,38 @@ in
           group_empty = ${boolToString cfg.groupEmptyFolders},
           indent_markers = {
             enable = ${boolToString cfg.indentMarkers},
+          },
+          icons = {
+            show = {
+              file = true,
+              folder = true,
+              folder_arrow = true,
+              git = false,
+            },
+
+            glyphs = {
+              default = "",
+              symlink = "",
+              folder = {
+                default = "",
+                empty = "",
+                empty_open = "",
+                open = "",
+                symlink = "",
+                symlink_open = "",
+                arrow_open = "",
+                arrow_closed = "",
+              },
+              git = {
+                unstaged = "✗",
+                staged = "✓",
+                unmerged = "",
+                renamed = "➜",
+                untracked = "★",
+                deleted = "",
+                ignored = "◌",
+              },
+            },
           },
         },
         actions = {
