@@ -274,26 +274,6 @@
     };
 
     # Themes
-    material-nvim = {
-      url = github:marko-cerovac/material.nvim;
-      flake = false;
-    };
-
-    omni = {
-      url = github:getomni/neovim;
-      flake = false;
-    };
-
-    melange = {
-      url = github:savq/melange;
-      flake = false;
-    };
-
-    boo = {
-      url = github:rockerBOO/boo-colorscheme-nvim;
-      flake = false;
-    };
-
     doom-one = {
       url = github:NTBBloodbath/doom-one.nvim;
       flake = false;
@@ -301,6 +281,11 @@
 
     rosepine = {
       url = github:rose-pine/neovim;
+      flake = false;
+    };
+
+    catppuccin = {
+      url = github:catppuccin/nvim;
       flake = false;
     };
 
@@ -337,6 +322,11 @@
 
     nvim-tree-lua = {
       url = github:kyazdani42/nvim-tree.lua;
+      flake = false;
+    };
+
+    headlines-nvim = {
+      url = github:lukas-reineke/headlines.nvim;
       flake = false;
     };
 
@@ -413,8 +403,8 @@
             };
             theme = {
               enable = true;
-              name = "rose-pine";
-              style = "moon";
+              name = "catppuccin";
+              style = "frappe";
               transparency = false;
             };
             autopairs.enable = true;

@@ -21,6 +21,7 @@ in
       earthly-vim
       nvim-colorizer-lua
       pkgs.vimPlugins.presenting-vim
+      headlines-nvim
     ];
 
     vim.luaConfigRC = ''
@@ -29,6 +30,7 @@ in
       require('true-zen').setup()
       require('nvim-web-devicons').setup({ default = true })
       require('neoscroll').setup({ hide_cursor = false })
+      require('headlines').setup()
     '';
   };
 }
