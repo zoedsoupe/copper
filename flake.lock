@@ -994,6 +994,7 @@
         "todo-comments": "todo-comments",
         "trouble": "trouble",
         "true-zen": "true-zen",
+        "typescript-nvim": "typescript-nvim",
         "vim-elixir": "vim-elixir",
         "vim-highlightedyank": "vim-highlightedyank",
         "vim-matchup": "vim-matchup",
@@ -1115,6 +1116,22 @@
       "original": {
         "owner": "Pocco81",
         "repo": "TrueZen.nvim",
+        "type": "github"
+      }
+    },
+    "typescript-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1672710615,
+        "narHash": "sha256-PHVY5NJbOGvY9p0F0QNSfMKmAWdqjw1RB0Vspq88qMI=",
+        "owner": "jose-elias-alvarez",
+        "repo": "typescript.nvim",
+        "rev": "f66d4472606cb24615dfb7dbc6557e779d177624",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jose-elias-alvarez",
+        "repo": "typescript.nvim",
         "type": "github"
       }
     },
