@@ -26,6 +26,7 @@ in
     ts = mkEnableOption "TS language LSP";
     elixir = mkEnableOption "Elixir language LSP";
     clojure = mkEnableOption "Clojure language LSP";
+    vue = mkEnableOption "Vue language LSP";
 
     rust = {
       enable = mkEnableOption "Rust LSP";
@@ -47,9 +48,9 @@ in
     vim.startPlugins = with pkgs.neovimPlugins;
       [ nvim-lspconfig null-ls ] ++
       (withPlugins (config.vim.autocomplete.enable && (config.vim.autocomplete.type == "nvim-cmp")) [ cmp-nvim-lsp ]) ++
-      (withPlugins cfg.sql [ sqls-nvim ]) ++
       (withPlugins cfg.folds [ promise-async nvim-ufo ]) ++
       (withPlugins cfg.rust.enable [ rust-tools ]) ++
+      (withPlugins cfg.ts [ typescript-nvim ]) ++
       (withPlugins cfg.clojure [ conjure vim-sexp vim-sexp-mappings ]);
 
     vim.configRC = ''
@@ -104,30 +105,6 @@ in
         local null_methods = require("null-ls.methods")
 
         local ls_sources = {
-          ${writeIf cfg.sql
-        ''
-            null_helpers.make_builtin({
-              method = null_methods.internal.FORMATTING,
-              filetypes = { "sql" },
-              generator_opts = {
-                to_stdin = true,
-                ignore_stderr = true,
-                suppress_errors = true,
-                command = "${pkgs.sqlfluff}/bin/sqlfluff",
-                args = {
-                  "fix",
-                  "-",
-                },
-              },
-              factory = null_helpers.formatter_factory,
-            }),
-
-            null_ls.builtins.diagnostics.sqlfluff.with({
-              command = "${pkgs.sqlfluff}/bin/sqlfluff",
-              extra_args = {"--dialect", "postgres"}
-            }),
-          ''}
-
           ${writeIf cfg.ts
         ''
             null_ls.builtins.diagnostics.eslint,
@@ -303,18 +280,6 @@ in
           }
         ''}
 
-        ${writeIf cfg.sql ''
-          -- SQLS config
-          lspconfig.sqls.setup {
-            on_attach = function(client)
-              client.server_capabilities.execute_command = true
-              on_attach_keymaps(client, bufnr)
-              require'sqls'.setup{}
-            end,
-            cmd = {"${pkgs.sqls}/bin/sqls", "-config", string.format("%s/config.yml", vim.fn.getcwd()) }
-          }
-        ''}
-
         ${writeIf cfg.elm ''
           -- Elm config
           lspconfig.elmls.setup {
@@ -363,13 +328,26 @@ in
 
         ${writeIf cfg.ts ''
           -- TS config
-          lspconfig.tsserver.setup {
-            capabilities = capabilities;
-            on_attach = function(client, bufnr)
-              attach_keymaps(client, bufnr)
-            end,
-            cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" }
-          }
+          require("typescript").setup({
+            server = {
+              capabilities = capabilities;
+              on_attach = function(client, bufnr)
+                attach_keymaps(client, bufnr)
+              end,
+              cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" }
+            }
+          })
+        ''}
+
+        ${writeIf cfg.vue ''
+        -- Vue config
+        lspconfig.vuels.setup {
+          capabilities = capabilities,
+          on_attach = function(client, bufnr)
+            attach_keymaps(client, bufnr)
+          end,
+          cmd = {"${pkgs.nodePackages.vls}/bin/vls"}
+        }
         ''}
     '';
   };

@@ -166,6 +166,11 @@
       flake = false;
     };
 
+    typescript-nvim = {
+      url = github:/jose-elias-alvarez/typescript.nvim;
+      flake = false;
+    };
+
     editorconfig-vim = {
       url = github:editorconfig/editorconfig-vim;
       flake = false;
@@ -455,6 +460,7 @@
               };
               rust.enable = true;
               ts = true;
+              vue = true;
               elm = false;
               elixir = true;
               clojure = true;
