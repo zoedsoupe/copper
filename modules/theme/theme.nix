@@ -17,7 +17,7 @@ in
     };
 
     name = mkOption {
-      type = types.enum [ "doom-one" "rose-pine" "catppuccin" ];
+      type = types.enum [ "doom-one" "rose-pine" "catppuccin" "poimandres" ];
       default = "rose-pine";
       description = "Name of theme to use";
     };
@@ -47,40 +47,46 @@ in
       vim.startPlugins = with pkgs.neovimPlugins; (
         (withPlugins (cfg.name == "doom-one") [ nightfox ]) ++
         (withPlugins (cfg.name == "rose-pine") [ rosepine ]) ++
+        (withPlugins (cfg.name == "poimandres") [ poimandres ]) ++
         (withPlugins (cfg.name == "catppuccin") [ catppuccin ])
       );
 
       vim.luaConfigRC = ''
-                ${writeIf (cfg.name == "catppuccin") ''
-                  vim.g.catppuccin_flavour = "${cfg.style}"
-                  require("catppuccin").setup({
-                    transparent_background = ${if cfg.transparency then "true" else "false"},
-                  })
-                  vim.cmd [[colorscheme catppuccin]]
-                ''
-                }
+              ${writeIf (cfg.name == "catppuccin") ''
+              vim.g.catppuccin_flavour = "${cfg.style}"
+              require("catppuccin").setup({
+                transparent_background = ${if cfg.transparency then "true" else "false"},
+              })
+              vim.cmd [[colorscheme catppuccin]]
+              ''
+            }
 
-                ${writeIf (cfg.name == "doom-one") ''
-                  vim.g.doom_one_terminal_colors = true
-                  vim.g.doom_one_plugin_whichkey = true
-        		      vim.g.doom_one_plugin_indent_blankline = true
-                  vim.g.doom_one_plugin_nvim_tree = true
-        		      vim.g.doom_one_plugin_dashboard = true
-                  vim.g.doom_one_plugin_telescope = true
-          
-                  vim.cmd("colorscheme doom-one")
-                ''
-                }
+            ${writeIf (cfg.name == "doom-one") ''
+            vim.g.doom_one_terminal_colors = true
+            vim.g.doom_one_plugin_whichkey = true
+            vim.g.doom_one_plugin_indent_blankline = true
+            vim.g.doom_one_plugin_nvim_tree = true
+            vim.g.doom_one_plugin_dashboard = true
+            vim.g.doom_one_plugin_telescope = true
 
-                ${writeIf (cfg.name == "rose-pine") ''
-                  -- Rose Pine theme
-                  require('rose-pine').setup {
-                    darkvariant = "${cfg.style}",
-                    dim_nc_background = "${transparency}",
-                  }
-                  vim.cmd [[colorscheme rose-pine]]
-                ''
-                }
+            vim.cmd("colorscheme doom-one")
+            ''
+          }
+
+          ${writeIf (cfg.name == "rose-pine") ''
+          -- Rose Pine theme
+          require('rose-pine').setup {
+            darkvariant = "${cfg.style}",
+            dim_nc_background = "${transparency}",
+          }
+          vim.cmd [[colorscheme rose-pine]]
+          ''
+
+        }
+
+          ${writeIf (cfg.name == "poimandres") ''
+          vim.cmd("colorscheme poimandres")
+          ''}
       '';
     }
   );
