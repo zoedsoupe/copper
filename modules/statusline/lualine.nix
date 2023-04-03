@@ -24,6 +24,7 @@ in
           "catppuccin"
           "rose-pine"
           "rose-pine-alt"
+          "poimandres"
         ];
       description = "Theme for lualine";
     };

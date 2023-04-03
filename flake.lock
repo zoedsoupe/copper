@@ -881,6 +881,22 @@
         "type": "github"
       }
     },
+    "poimandres": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1676673781,
+        "narHash": "sha256-QWBTcP1P6yPdeGjMQ1ghU3oT41MCD9iSRQB8yufXfeA=",
+        "owner": "olivercederborg",
+        "repo": "poimandres.nvim",
+        "rev": "43ea31d1e19f7603697bb3272b233930d0292383",
+        "type": "github"
+      },
+      "original": {
+        "owner": "olivercederborg",
+        "repo": "poimandres.nvim",
+        "type": "github"
+      }
+    },
     "popup-nvim": {
       "flake": false,
       "locked": {
@@ -984,6 +1000,7 @@
         "nvim-ufo": "nvim-ufo",
         "nvim-web-devicons": "nvim-web-devicons",
         "plenary-nvim": "plenary-nvim",
+        "poimandres": "poimandres",
         "popup-nvim": "popup-nvim",
         "promise-async": "promise-async",
         "rnix-lsp": "rnix-lsp",

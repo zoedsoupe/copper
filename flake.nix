@@ -279,6 +279,11 @@
     };
 
     # Themes
+    poimandres = {
+      url = github:olivercederborg/poimandres.nvim;
+      flake = false;
+    };
+
     doom-one = {
       url = github:NTBBloodbath/doom-one.nvim;
       flake = false;
@@ -404,12 +409,12 @@
             };
             statusline.lualine = {
               enable = true;
-              theme = "catppuccin";
+              theme = "poimandres";
             };
             theme = {
               enable = true;
               name = "catppuccin";
-              style = "frappe";
+              style = "macchiato";
               transparency = false;
             };
             autopairs.enable = true;
