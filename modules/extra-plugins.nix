@@ -22,6 +22,7 @@ in
       nvim-colorizer-lua
       pkgs.vimPlugins.presenting-vim
       headlines-nvim
+      codi
     ];
 
     vim.luaConfigRC = ''

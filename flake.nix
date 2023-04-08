@@ -360,6 +360,11 @@
       url = github:folke/which-key.nvim;
       flake = false;
     };
+
+    codi = {
+      url = github:metakirby5/codi.vim;
+      flake = false;
+    };
   };
 
   outputs = { self, nixpkgs, flake-utils, ... }@inputs:
@@ -409,7 +414,7 @@
             };
             statusline.lualine = {
               enable = true;
-              theme = "poimandres";
+              theme = "catppuccin";
             };
             theme = {
               enable = true;

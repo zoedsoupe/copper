@@ -128,6 +128,22 @@
         "type": "github"
       }
     },
+    "codi": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1677599193,
+        "narHash": "sha256-vN0ZrvnF4EpFHhAK1QFyORL2KyFSzngQRDgpu5dYyoY=",
+        "owner": "metakirby5",
+        "repo": "codi.vim",
+        "rev": "83b9859aaf8066d95892e01eb9c01571a4b325dd",
+        "type": "github"
+      },
+      "original": {
+        "owner": "metakirby5",
+        "repo": "codi.vim",
+        "type": "github"
+      }
+    },
     "codi-vim": {
       "flake": false,
       "locked": {
@@ -959,6 +975,7 @@
         "cmp-path": "cmp-path",
         "cmp-treesitter": "cmp-treesitter",
         "cmp-vsnip": "cmp-vsnip",
+        "codi": "codi",
         "codi-vim": "codi-vim",
         "conjure": "conjure",
         "dashboard-nvim": "dashboard-nvim",
