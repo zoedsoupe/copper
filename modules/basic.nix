@@ -284,7 +284,6 @@ in
 
         filetype plugin on
         filetype plugin indent on
-        highlight NvimTreeFolderIcon guibg=blue
 
         au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal
       '';

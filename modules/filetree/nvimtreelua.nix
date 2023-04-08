@@ -134,6 +134,11 @@ in
       "<leader>tr" = ":NvimTreeRefresh<CR>";
     };
 
+    vim.configRC = ''
+      highlight! NvimTreeBg guibg=None cterm=None
+      highlight! NvimTreeFolderIcon guibg=None ctermbg=None
+    '';
+
     vim.luaConfigRC = ''
       require'nvim-tree'.setup({
         disable_netrw = ${boolToString cfg.disableNetRW},
