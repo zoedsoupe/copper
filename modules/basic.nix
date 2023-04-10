@@ -285,6 +285,9 @@ in
         filetype plugin on
         filetype plugin indent on
 
+        " yep, I'm going insane
+        set clipboard+=unnamedplus
+
         au TermOpen term://* setlocal nonumber norelativenumber | setfiletype terminal
       '';
     }
