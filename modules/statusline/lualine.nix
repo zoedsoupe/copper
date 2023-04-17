@@ -21,10 +21,10 @@ in
     theme = mkOption {
       type = types.enum
         [
+          "auto"
           "catppuccin"
           "rose-pine"
           "rose-pine-alt"
-          "poimandres"
         ];
       description = "Theme for lualine";
     };

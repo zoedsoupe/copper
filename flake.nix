@@ -279,11 +279,6 @@
     };
 
     # Themes
-    poimandres = {
-      url = github:olivercederborg/poimandres.nvim;
-      flake = false;
-    };
-
     doom-one = {
       url = github:NTBBloodbath/doom-one.nvim;
       flake = false;
@@ -391,8 +386,8 @@
 
         config = {
           vim = {
-            viAlias = true;
-            vimAlias = true;
+            viAlias = false;
+            vimAlias = false;
             disableArrows = true;
             preventJunkFiles = true;
             cmdHeight = 2;
