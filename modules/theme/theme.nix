@@ -49,6 +49,14 @@ in
         (withPlugins (cfg.name == "catppuccin") [ catppuccin ])
       );
 
+      vim.configRC = ''
+      if $TERMCS ==# "light"
+        set background=light
+      else
+        set background=dark
+      endif
+      '';
+
       # for catppuccin I'm trying to automate
       # the change of colorscheme
       # based on system theme or system time
