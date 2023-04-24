@@ -2,13 +2,8 @@
   description = "Zoey's neovim config";
 
   inputs = {
-    nixpkgs.url = github:nixos/nixpkgs/nixpkgs-unstable;
+    nixpkgs.url = github:nixos/nixpkgs/nixos-22.11;
     flake-utils.url = github:numtide/flake-utils;
-
-    neovim = {
-      url = github:nix-community/neovim-nightly-overlay;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # Autocompletes
     nvim-compe = {
@@ -465,7 +460,7 @@
               };
               rust.enable = true;
               ts = true;
-              vue = true;
+              vue = false;
               elm = false;
               elixir = true;
               clojure = true;

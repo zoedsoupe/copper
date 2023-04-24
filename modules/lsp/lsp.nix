@@ -27,6 +27,7 @@ in
     elixir = mkEnableOption "Elixir language LSP";
     clojure = mkEnableOption "Clojure language LSP";
     vue = mkEnableOption "Vue language LSP";
+    lua = mkEnableOption "Lua language LSP";
 
     rust = {
       enable = mkEnableOption "Rust LSP";
