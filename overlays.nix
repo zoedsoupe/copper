@@ -11,6 +11,5 @@ in
   overlays = [
     lib.buildPluginOverlay
     rnix-lsp.overlay
-    inputs.neovim.overlay
   ];
 }
