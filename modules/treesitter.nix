@@ -2,14 +2,11 @@
 
 let
   inherit (pkgs) neovimPlugins;
-  inherit (lib) mkEnableOption mkIf mkOption types;
+  inherit (lib) mkEnableOption mkIf;
 in
 {
   options.vim.treesitter = {
-    enable = mkOption {
-      type = types.bool;
-      description = "enable tree-sitter [nvim-treesitter]";
-    };
+    enable = mkEnableOption "enable tree-sitter [nvim-treesitter]";
   };
 
   config = {

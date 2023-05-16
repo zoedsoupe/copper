@@ -1,7 +1,8 @@
-{ config, lib, pkgs, ... }:
+{ lib, pkgs, ... }:
 
-with lib;
-
+let
+  inherit (lib) mkOption types;
+in
 {
   options.vim.neovim.package = mkOption {
     type = types.package;

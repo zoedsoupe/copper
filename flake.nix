@@ -6,11 +6,6 @@
     flake-utils.url = github:numtide/flake-utils;
 
     # Autocompletes
-    nvim-compe = {
-      url = github:hrsh7th/nvim-compe;
-      flake = false;
-    };
-
     nvim-cmp = {
       url = github:hrsh7th/nvim-cmp;
       flake = false;
@@ -156,11 +151,6 @@
     };
 
     # Language specific
-    earthly-vim = {
-      url = github:earthly/earthly.vim;
-      flake = false;
-    };
-
     typescript-nvim = {
       url = github:/jose-elias-alvarez/typescript.nvim;
       flake = false;
@@ -178,11 +168,6 @@
 
     emmet-vim = {
       url = github:mattn/emmet-vim;
-      flake = false;
-    };
-
-    vimtex = {
-      url = github:lervag/vimtex;
       flake = false;
     };
 
@@ -310,16 +295,6 @@
       flake = false;
     };
 
-    nvim-comment = {
-      url = github:terrortylor/nvim-comment;
-      flake = false;
-    };
-
-    bullets-vim = {
-      url = github:dkarter/bullets.vim;
-      flake = false;
-    };
-
     nvim-tree-lua = {
       url = github:kyazdani42/nvim-tree.lua;
       flake = false;
@@ -333,16 +308,6 @@
     # Statuslines
     lualine = {
       url = github:hoob3rt/lualine.nvim;
-      flake = false;
-    };
-
-    popup-nvim = {
-      url = github:nvim-lua/popup.nvim;
-      flake = false;
-    };
-
-    vimagit = {
-      url = github:jreybert/vimagit;
       flake = false;
     };
 
@@ -392,7 +357,7 @@
               nvimWebDevicons.enable = true;
               lspkind.enable = true;
               indentBlankline = {
-                enable = true;
+                enable = false;
                 fillChar = "";
                 eolChar = "";
                 showCurrContext = true;
@@ -404,20 +369,17 @@
             };
             statusline.lualine = {
               enable = true;
+              icons = true;
               theme = "catppuccin";
             };
             theme = {
               enable = true;
               name = "catppuccin";
-              style = "macchiato";
               transparency = false;
             };
             autopairs.enable = true;
             neoclip.enable = true;
-            autocomplete = {
-              enable = true;
-              type = "nvim-cmp";
-            };
+            autocomplete.enable = true;
             filetree.nvimTreeLua = {
               enable = true;
               hideDotFiles = false;
@@ -428,19 +390,10 @@
               enable = true;
               whichKey.enable = true;
             };
-            comments = {
-              enable = true;
-              type = "kommentary";
-            };
-            shortcuts = {
-              enable = true;
-            };
-            surround = {
-              enable = true;
-            };
-            telescope = {
-              enable = true;
-            };
+            comments.enable = true;
+            shortcuts.enable = true;
+            surround.enable = true;
+            telescope.enable = true;
             git = {
               enable = true;
               gitsigns.enable = true;
@@ -460,8 +413,6 @@
               };
               rust.enable = true;
               ts = true;
-              vue = false;
-              elm = false;
               elixir = true;
               clojure = true;
             };

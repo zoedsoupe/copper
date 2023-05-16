@@ -1,9 +1,7 @@
 { pkgs, config, lib, ... }:
 
-with lib;
-with builtins;
-
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.vim.tabline.nvimBufferline;
 in
 {

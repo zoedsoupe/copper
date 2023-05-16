@@ -1,9 +1,7 @@
 { pkgs, config, lib, ... }:
 
-with lib;
-with builtins;
-
 let
+  inherit (lib) mkEnableOption mkOption mkIf types writeIf withPlugins;
   cfg = config.vim.lsp;
 in
 {
@@ -11,7 +9,6 @@ in
     enable = mkEnableOption "neovim lsp support";
     folds = mkEnableOption "Folds via nvim-ufo";
     formatOnSave = mkEnableOption "Format on save";
-
     nix = {
       enable = mkEnableOption "Nix LSP";
       type = mkOption {
@@ -20,15 +17,10 @@ in
         description = "Whether to use `nil` or `rnix-lsp`";
       };
     };
-
-    elm = mkEnableOption "Elm LSP";
-    sql = mkEnableOption "SQL Language LSP";
     ts = mkEnableOption "TS language LSP";
     elixir = mkEnableOption "Elixir language LSP";
     clojure = mkEnableOption "Clojure language LSP";
-    vue = mkEnableOption "Vue language LSP";
     lua = mkEnableOption "Lua language LSP";
-
     rust = {
       enable = mkEnableOption "Rust LSP";
       rustAnalyzerOpts = mkOption {
@@ -48,7 +40,7 @@ in
   config = mkIf cfg.enable {
     vim.startPlugins = with pkgs.neovimPlugins;
       [ nvim-lspconfig null-ls ] ++
-      (withPlugins (config.vim.autocomplete.enable && (config.vim.autocomplete.type == "nvim-cmp")) [ cmp-nvim-lsp ]) ++
+      (withPlugins (config.vim.autocomplete.enable) [ cmp-nvim-lsp ]) ++
       (withPlugins cfg.folds [ promise-async nvim-ufo ]) ++
       (withPlugins cfg.rust.enable [ rust-tools ]) ++
       (withPlugins cfg.ts [ typescript-nvim ]) ++
@@ -206,23 +198,10 @@ in
         ${let
           cfg = config.vim.autocomplete;
         in
-          writeIf cfg.enable
-          (
-            if cfg.type == "nvim-compe"
-            then ''
-              vim.capabilities.textDocument.completion.completionItem.snippetSupport = true
-              capabilities.textDocument.completion.completionItem.resolveSupport = {
-                properties = {
-                  'documentation',
-                  'detail',
-                  'additionalTextEdits',
-                }
-              }
-            ''
-            else ''
+          writeIf cfg.enable ''
               capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
             ''
-          )}
+          }
 
         ${writeIf cfg.rust.enable ''
           -- Rust config
@@ -281,22 +260,6 @@ in
           }
         ''}
 
-        ${writeIf cfg.elm ''
-          -- Elm config
-          lspconfig.elmls.setup {
-            capabilities = capabilities;
-            on_attach = default_on_attach;
-            init_options = {
-               elmPath = "${pkgs.elmPackages.elm}/bin/elm",
-               elmFormatPath = "${pkgs.elmPackages.elm-format}/bin/elm-format",
-               elmTestPath = "${pkgs.elmPackages.elm-test}/bin/elm-test",
-               elmAnalyseTrigger = "change"
-            };
-            cmd = { "${pkgs.elmPackages.elm-language-server}/bin/elm-language-server" };
-            root_dir = lspconfig.util.root_pattern("elm.json");
-          }
-        ''}
-
         ${writeIf cfg.nix.enable
       ''
           -- Nix formatter
@@ -338,17 +301,6 @@ in
               cmd = { "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server", "--stdio" }
             }
           })
-        ''}
-
-        ${writeIf cfg.vue ''
-        -- Vue config
-        lspconfig.vuels.setup {
-          capabilities = capabilities,
-          on_attach = function(client, bufnr)
-            attach_keymaps(client, bufnr)
-          end,
-          cmd = {"${pkgs.nodePackages.vls}/bin/vls"}
-        }
         ''}
     '';
   };

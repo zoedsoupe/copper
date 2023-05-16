@@ -1,18 +1,12 @@
 { pkgs, config, lib, ... }:
 
-with lib;
-with builtins;
-
 let
+  inherit (lib) mkEnableOption mkOption mkIf types boolToString;
   cfg = config.vim.filetree.nvimTreeLua;
 in
 {
   options.vim.filetree.nvimTreeLua = {
-    enable = mkOption {
-      type = types.bool;
-      default = false;
-      description = "Enable nvim-tree-lua";
-    };
+    enable = mkEnableOption "Enables FileTree";
 
     treeSide = mkOption {
       default = "left";

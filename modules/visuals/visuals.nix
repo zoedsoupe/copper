@@ -1,33 +1,20 @@
 { pkgs, config, lib, ... }:
 
-with lib;
-with builtins;
-
 let
+  inherit (lib) mkEnableOption mkOption mkIf types writeIf withPlugins;
+  inherit (builtins) boolToString;
   cfg = config.vim.visuals;
 in
 {
   options.vim.visuals = {
-    enable = mkOption {
-      type = types.bool;
-      description = "visual enhancements";
-    };
+    enable = mkEnableOption "visual enhancements";
 
-    nvimWebDevicons.enable = mkOption {
-      type = types.bool;
-      description = "enable dev icons. required for certain plugins [nvim-web-devicons]";
-    };
+    nvimWebDevicons.enable = mkEnableOption "enable dev icons. required for certain plugins";
 
-    lspkind.enable = mkOption {
-      type = types.bool;
-      description = "enable vscode-like pictograms for lsp [lspkind]";
-    };
+    lspkind.enable = mkEnableOption "enable vscode-like pictograms for lsp [lspkind]";
 
     cursorWordline = {
-      enable = mkOption {
-        type = types.bool;
-        description = "enable word and delayed line highlight [nvim-cursorline]";
-      };
+      enable = mkEnableOption "enable word and delayed line highlight [nvim-cursorline]";
 
       lineTimeout = mkOption {
         type = types.int;
@@ -36,10 +23,7 @@ in
     };
 
     indentBlankline = {
-      enable = mkOption {
-        type = types.bool;
-        description = "enable indentation guides [indent-blankline]";
-      };
+      enable = mkEnableOption "enable indentation guides [indent-blankline]";
 
       listChar = mkOption {
         type = types.str;

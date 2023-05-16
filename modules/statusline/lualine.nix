@@ -1,21 +1,17 @@
 { pkgs, config, lib, ... }:
 
-with lib;
-with builtins;
-
 let
+  inherit (lib) mkEnableOption mkOption mkIf types;
   cfg = config.vim.statusline.lualine;
 in
 {
   options.vim.statusline.lualine = {
-    enable = mkOption {
-      type = types.bool;
-      description = "Enable lualine";
-    };
+    enable = mkEnableOption "Enable lualine";
 
     icons = mkOption {
       type = types.bool;
       description = "Enable icons for lualine";
+      default = true;
     };
 
     theme = mkOption {
@@ -27,6 +23,7 @@ in
           "rose-pine-alt"
         ];
       description = "Theme for lualine";
+      default = "catppuccin";
     };
 
     sectionSeparator = {
