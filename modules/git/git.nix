@@ -1,17 +1,12 @@
 { pkgs, config, lib, ... }:
 
-with lib;
-with builtins;
-
 let
+  inherit (lib) mkEnableOption mkOption mkIf types withPlugins;
   cfg = config.vim.git;
 in
 {
   options.vim.git = {
-    enable = mkOption {
-      type = types.bool;
-      description = "Enable git plugins";
-    };
+    enable = mkEnableOption "Enable git managent and visuals";
 
     gitsigns.enable = mkOption {
       type = types.bool;

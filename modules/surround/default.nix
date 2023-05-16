@@ -1,17 +1,12 @@
 { config, lib, pkgs, ... }:
 
-with lib;
-
 let
+  inherit (lib) mkEnableOption mkIf;
   cfg = config.vim.surround;
 in
 {
   options.vim.surround = {
-    enable = mkOption {
-      type = types.bool;
-      default = true;
-      description = "Enable nvim-surround plugin";
-    };
+    enable = mkEnableOption "Enable nvim-surround plugin";
   };
 
   config = mkIf cfg.enable

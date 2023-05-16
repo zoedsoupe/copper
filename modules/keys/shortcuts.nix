@@ -1,8 +1,7 @@
-{ pkgs, config, lib, ... }:
-
-with lib;
+{ config, lib, ... }:
 
 let
+  inherit (lib) mkEnableOption mkIf withAttrSet;
   cfg = config.vim.shortcuts;
 in
 {

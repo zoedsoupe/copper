@@ -48,26 +48,19 @@ in
       treesitterGrammars = self.tree-sitter.withPlugins (p: with p; [
         tree-sitter-bash
         tree-sitter-c
-        tree-sitter-commonlisp
         tree-sitter-css
         tree-sitter-dockerfile
-        tree-sitter-elisp
         tree-sitter-elixir
-        tree-sitter-elm
-        tree-sitter-erlang
         tree-sitter-fish
         tree-sitter-haskell
         tree-sitter-html
         tree-sitter-javascript
         tree-sitter-json
-        tree-sitter-latex
         tree-sitter-lua
         tree-sitter-nix
-        tree-sitter-python
         tree-sitter-rust
         tree-sitter-toml
         tree-sitter-typescript
-        tree-sitter-vue
         tree-sitter-yaml
       ]);
 

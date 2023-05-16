@@ -9,29 +9,26 @@ in
       editorconfig-vim
       true-zen
       emmet-vim
-      codi-vim
       dashboard-nvim
       direnv-vim
       vim-matchup
-      nvim-comment
       neoscroll
-      # bullets-vim
       vim-highlightedyank
       vim-elixir
-      earthly-vim
       nvim-colorizer-lua
       pkgs.vimPlugins.presenting-vim
       headlines-nvim
       codi
+      todo-comments
     ];
 
     vim.luaConfigRC = ''
       require('colorizer').setup()
-      require('nvim_comment').setup()
       require('true-zen').setup()
       require('nvim-web-devicons').setup({ default = true })
       require('neoscroll').setup({ hide_cursor = false })
       require('headlines').setup()
+      require("todo-comments").setup()
     '';
   };
 }

@@ -1,7 +1,8 @@
-{ pkgs, config, lib, ... }:
+{ lib, ... }:
 
-with lib;
-
+let
+  inherit (lib) mkDefault;
+in
 {
   config = {
     vim.statusline.lualine = {

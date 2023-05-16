@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 
 let
-  inherit (lib) types mkOption;
+  inherit (lib) types mkOption writeIf;
   inherit (builtins) concatStringsSep;
   inherit (types) bool int str listOf enum;
 

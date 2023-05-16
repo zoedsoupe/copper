@@ -1,9 +1,8 @@
 { pkgs, config, lib, ... }:
 
-with lib;
-with builtins;
 
 let
+  inherit (lib) mkEnableOption mkIf withAttrSet;
   cfg = config.vim.telescope;
 in
 {
