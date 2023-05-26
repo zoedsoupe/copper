@@ -17,6 +17,7 @@ in
         description = "Whether to use `nil` or `rnix-lsp`";
       };
     };
+    dart = mkEnableOption "Dart LSP";
     ts = mkEnableOption "TS language LSP";
     elixir = mkEnableOption "Elixir language LSP";
     clojure = mkEnableOption "Clojure language LSP";
@@ -287,6 +288,17 @@ in
             attach_keymaps(client, bufnr)
           end,
           cmd = {"${pkgs.clojure-lsp}/bin/clojure-lsp"}
+        }
+        ''}
+
+        ${writeIf cfg.dart ''
+        -- Dart config
+        lspconfig.dartls.setup {
+          capabilities = capabilities;
+          on_attach = function(client, bufnr)
+            attach_keymaps(client, bufnr)
+          end,
+          cmd = {"${pkgs.dart}/bin/dart", "language-server", "--protocol=lsp"}
         }
         ''}
 
