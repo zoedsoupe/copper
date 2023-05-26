@@ -415,6 +415,7 @@
               ts = true;
               elixir = true;
               clojure = true;
+              dart = true;
             };
           };
         };
