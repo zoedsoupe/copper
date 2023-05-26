@@ -77,24 +77,6 @@ in
           completion = {
             completeopt = 'menu,menuone,noinsert',
           },
-          formatting = {
-            format = function(entry, vim_item)
-              -- type of kind
-              vim_item.kind = ${
-          writeIf config.vim.visuals.lspkind.enable
-          "require('lspkind').presets.default[vim_item.kind] .. ' ' .."
-        } vim_item.kind
-
-              -- name for each source
-              vim_item.menu = ({
-                buffer = "[Buffer]",
-                nvim_lsp = "[LSP]",
-                vsnip = "[VSnip]",
-                path = "[Path]",
-              })[entry.source.name]
-              return vim_item
-            end,
-          }
         })
         ${writeIf (config.vim.autopairs.enable) ''
           local cmp_autopairs = require('nvim-autopairs.completion.cmp')

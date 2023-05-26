@@ -91,7 +91,6 @@ in
           vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lh', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
           vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ls', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
           vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ln', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', 'F', '<cmd>lua vim.lsp.buf.format { async = true }<CR>', opts)
         end
 
         local null_ls = require("null-ls")
@@ -99,36 +98,13 @@ in
         local null_methods = require("null-ls.methods")
 
         local ls_sources = {
-          ${writeIf cfg.ts
-        ''
+          ${writeIf cfg.ts ''
             null_ls.builtins.diagnostics.eslint,
-            null_ls.builtins.formatting.prettier,
           ''}
         }
 
-        vim.g.formatsave = ${
-          if cfg.formatOnSave
-          then "true"
-          else "false"
-        };
-
-        -- Enable formatting
-        format_callback = function(client, bufnr)
-          vim.api.nvim_create_autocmd("BufWritePre", {
-            group = augroup,
-            buffer = bufnr,
-            callback = function()
-              if vim.g.formatsave then
-                  local params = require'vim.lsp.util'.make_formatting_params({})
-                  client.request('textDocument/formatting', params, nil, bufnr)
-              end
-            end
-          })
-        end
-
         default_on_attach = function(client, bufnr)
           attach_keymaps(client, bufnr)
-          format_callback(client, bufnr)
         end
 
         -- Enable null-ls
@@ -237,9 +213,6 @@ in
             end,
             settings = {
               ['nil'] = {
-                formatting = {
-                  command = {"${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt"}
-                },
                 diagnostics = {
                   ignored = { "uri_literal" },
                   excludedFiles = { }
@@ -250,23 +223,15 @@ in
           }
         ''}
 
-        ${writeIf (cfg.nix.enable && cfg.nix.type == "rnix-lsp") ''
+        ${writeIf (cfg.nix.enable) ''
           -- Nix config
           lspconfig.rnix.setup{
             capabilities = capabilities;
             on_attach = function(client, bufnr)
               attach_keymaps(client, bufnr)
             end,
-            cmd = {"${pkgs.rnix-lsp}/bin/rnix-lsp"}
+            cmd = {"${pkgs.nil}/bin/nil"}
           }
-        ''}
-
-        ${writeIf cfg.nix.enable
-      ''
-          -- Nix formatter
-          null_ls.builtins.formatting.alejandra.with({
-            command = "${pkgs.nixpkgs-fmt}/bin/nixpkgs-fmt";
-          });
         ''}
 
         ${writeIf cfg.elixir ''
